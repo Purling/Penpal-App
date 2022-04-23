@@ -1,6 +1,8 @@
+import java.util.List;
+
 public class Conversation implements TwoUserInterface {
     User user1, user2;
-    Hobby topic;
+    ConversationTopic topic;
     Language language1, language2;
 
     List<TextMessage> messages;
@@ -17,7 +19,7 @@ public class Conversation implements TwoUserInterface {
 
     }
 
-    public Hobby getTopic() {
+    public ConversationTopic getTopic() {
         return topic;
     }
 

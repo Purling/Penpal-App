@@ -1,18 +1,18 @@
 public interface TwoUserInterface {
-    User user1;
-    User user2;
+    User user1 = null;
+    User user2 = null;
 
-    public User getUser1() {
+    public default User getUser1() {
         return user1;
     }
 
-    public User getUser2() {
+    public default User getUser2() {
         return user2;
     }
 
-    public User getOtherUser(User user) {
+    public default User getOtherUser(User user) {
         if (user == user1) return user2;
         else if (user == user2) return user1;
-        else throw new InvalidArgumentException(); // Make a custom exception to handle this?
+        else throw new IllegalArgumentException(); // Make a custom exception to handle this?
     }
 }

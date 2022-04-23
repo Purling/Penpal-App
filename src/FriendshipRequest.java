@@ -1,4 +1,4 @@
-public class FriendshipRequest() {
+public class FriendshipRequest {
 	User sender;
 	User recipient;
 

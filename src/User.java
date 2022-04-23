@@ -1,23 +1,39 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
+
 public class User {
     private String username;
     private String password; // this should be hashed
 
     private String displayName;
 
-    private Dictionary<Language, Familiarity> familiarity;
-    private ArraySet<ConversationTopic> topics;
+    interface FamiliarityFunction {
+        Familiarity run(Familiarity f);
+    }
+
+    private HashMap<Language, Familiarity> familiarity;
+    private Set<ConversationTopic> topics;
 
     boolean inQueue;
-    static UserQueueObserver observer;
 
-    public List<Friendship> friends;
+    public ArrayList<Friendship> friends;
 
-    public List<FriendshipRequest> sentFriendRequests;
-    public List<FriendshipRequest> receivedFriendRequests;
+    public ArrayList<FriendshipRequest> sentFriendRequests;
+    public ArrayList<FriendshipRequest> receivedFriendRequests;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
+
+        familiarity = new HashMap<>();
+        topics = new HashSet<>();
+
+        friends = new ArrayList<>();
+        sentFriendRequests = new ArrayList<>();
+        receivedFriendRequests = new ArrayList<>();
     }
 
     public String getDisplayName() {
@@ -28,38 +44,36 @@ public class User {
         this.displayName = displayName;
     }
 
-    public String getFamiliarity(Language language) {
-        return familiarity.get(language);
+    public Familiarity getFamiliarity(Language language) {
+        FamiliarityFunction uninterestedIfNull = (f -> f == null ? Familiarity.UNINTERESTED : f);
+        return uninterestedIfNull.run(familiarity.get(language));
     }
 
-    public boolean setFamiliarity(Language language, Familiarity newFamiliarity) {
-
+    public void setFamiliarity(Language language, Familiarity newFamiliarity) {
+        familiarity.put(language, newFamiliarity);
     }
 
-    public ArraySet<ConversationTopic> getConversationTopics() {
-        return topics;
+    public boolean getConversationTopic(ConversationTopic topic) {
+        return topics.contains(topic);
     }
 
-    public boolean setConversationTopic(ConversationTopic topic, boolean interested) {
-
+    public void setConversationTopic(ConversationTopic topic, boolean interested) {
+        if (interested) topics.add(topic);
+        else topics.remove(topic);
     }
 
     public void enterQueue() {
         inQueue = true;
-        if (observer != null) observer.notifyEntered(user);
+        QueuedUserObserver.getInstance().userEntered(this);
     }
 
     public void exitQueue() {
         inQueue = false;
-        if (observer != null) observer.notifyExited(user);
+        QueuedUserObserver.getInstance().userExited(this);
     }
 
     public boolean isInQueue() {
         return inQueue;
-    }
-
-    public static void setObserver(UserQueueObserver observer) {
-
     }
 
     public List<Friendship> getFriends() {

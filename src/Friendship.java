@@ -10,7 +10,7 @@ public class Friendship implements TwoUserInterface {
         this.user1 = user1;
         this.user2 = user2;
         this.active = true;
-        this.associatedConversation = new Conversation();
+        this.associatedConversation = new Conversation(user1, user2);
 
         user1.addFriend(this);
         user2.addFriend(this);
