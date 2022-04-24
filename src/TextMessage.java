@@ -1,17 +1,16 @@
-public class TextMessage {
-    User author;
-    String content;
+import java.sql.Time;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    public TextMessage(User author, String content) {
-        this.author = author;
-        this.content = content;
+public abstract class TextMessage {
+    Time time;
+    Date date;
+
+    public TextMessage() {
+        this.date = Date.valueOf(LocalDate.now());
+        this.time = Time.valueOf(LocalTime.now());
     }
 
-    public User getAuthor() {
-        return author;
-    }
-
-    public String getContent() {
-        return content;
-    }
+    public abstract String getContent();
 }
