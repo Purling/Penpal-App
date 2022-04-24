@@ -1,26 +1,25 @@
 import java.util.List;
 
-public class Conversation implements TwoUserInterface {
+public abstract class Conversation implements TwoUserInterface {
     User user1, user2;
-    ConversationTopic topic;
     Language language1, language2;
 
     List<TextMessage> messages;
 
-    ConversationType type;
-
     // Used for persistent friend-to-friend conversations
-    public Conversation(User user1, User user2) {
-
+    public Conversation(User user1, Language language1, User user2, Language language2) {
+        this.user1 = user1;
+        this.user2 = user2;
+        this.language1 = language1;
+        this.language2 = language2;
     }
 
-    // Used for short-term paired conversations
-    public Conversation(User user1, Language language1, User user2, Language language2, ConversationTopic topic) {
-
+    public User getUser1() {
+        return user1;
     }
 
-    public ConversationTopic getTopic() {
-        return topic;
+    public User getUser2() {
+        return user2;
     }
 
     public Language getLanguage1() {
@@ -35,7 +34,12 @@ public class Conversation implements TwoUserInterface {
         return messages;
     }
 
-    public ConversationType getType() {
-        return type;
+    public void sendMessage(TextMessage message) {
+        messages.add(message);
+    }
+
+    @Override
+    public String toString() {
+        return user1 + " (" + language1 + "), " + user2 + " (" + language2 + ")";
     }
 }
