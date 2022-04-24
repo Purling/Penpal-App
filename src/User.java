@@ -17,23 +17,31 @@ public class User {
     private HashMap<Language, Familiarity> familiarity;
     private Set<ConversationTopic> topics;
 
-    boolean inQueue;
+    private TransitoryConversation conversation;
 
-    public ArrayList<Friendship> friends;
+    private boolean inQueue;
 
-    public ArrayList<FriendshipRequest> sentFriendRequests;
-    public ArrayList<FriendshipRequest> receivedFriendRequests;
+    public ArrayList<FriendshipRequest> friends;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
 
+        this.displayName = username;
+
         familiarity = new HashMap<>();
         topics = new HashSet<>();
 
         friends = new ArrayList<>();
-        sentFriendRequests = new ArrayList<>();
-        receivedFriendRequests = new ArrayList<>();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public String toString() {
+        return username;
     }
 
     public String getDisplayName() {
@@ -76,27 +84,39 @@ public class User {
         return inQueue;
     }
 
-    public List<Friendship> getFriends() {
+    public List<FriendshipRequest> getFriends() {
         return friends;
     }
 
-    public void addFriend(Friendship friendship) {
-        friends.add(friendship);
-    }
-
     public void receiveFriendRequest(FriendshipRequest request) {
-        receivedFriendRequests.add(request);
-    }
-
-    public void sendFriendRequest(FriendshipRequest request) {
-        sentFriendRequests.add(request);
+        friends.add(request);
     }
 
     public void acceptFriendRequest(FriendshipRequest request) {
-
+        request.accept(this);
     }
 
     public void ignoreFriendRequest(FriendshipRequest request) {
+        request.ignore(this);
+    }
 
+    public void unfriendFriend(FriendshipRequest request) {
+        request.unfriend(this);
+    }
+
+    public void withdrawFriendRequest(FriendshipRequest request) {
+        request.withdraw(this);
+    }
+
+    public void resendFriendRequest(FriendshipRequest request) {
+        request.resend(this);
+    }
+
+    public TransitoryConversation getTransitoryConversation() {
+        return conversation;
+    }
+
+    public void setTransitoryConversation(TransitoryConversation newConversation) {
+        conversation = newConversation;
     }
 }

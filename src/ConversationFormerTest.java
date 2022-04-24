@@ -123,8 +123,8 @@ public class ConversationFormerTest {
     @Test
     public void testValid() {
         for (ValidConversationData pair : data) {
-            if (pair.language1 == null || pair.language2 == null) {
-                assertNull(
+            if (pair.language1 != null && pair.language2 != null && pair.topic != null) {
+                assertNotNull(
                         (pair.user1
                                 + " has a valid conversation with " +
                                 pair.user2),

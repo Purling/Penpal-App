@@ -3,14 +3,14 @@ import java.util.Random;
 
 public class ConversationFormer {
 
-    public static ConversationFormer instance;
+    private static ConversationFormer instance;
 
     public static ConversationFormer getInstance() {
         if (instance == null) instance = new ConversationFormer();
         return instance;
     }
 
-    public Conversation formConversation(User user1, User user2) {
+    public TransitoryConversation formConversation(User user1, User user2) {
 
         ArrayList<ConversationTopic> validTopics = new ArrayList<>();
         for (ConversationTopic topic : ConversationTopic.values()) {
@@ -42,6 +42,6 @@ public class ConversationFormer {
         Language chosenLanguage1 = validLanguages1.get(r.nextInt(validLanguages1.size()));
         Language chosenLanguage2 = validLanguages2.get(r.nextInt(validLanguages2.size()));
 
-        return new Conversation(user1, chosenLanguage1, user2, chosenLanguage2, chosenTopic);
+        return new TransitoryConversation(user1, chosenLanguage1, user2, chosenLanguage2, chosenTopic);
     }
 }
