@@ -1,3 +1,0 @@
-public enum Language {
-    ENGLISH, ITALIAN, GERMAN, FRENCH, JAPANESE, KOREAN, MANDARIN;
-}
