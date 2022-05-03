@@ -63,6 +63,8 @@ before_script:
 lintDebug:
   interruptible: true
   stage: build
+  tags:
+    - ci-shared
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
