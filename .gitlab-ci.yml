@@ -64,7 +64,7 @@ lintDebug:
   interruptible: true
   stage: build
   tags:
-    - ci-shared
+    - comp2100
   script:
     - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
 
