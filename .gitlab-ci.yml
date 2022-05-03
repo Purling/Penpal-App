@@ -88,3 +88,14 @@ debugTests:
     - comp2100
   script:
     - ./gradlew -Pci --console=plain :app:testDebug
+
+# Check if all the JUnit tests pass
+unitTests:
+  interruptible: true
+  stage: test
+  script:
+    - gradle test
+  artifacts:
+    when: always
+    reports:
+      junit: build/test-results/test/**/TEST-*.xml
