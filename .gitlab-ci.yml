@@ -93,6 +93,8 @@ debugTests:
 unitTests:
   interruptible: true
   stage: test
+  tags:
+    - comp2100
   script:
     - gradle test
   artifacts:
