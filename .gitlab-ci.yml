@@ -59,15 +59,6 @@ before_script:
   - chmod +x ./gradlew
 
 # Basic android and gradle stuff
-# Check linting
-lintDebug:
-  interruptible: true
-  stage: build
-  tags:
-    - comp2100
-  script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
-
 # Make Project
 assembleDebug:
   interruptible: true
@@ -91,4 +82,4 @@ jUnitTests:
   artifacts:
     when: always
     reports:
-      junit: app/build/test-results/test/**/TEST-*.xml
+      junit: app/build/test-results/testDebugUnitTest/**/TEST-*.xml
