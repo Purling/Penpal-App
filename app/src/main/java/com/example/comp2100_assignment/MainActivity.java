@@ -9,6 +9,7 @@ import android.webkit.URLUtil;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button search;
     private EditText input;
     private ListView listView;
+    private ImageView profilePicture;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         search.setOnClickListener(search_listener);
         listView = findViewById(R.id.my_lv);
+        profilePicture = findViewById(R.id.profile_picture);
+
+        //todo: find and display profile picture if it exists
+
+
+
         //listView.setOnItemClickListener(list_listener);
 
 
