@@ -1,5 +1,8 @@
 package com.example.comp2100_assignment;
 
+import android.graphics.Bitmap;
+import android.media.Image;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +14,9 @@ public class User {
     private String password; // this should be hashed
 
     private String displayName;
+
+    private Bitmap profilePicture;
+
 
     interface FamiliarityFunction {
         Familiarity run(Familiarity f);
@@ -35,6 +41,7 @@ public class User {
         topics = new HashSet<>();
 
         friends = new ArrayList<>();
+
     }
 
     public String getUsername() {
@@ -121,4 +128,14 @@ public class User {
     public void setTransitoryConversation(TransitoryConversation newConversation) {
         conversation = newConversation;
     }
+
+    public Bitmap getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(Bitmap profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+
 }

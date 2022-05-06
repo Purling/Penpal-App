@@ -59,15 +59,6 @@ before_script:
   - chmod +x ./gradlew
 
 # Basic android and gradle stuff
-# Check linting
-lintDebug:
-  interruptible: true
-  stage: build
-  tags:
-    - comp2100
-  script:
-    - ./gradlew -Pci --console=plain :app:lintDebug -PbuildDir=lint
-
 # Make Project
 assembleDebug:
   interruptible: true
@@ -81,23 +72,14 @@ assembleDebug:
       - app/build/outputs/
 
 # Run all tests, if any fails, interrupt the pipeline(fail it)
-debugTests:
+jUnitTests:
   interruptible: true
   stage: test
   tags:
     - comp2100
   script:
-    - ./gradlew -Pci --console=plain :app:testDebug
-
-# Check if all the JUnit tests pass
-unitTests:
-  interruptible: true
-  stage: test
-  tags:
-    - comp2100
-  script:
-    - gradle test
+    - ./gradlew -Pci --console=plain :app:testDebugUnitTest
   artifacts:
     when: always
     reports:
-      junit: build/test-results/test/**/TEST-*.xml
+      junit: app/build/test-results/testDebugUnitTest/**/TEST-*.xml
