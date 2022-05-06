@@ -35,6 +35,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'com.google.truth:truth:1.0.1', { exclude group: 'com.google.guava', module:'listenablefuture'}
+    api 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 
     // Import the Firebase BoM
     implementation platform('com.google.firebase:firebase-bom:29.3.1')
