@@ -18,6 +18,10 @@ public class User {
     private Bitmap profilePicture;
 
 
+
+    private ArrayList<User> blockedUsers;
+
+
     interface FamiliarityFunction {
         Familiarity run(Familiarity f);
     }
@@ -42,7 +46,12 @@ public class User {
 
         friends = new ArrayList<>();
 
+        blockedUsers = new ArrayList<>();
+
+
+
     }
+
 
     public String getUsername() {
         return username;
@@ -137,5 +146,21 @@ public class User {
         this.profilePicture = profilePicture;
     }
 
+    //adds userToBlock to this' list of blocked users
+    public void blockUser(User userToBlock){
+        if(!blockedUsers.contains(userToBlock)){
+            blockedUsers.add(userToBlock);
+        }
+    }
+
+    //removes userToBlock from this' list of blocked users
+    public void unblockUser(User userToUnblock){
+        blockedUsers.remove(userToUnblock);
+    }
+
+    //returns if userToCheck is blocked by this
+    public boolean isBlocked(User userToCheck){
+        return blockedUsers.contains(userToCheck);
+    }
 
 }
