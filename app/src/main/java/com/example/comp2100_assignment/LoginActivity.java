@@ -54,16 +54,16 @@ public class LoginActivity extends AppCompatActivity {
 
     public View.OnClickListener loginListener = (view) -> {
         Intent intent = new Intent();
-        intent.setClass(LoginActivity.this, MainActivity.class);
+        intent.setClass(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     };
-    //TODO: write data into the file
+    //TODO: write data into the file( But it seems that we cannot wrtie file in android studio)
 
 
     // this should be jump to register one
     public View.OnClickListener registerListener = (view) -> {
         Intent intent = new Intent();
-        intent.setClass(LoginActivity.this, MainActivity.class);
+        intent.setClass(getApplicationContext(), MainActivity.class);
         startActivity(intent);
     };
 

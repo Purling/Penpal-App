@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText input;
     private ListView listView;
     private ImageView profilePicture;
-
+    private Button match;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,8 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search);
         search.setOnClickListener(search_listener);
         listView = findViewById(R.id.my_lv);
+        match = findViewById(R.id.match);
+        match.setOnClickListener(match_listener);
         profilePicture = findViewById(R.id.profile_picture);
 
         //todo: find and display profile picture if it exists
@@ -86,4 +88,8 @@ public class MainActivity extends AppCompatActivity {
     };
     //public AdapterView.OnItemClickListener list_listener = (view)
 
+    public View.OnClickListener match_listener = (view)->{
+        Intent intent = new Intent();
+        startActivity(intent);
+    };
 }
