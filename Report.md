@@ -202,6 +202,13 @@ The following is a report template to help your team successfully provide all th
 1. *Feature 1: Use Firebase to implement ... . (easy)*
 2. *Feature 2: Use Firebase to persist ... .(medium)*
 
+*Surprise*
+Code Smells
+Potential:
+  returning private field from public class (User class, friendship request)
+  public static fields should be final (QueuedUserObserver)
+
+
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
 ## Team Meetings
