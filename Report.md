@@ -205,8 +205,15 @@ The following is a report template to help your team successfully provide all th
 *Surprise*
 Code Smells
 Potential:
-  returning private field from public class (User class, friendship request)
-  public static fields should be final (QueuedUserObserver)
+  returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
+  fixable: yes!
+  public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
+  fixable: yes!
+  potential god class: User class
+  fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
+  reasons: all of the functionality makes sense to be in user class
+            making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
+            as a countermeasure, be especially vigilant when adding new fields or methods to User class
 
 
 *List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
