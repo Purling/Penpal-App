@@ -24,6 +24,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private Button friend;
     private Button search;
@@ -34,7 +37,11 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;
 
-    UserPartial user = null;
+    UserPartial user;
+
+    ConversationsAvailable available;
+
+    DatabaseReference availableReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,11 +63,22 @@ public class MainActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("USER");
+        user = SessionInformationStorer.user;
+        System.out.println(user);
         // The avatar, stored in user.avatar, is either null or a String representing the address of the image
-        System.out.println(user.avatar);
+        //System.out.println(user.avatar);
 
+        availableReference = manager.getDatabase().getReference("availableConversations");
 
+        availableReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                available = snapshot.getValue(ConversationsAvailable.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {}
+        });
     }
 
     public View.OnClickListener search_listener = (view) -> {
@@ -77,9 +95,26 @@ public class MainActivity extends AppCompatActivity {
     //public AdapterView.OnItemClickListener list_listener = (view)
 
     public View.OnClickListener match_listener = (view)->{
+        if (available == null) {
+            available = new ConversationsAvailable();
+            availableReference.setValue(available);
+        }
+
+        String joiningConversation;
+        System.out.println("Joining conversation!");
+        if (available.usernames.size() == 0) {
+            joiningConversation = SessionInformationStorer.user.username;
+            availableReference.setValue(available.add(SessionInformationStorer.user.username));
+        } else {
+            joiningConversation = available.usernames.get(0);
+            availableReference.setValue(available.removeFirst());
+        }
+        System.out.println("Joining conversation: " + joiningConversation);
+
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, ConversationActivity.class);
-        intent.putExtra("USER", user);
+        intent.putExtra("conversationName", joiningConversation);
+        System.out.println(joiningConversation);
         startActivity(intent);
     };
 }

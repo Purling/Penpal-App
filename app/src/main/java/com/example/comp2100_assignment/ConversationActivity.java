@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,8 +23,6 @@ import java.util.ArrayList;
 
 public class ConversationActivity extends AppCompatActivity {
 
-    UserPartial user;
-
     EditText messageBox;
     TextView conversation;
 
@@ -37,17 +36,24 @@ public class ConversationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversation);
 
         Intent intent = getIntent();
-        UserPartial user = (UserPartial) intent.getSerializableExtra("USER");
+        String conversationName = intent.getStringExtra("conversationName");
         messageBox = findViewById(R.id.messageBox);
+        messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
-        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation");
+        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation").child(conversationName).child("messages");
+
+        sendMessage(false, ">" + SessionInformationStorer.user.username + " joined the conversation.");
 
         conversationRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 messages.add((String) snapshot.getValue());
-                conversation.setText(messages.toString());
+                String output = "";
+                for (String s : messages) {
+                    output += s + "\n";
+                }
+                conversation.setText(output);
             }
 
             @Override
@@ -63,14 +69,16 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String message = messageBox.getText().toString();
+                sendMessage(true, messageBox.getText().toString());
                 messageBox.setText("");
-                messageBox.clearFocus();
-                messageBox.setFocusable(false);
-                conversationRoot.child(String.valueOf(System.currentTimeMillis())).setValue("<" + user.username + "> " + message);
+
             }
         });
+
+        System.out.println(SessionInformationStorer.user);
     }
 
-
+    private void sendMessage(boolean includeName, String contents) {
+        conversationRoot.child(String.valueOf(System.currentTimeMillis())).setValue((includeName ? "<" + SessionInformationStorer.user.username + "> " : "") + contents);
+    }
 }
