@@ -44,9 +44,11 @@ public class MainActivity extends AppCompatActivity {
         //todo: find and display profile picture if it exists
 
         FirebaseApp.initializeApp(getBaseContext());
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
+        FirebaseDatabase database = FirebaseDatabase.getInstance(
+                "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        );
+        System.out.println("Database app: " + database.getApp());
+        DatabaseReference myRef = database.getReference("value");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -65,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        myRef.setValue("Hello, World!");
-        myRef.setValue("Hello, World 2!");
+        myRef.setValue("random value");
 
         //listView.setOnItemClickListener(list_listener);
 
