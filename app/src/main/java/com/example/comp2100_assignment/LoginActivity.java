@@ -21,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     BufferedReader bufferedReader;
 
+    DatabaseUserManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,9 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
 
         register.setOnClickListener(registerListener);
+        login.setOnClickListener(loginListener);
+
+        manager = DatabaseUserManager.getInstance(getBaseContext());
 
     try {
         bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("logindetails.csv"), StandardCharsets.UTF_8));
@@ -53,9 +58,13 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public View.OnClickListener loginListener = (view) -> {
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        boolean successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
+        System.out.println("Login successful: " + successful);
+        if (successful) {
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
     };
     //TODO: write data into the file( But it seems that we cannot wrtie file in android studio)
 

@@ -1,5 +1,7 @@
 package com.example.comp2100_assignment;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -15,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,6 +31,9 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ImageView profilePicture;
     private Button match;
+
+    DatabaseUserManager manager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,31 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         //todo: find and display profile picture if it exists
 
-        FirebaseApp.initializeApp(getBaseContext());
-        FirebaseDatabase database = FirebaseDatabase.getInstance(
-                "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
-        );
-        System.out.println("Database app: " + database.getApp());
-        DatabaseReference myRef = database.getReference("value");
-
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
-                Log.d("TAG", "Value is: " + value);
-                System.out.println("Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("TAG", "Failed to read value.", error.toException());
-            }
-        });
-
-        myRef.setValue("random value");
+        manager = DatabaseUserManager.getInstance(getBaseContext());
 
         //listView.setOnItemClickListener(list_listener);
 
