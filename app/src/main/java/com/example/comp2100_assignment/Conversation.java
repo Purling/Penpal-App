@@ -6,7 +6,7 @@ public abstract class Conversation implements TwoUserInterface {
     User user1, user2;
     Language language1, language2;
 
-    List<TextMessage> messages;
+    List<UserMessage> messages;
 
     // Used for persistent friend-to-friend conversations
     public Conversation(User user1, Language language1, User user2, Language language2) {
@@ -32,11 +32,11 @@ public abstract class Conversation implements TwoUserInterface {
         return language2;
     }
 
-    public List<TextMessage> getMessages() {
+    public List<UserMessage> getMessages() {
         return messages;
     }
 
-    public void sendMessage(TextMessage message) {
+    public void sendMessage(UserMessage message) {
         messages.add(message);
     }
 

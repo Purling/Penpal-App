@@ -8,10 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -26,9 +23,10 @@ public class ConversationActivity extends AppCompatActivity {
     EditText messageBox;
     TextView conversation;
 
-    ArrayList<String> messages = new ArrayList<>();
+    ArrayList<UserMessage> messages = new ArrayList<>();
 
     DatabaseReference conversationRoot;
+    DatabaseReference conversationMessagesRoot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,23 +35,33 @@ public class ConversationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String conversationName = intent.getStringExtra("conversationName");
+        boolean owner = intent.getBooleanExtra("owner", true);
         messageBox = findViewById(R.id.messageBox);
         messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
-        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation").child(conversationName).child("messages");
+        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation").child(conversationName);
+        conversationMessagesRoot = conversationRoot.child("messages");
 
-        sendMessage(false, ">" + SessionInformationStorer.user.username + " joined the conversation.");
+        conversationRoot.child(owner ? "user1" : "user2").setValue(SessionInformationStorer.user.username);
 
-        conversationRoot.addChildEventListener(new ChildEventListener() {
+        UserMessage message = new UserMessage("", SessionInformationStorer.user.username + " joined.");
+        conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
+
+        conversationMessagesRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                messages.add((String) snapshot.getValue());
-                String output = "";
-                for (String s : messages) {
-                    output += s + "\n";
+                UserMessage message = snapshot.getValue(UserMessage.class);
+                boolean added = false;
+                for (int i = 0; i < messages.size(); i++) {
+                    if (Long.valueOf(message.time) < Long.valueOf(messages.get(i).time)) {
+                        messages.add(i, message);
+                        added = true;
+                        break;
+                    }
                 }
-                conversation.setText(output);
+                if (!added) messages.add(message);
+                updateConversationDisplay();
             }
 
             @Override
@@ -69,16 +77,22 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                sendMessage(true, messageBox.getText().toString());
+                UserMessage message = new UserMessage(SessionInformationStorer.user.username, messageBox.getText().toString());
+                conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
                 messageBox.setText("");
-
             }
         });
 
         System.out.println(SessionInformationStorer.user);
     }
 
-    private void sendMessage(boolean includeName, String contents) {
-        conversationRoot.child(String.valueOf(System.currentTimeMillis())).setValue((includeName ? "<" + SessionInformationStorer.user.username + "> " : "") + contents);
+    void updateConversationDisplay() {
+        //TODO: make it look nicer
+        StringBuilder sb = new StringBuilder();
+        for (UserMessage message : messages) {
+            sb.append(message).append("\n");
+        }
+        System.out.println(sb.toString());
+        conversation.setText(sb.toString());
     }
 }

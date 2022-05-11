@@ -126,21 +126,22 @@ public class MainActivity extends AppCompatActivity {
             availableReference.setValue(available);
         }
 
+        boolean owner;
         String joiningConversation;
-        System.out.println("Joining conversation!");
         if (available.usernames.size() == 0) {
             joiningConversation = SessionInformationStorer.user.username;
             availableReference.setValue(available.add(SessionInformationStorer.user.username));
+            owner = true;
         } else {
             joiningConversation = available.usernames.get(0);
             availableReference.setValue(available.removeFirst());
+            owner = false;
         }
-        System.out.println("Joining conversation: " + joiningConversation);
 
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, ConversationActivity.class);
         intent.putExtra("conversationName", joiningConversation);
-        System.out.println(joiningConversation);
+        intent.putExtra("owner", owner);
         startActivity(intent);
     };
 }

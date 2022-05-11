@@ -32,7 +32,7 @@ public class FriendshipRequest {
 		status = FriendshipRequestStatus.ACCEPTED;
 
 		if (conversation == null) conversation = new PermanentConversation(sender, languageSender, recipient, languageRecipient);
-		conversation.sendMessage(new SystemMessage("Friended."));
+		conversation.sendMessage(new UserMessage("", "Friended."));
 	}
 
 	// Declines the request without notifying the sender
@@ -47,7 +47,7 @@ public class FriendshipRequest {
 		if (actioner != sender && actioner != recipient) return;
 		if (status != FriendshipRequestStatus.ACCEPTED) return;
 
-		if (conversation != null) conversation.sendMessage(new SystemMessage("Unfriended."));
+		if (conversation != null) conversation.sendMessage(new UserMessage("", "Unfriended."));
 		status = FriendshipRequestStatus.UNFRIENDED;
 	}
 
