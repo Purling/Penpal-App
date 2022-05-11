@@ -22,6 +22,14 @@ code:
     licence:
 
 
+   - comment: loading image from web asynchronously
+    url: https://stackoverflow.com/a/14443056
+    licence: CC BY-SA 3.0
+
+  - comment: updating ui with image loaded asynchronously
+    url: https://stackoverflow.com/a/5162096 
+    licence: CC BY-SA 3.0
+
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external assets)
 assets:
