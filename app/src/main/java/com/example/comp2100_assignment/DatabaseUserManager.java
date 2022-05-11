@@ -20,7 +20,7 @@ public class DatabaseUserManager {
         return instance;
     }
 
-    final static HashMap<String, String> users = new HashMap<>();
+    final static HashMap<String, UserPartial> users = new HashMap<>();
 
     private DatabaseUserManager(Context baseContext) {
         FirebaseApp.initializeApp(baseContext);
@@ -33,16 +33,11 @@ public class DatabaseUserManager {
         usersRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                String username = snapshot.child("username").getValue(String.class);
-                String password = "";
-                try {
-                    password = snapshot.child("password").getValue(Long.class).toString();
-                } catch (Exception ignored) {}
-                try {
-                    password = snapshot.child("password").getValue(String.class);
-                } catch (Exception ignored) {}
-                System.out.println(username + "/" + password);
-                users.put(username, password);
+                users.put(snapshot.getKey(), new UserPartial(
+                        tryToGet(snapshot, "username"),
+                        tryToGet(snapshot, "password"),
+                        tryToGet(snapshot, "avatar")
+                ));
             }
 
             @Override
@@ -59,16 +54,28 @@ public class DatabaseUserManager {
         });
     }
 
+    public static String tryToGet(DataSnapshot snapshot, String tag) {
+        try {
+            return snapshot.child(tag).getValue(Long.class).toString();
+        } catch (Exception ignored) {}
+        try {
+            return snapshot.child(tag).getValue(String.class);
+        } catch (Exception ignored) {}
+        return "";
+    }
+
     public void printUserData() {
         for (String user : users.keySet()) {
             System.out.println(user + ": " + users.get(user));
         }
     }
 
-    public boolean attemptLogin(String username, String password) {
-        for (String user : users.keySet()) {
-            if (user.equals(username) && users.get(user).equals(password)) return true;
+    public UserPartial attemptLogin(String username, String password) {
+        for (UserPartial user : users.values()) {
+            if (user.username.equals(username) && user.password.equals(password)) {
+                return user;
+            }
         }
-        return false;
+        return null;
     }
 }

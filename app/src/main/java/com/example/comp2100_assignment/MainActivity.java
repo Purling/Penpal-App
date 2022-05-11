@@ -53,7 +53,10 @@ public class MainActivity extends AppCompatActivity {
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
-        //listView.setOnItemClickListener(list_listener);
+        Intent intent = getIntent();
+        UserPartial user = (UserPartial) intent.getSerializableExtra("USER");
+        // The avatar, stored in user.avatar, is either null or a String representing the address of the image
+        System.out.println(user.avatar);
 
 
     }

@@ -58,12 +58,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public View.OnClickListener loginListener = (view) -> {
-        boolean successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
-        System.out.println("Login successful: " + successful);
-        if (successful) {
+        UserPartial successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
+        if (successful != null) {
+            System.out.println("Logged in successfully as " + successful.username);
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), MainActivity.class);
+            intent.putExtra("USER", successful);
             startActivity(intent);
+        } else {
+            System.out.println("Login failed... incorrect credentials?");
         }
     };
     //TODO: write data into the file( But it seems that we cannot wrtie file in android studio)
