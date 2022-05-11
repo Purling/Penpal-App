@@ -24,7 +24,7 @@ public class DatabaseUserManager {
 
     private DatabaseUserManager(Context baseContext) {
         FirebaseApp.initializeApp(baseContext);
-        FirebaseDatabase database = FirebaseDatabase.getInstance(
+        database = FirebaseDatabase.getInstance(
                 "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
         );
         DatabaseReference usersRoot = database.getReference("users");
@@ -77,5 +77,11 @@ public class DatabaseUserManager {
             }
         }
         return null;
+    }
+
+    private final FirebaseDatabase database;
+
+    public FirebaseDatabase getDatabase() {
+        return database;
     }
 }

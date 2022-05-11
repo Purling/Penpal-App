@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;
 
+    UserPartial user = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         Intent intent = getIntent();
-        UserPartial user = (UserPartial) intent.getSerializableExtra("USER");
+        user = (UserPartial) intent.getSerializableExtra("USER");
         // The avatar, stored in user.avatar, is either null or a String representing the address of the image
         System.out.println(user.avatar);
 
@@ -76,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
     public View.OnClickListener match_listener = (view)->{
         Intent intent = new Intent();
+        intent.setClass(MainActivity.this, ConversationActivity.class);
+        intent.putExtra("USER", user);
         startActivity(intent);
     };
 }
