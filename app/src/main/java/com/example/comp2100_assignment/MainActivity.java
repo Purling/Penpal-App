@@ -99,14 +99,18 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener match_listener = (view)->{
         for (String otherUser : queueWatcher.map.keySet()) {
             if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
-                availableReference.child(otherUser).setValue(System.currentTimeMillis() + "_transitory");
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, QueueActivity.class);
-                intent.putExtra("conversationName", otherUser);
-                intent.putExtra("user", user);
-                intent.putExtra("willBeOwner", true);
-                startActivity(intent);
-                return;
+                User other = DatabaseUserManager.get(otherUser);
+                Conversation formed = ConversationFormer.getInstance().formConversation(user, other);
+                if (formed != null) {
+                    availableReference.child(otherUser).setValue(System.currentTimeMillis() + "_transitory");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, QueueActivity.class);
+                    intent.putExtra("conversationName", otherUser);
+                    intent.putExtra("user", user);
+                    intent.putExtra("willBeOwner", true);
+                    startActivity(intent);
+                    return;
+                }
             }
         }
 

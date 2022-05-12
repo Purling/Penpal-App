@@ -52,9 +52,24 @@ public class User implements Serializable {
         blockedUsers = new ArrayList<>();
     }
 
-    public User(String username, String password, String avatar) {
+    public User(String username, String password, String avatar, String displayName, String commaSeparatedTopics) {
         this(username, password);
         this.avatar = avatar;
+        this.displayName = displayName;
+        String[] stringTopics = commaSeparatedTopics.split("[,]");
+        for (String stringTopic : stringTopics) {
+            setConversationTopic(conversationTopicFromString(stringTopic), true);
+        }
+    }
+
+    ConversationTopic conversationTopicFromString(String stringTopic) {
+        switch (stringTopic) {
+            case "MUSIC": return ConversationTopic.MUSIC;
+            case "SPORTS": return ConversationTopic.SPORTS;
+            case "FOOD": return ConversationTopic.FOOD;
+            case "TRAVEL": return ConversationTopic.TRAVEL;
+            default: return ConversationTopic.MUSIC;
+        }
     }
 
     public boolean tryLogin(String enteredUsername, String enteredPassword) {

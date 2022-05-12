@@ -36,7 +36,9 @@ public class DatabaseUserManager {
                 users.put(snapshot.getKey(), new User(
                         tryToGet(snapshot, "username"),
                         tryToGet(snapshot, "password"),
-                        tryToGet(snapshot, "avatar")
+                        tryToGet(snapshot, "avatar"),
+                        tryToGet(snapshot, "displayName"),
+                        tryToGet(snapshot, "conversationTopics")
                 ));
             }
 
