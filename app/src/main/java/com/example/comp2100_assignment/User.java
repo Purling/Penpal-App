@@ -12,14 +12,14 @@ import java.util.HashSet;
 public class User {
     private String username;
     private String password; // this should be hashed
-
     private String displayName;
 
     private Bitmap profilePicture;
 
+    public User() {
+    }
 
-
-    private ArrayList<User> blockedUsers;
+    private List<User> blockedUsers;
 
 
     interface FamiliarityFunction {
@@ -27,13 +27,13 @@ public class User {
     }
 
     private HashMap<Language, Familiarity> familiarity;
-    private Set<ConversationTopic> topics;
+    private List<ConversationTopic> topics;
 
     private TransitoryConversation conversation;
 
     private boolean inQueue;
 
-    public ArrayList<FriendshipRequest> friends;
+    public List<FriendshipRequest> friends;
 
     public User(String username, String password) {
         this.username = username;
@@ -42,14 +42,11 @@ public class User {
         this.displayName = username;
 
         familiarity = new HashMap<>();
-        topics = new HashSet<>();
+        topics = new ArrayList<>();
 
         friends = new ArrayList<>();
 
         blockedUsers = new ArrayList<>();
-
-
-
     }
 
 
@@ -83,7 +80,9 @@ public class User {
         return topics.contains(topic);
     }
 
+    // Why not just have this in two methods?
     public void setConversationTopic(ConversationTopic topic, boolean interested) {
+        if (topics.contains(topic)) return;
         if (interested) topics.add(topic);
         else topics.remove(topic);
     }
@@ -144,6 +143,58 @@ public class User {
 
     public void setProfilePicture(Bitmap profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<User> getBlockedUsers() {
+        return blockedUsers;
+    }
+
+    public void setBlockedUsers(ArrayList<User> blockedUsers) {
+        this.blockedUsers = blockedUsers;
+    }
+
+    public HashMap<Language, Familiarity> getFamiliarity() {
+        return familiarity;
+    }
+
+    public void setFamiliarity(HashMap<Language, Familiarity> familiarity) {
+        this.familiarity = familiarity;
+    }
+
+    public List<ConversationTopic> getTopics() {
+        return topics;
+    }
+
+    public void setTopics(List<ConversationTopic> topics) {
+        this.topics = topics;
+    }
+
+    public TransitoryConversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(TransitoryConversation conversation) {
+        this.conversation = conversation;
+    }
+
+    public void setInQueue(boolean inQueue) {
+        this.inQueue = inQueue;
+    }
+
+    public void setFriends(ArrayList<FriendshipRequest> friends) {
+        this.friends = friends;
     }
 
     //adds userToBlock to this' list of blocked users
