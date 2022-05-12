@@ -45,10 +45,9 @@ public class MainActivity extends AppCompatActivity {
 
     UserPartial user;
 
-    ConversationsAvailable available;
-    HashMap<String, String> conversationsAvailable = new HashMap<>();
-
     DatabaseReference availableReference;
+
+    DatabaseDictionaryWatcher queueWatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +55,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
-
-        //Intent intent = getIntent();
-        //user = (UserPartial) intent.getSerializableExtra("USER");
 
         input = findViewById(R.id.input_text);
         friend = findViewById(R.id.friend);
@@ -98,34 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         availableReference = manager.getDatabase().getReference("availableConversations");
-
-        availableReference.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                conversationsAvailable.put(snapshot.getKey(), snapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                conversationsAvailable.remove(previousChildName);
-                conversationsAvailable.put(snapshot.getKey(), snapshot.getValue(String.class));
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                conversationsAvailable.remove(snapshot.getKey());
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        queueWatcher = new DatabaseDictionaryWatcher(availableReference);
     }
 
     public View.OnClickListener search_listener = (view) -> {
@@ -143,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
     };
 
     public View.OnClickListener match_listener = (view)->{
-        for (String otherUser : conversationsAvailable.keySet()) {
-            if (conversationsAvailable.get(otherUser).equals("#QUEUED")) {
+        for (String otherUser : queueWatcher.map.keySet()) {
+            if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
                 final String conversationName = otherUser + "_transitory";
                 availableReference.child(otherUser).setValue(conversationName);
                 Intent intent = new Intent();
