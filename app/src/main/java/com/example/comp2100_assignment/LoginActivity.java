@@ -20,7 +20,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button register;
     private EditText username;
     private EditText password;
-    BufferedReader bufferedReader;
 
     DatabaseUserManager manager;
 
@@ -38,24 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(loginListener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
-
-    try {
-        bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("logindetails.csv"), StandardCharsets.UTF_8));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] tokens = line.split(",");
-            for (String token : tokens) {
-                if (token.contains(username.getText().toString())) {
-                    login.setOnClickListener(loginListener);
-                } else
-                    login.setOnClickListener(registerListener);
-            }
-        }
-        bufferedReader.close();
-        }catch (IOException e){
-        }
     }
-    //TODO: read data from the file to check username and password.
 
 
     public View.OnClickListener loginListener = (view) -> {
