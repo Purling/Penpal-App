@@ -39,10 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(loginListener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
-
-        adam = new User("adam", "adampass");
-
-        manager.getDatabase().getReference("userList").child("adam").setValue(adam);
     }
 
 

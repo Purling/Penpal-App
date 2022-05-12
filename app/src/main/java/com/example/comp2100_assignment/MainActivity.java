@@ -70,28 +70,13 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
-        //System.out.println(user);
-        // The avatar, stored in user.avatar, is either null or a String representing the address of the image
-        if(user == null || user.avatar == null){
-            //notify user if avatar isn't set
-            Toast.makeText(getApplicationContext(),"User has no avatar",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            // need to create a new thread to load data from web
-            // https://stackoverflow.com/a/14443056
-            Thread profilepicthread = new Thread(() -> {
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.avatar).openConnection().getInputStream());
-                    // ui can't be updated in thread
-                    // https://stackoverflow.com/a/5162096
-                    runOnUiThread(() -> profilePicture.setImageBitmap(bitmap));
-                } catch (IOException e) {
-                    //if image can't be found
-                    Toast.makeText(getApplicationContext(),"Unable to get avatar from url",Toast.LENGTH_SHORT).show();
-                }
-            });
-            profilepicthread.start();
-        }
+
+        new Thread(() -> {
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.avatar).openConnection().getInputStream());
+                runOnUiThread(() -> profilePicture.setImageBitmap(bitmap));
+            } catch (Exception ignored) {}
+        }).start();
 
         availableReference = manager.getDatabase().getReference("availableConversations");
         queueWatcher = new DatabaseDictionaryWatcher(availableReference);
@@ -114,13 +99,12 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener match_listener = (view)->{
         for (String otherUser : queueWatcher.map.keySet()) {
             if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
-                final String conversationName = otherUser + "_transitory";
-                availableReference.child(otherUser).setValue(conversationName);
+                availableReference.child(otherUser).setValue(otherUser + "_transitory");
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, QueueActivity.class);
                 intent.putExtra("conversationName", otherUser);
                 intent.putExtra("user", user);
-                //intent.putExtra("owner", true);
+                intent.putExtra("willBeOwner", true);
                 startActivity(intent);
                 return;
             }
@@ -132,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         intent.setClass(MainActivity.this, QueueActivity.class);
         intent.putExtra("conversationName", user.getUsername());
         intent.putExtra("user", user);
+        intent.putExtra("willBeOwner", false);
         startActivity(intent);
     };
 }

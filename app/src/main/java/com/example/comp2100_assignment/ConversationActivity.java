@@ -5,10 +5,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -18,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ConversationActivity extends AppCompatActivity {
@@ -118,15 +122,23 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-        associateLabel(R.id.user1Label, conversationRoot.child("user1"));
-        associateLabel(R.id.user2Label, conversationRoot.child("user2"));
+        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"));
+        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"));
     }
 
-    void associateLabel(int label, DatabaseReference reference) {
+    void associateLabel(int label, int avatarID, DatabaseReference reference) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ((TextView)findViewById(label)).setText(snapshot.getValue(String.class));
+                User u = DatabaseUserManager.get(snapshot.getValue(String.class));
+                if (u == null) return;
+                ((TextView)findViewById(label)).setText(u.getDisplayName());
+                new Thread(() -> {
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(new URL(u.avatar).openConnection().getInputStream());
+                        runOnUiThread(() -> ((ImageView)findViewById(avatarID)).setImageBitmap(bitmap));
+                    } catch (Exception ignored) {}
+                }).start();
             }
 
             @Override

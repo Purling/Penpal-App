@@ -18,6 +18,7 @@ public class QueueActivity extends AppCompatActivity {
     DatabaseReference awaitingConversation;
 
     User user;
+    boolean willBeOwner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class QueueActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
+        boolean willBeOwner = intent.getBooleanExtra("willBeOwner", false);
 
         awaitingConversation = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations").child(conversationName);
 
@@ -52,7 +54,7 @@ public class QueueActivity extends AppCompatActivity {
                     intent.putExtra("user", user);
                     intent.putExtra("conversationName", newConversationName);
                     intent.putExtra("queueName", conversationName);
-                    intent.putExtra("owner", false);
+                    intent.putExtra("owner", willBeOwner);
                     startActivity(intent);
                 }
             }
