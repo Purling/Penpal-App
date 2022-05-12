@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
-        Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("USER");
+        //Intent intent = getIntent();
+        //user = (UserPartial) intent.getSerializableExtra("USER");
 
         input = findViewById(R.id.input_text);
         friend = findViewById(R.id.friend);
@@ -70,10 +70,11 @@ public class MainActivity extends AppCompatActivity {
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
-        user = SessionInformationStorer.user;
-        System.out.println(user);
+        Intent intent = getIntent();
+        user = (UserPartial) intent.getSerializableExtra("user");
+        //System.out.println(user);
         // The avatar, stored in user.avatar, is either null or a String representing the address of the image
-        if(user.avatar == null){
+        if(user == null || user.avatar == null){
             //notify user if avatar isn't set
             Toast.makeText(getApplicationContext(),"User has no avatar",Toast.LENGTH_SHORT).show();
         }
@@ -111,11 +112,13 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("search",input.getText().toString());
         intent.setClass(MainActivity.this, SearchActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     };
     public View.OnClickListener friend_listener = (view) -> {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, FriendActivity.class);
+        intent.putExtra("user", user);
         startActivity(intent);
     };
     //public AdapterView.OnItemClickListener list_listener = (view)
@@ -129,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
         boolean owner;
         String joiningConversation;
         if (available.usernames.size() == 0) {
-            joiningConversation = SessionInformationStorer.user.username;
-            availableReference.setValue(available.add(SessionInformationStorer.user.username));
+            joiningConversation = user.username;
+            availableReference.setValue(available.add(user.username));
             owner = true;
         } else {
             joiningConversation = available.usernames.get(0);
@@ -141,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, ConversationActivity.class);
         intent.putExtra("conversationName", joiningConversation);
+        intent.putExtra("user", user);
         intent.putExtra("owner", owner);
         startActivity(intent);
     };

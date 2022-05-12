@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             System.out.println("Logged in successfully as " + successful.username);
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), MainActivity.class);
-            SessionInformationStorer.user = successful;
+            intent.putExtra("user", successful);
             startActivity(intent);
         } else {
             System.out.println("Login failed... incorrect credentials?");
