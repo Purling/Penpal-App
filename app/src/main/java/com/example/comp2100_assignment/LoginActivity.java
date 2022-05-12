@@ -1,5 +1,6 @@
 package com.example.comp2100_assignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,8 +28,10 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username;
     private EditText password;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     DatabaseUserManager manager;
-
+    User newUser;
     User adam;
 
     @Override
@@ -69,14 +78,42 @@ public class LoginActivity extends AppCompatActivity {
         // create account
         else{
             // check that inputted password is okay
+            // check that inputted password is okay
+
+            // TODO: If this cannot work delete it.
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference("userList");
+            String name = username.getText().toString();
+            String pass = password.getText().toString();
+            addDataToFireBase(name,pass);
 
             // todo: create new user
-            Intent intent = new Intent();
-            intent.setClass(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent();
+            //intent.setClass(getApplicationContext(), MainActivity.class);
+            //startActivity(intent);
         }
 
     };
+
+    private void addDataToFireBase(String name, String pass){
+        newUser = new User("","");
+        newUser.setUsername(name);
+        newUser.setPassword(pass);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                databaseReference.setValue(newUser);
+                Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
     // verifies that a password meets defined password policy
     // current policy is:
     // password must be at least 1 character
