@@ -1,4 +1,4 @@
-# [Team Name] Report
+# $500 for a kitchen table and bedside sofa Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| u7312578 | Ziling Ouyang | Backend Developer |
+| u6710622 | Xingkun Chen | Frontend Developer |
+| u7283599 | William Loughton | Backend Developer |
+| u7334218 | Zane Gates | Database Manager |
 
 ## Summary of Individual Contributions
 
@@ -42,12 +42,25 @@ The following is a report template to help your team successfully provide all th
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-*Here is an example:*
+u7312578, Ziling Ouyang, code contribution percentage: .
+*
+*
+*
 
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
+u6710622, Xingkun Chen, code contribution percentage: .
+*
+*
+*
+
+u7283599, William Loughton, code contribution percentage: .
+*
+*
+*
+
+u7334218, Zane Gates, code contribution percentage: .
+*
+*
+*
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
@@ -61,9 +74,13 @@ The following is a report template to help your team successfully provide all th
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+If the conflict is strictly one of opinion, the group will hold a democratic vote to determine the best course of action for the project. If this vote ends in a tie, the tie-breaker will come from the group member who has been assigned that particular component of the project. (e.g., if the conflict is about the UI, Xingkun will be the tiebreaker vote).
+
+If the conflict is more of personality, we will try to resolve things through conversation, or if really necessary get a third-party person to mediate (e.g., tutor or maybe another unrelated person from the group).
 
 ## Application Description
+
+The application 
 
 *[What is your application, what does it do? Include photos or diagrams if necessary]*
 
@@ -220,9 +237,8 @@ Potential:
 
 ## Team Meetings
 
-*Here is an example:*
-
-- *[Team Meeting 1](./MeetingTemplate.md)*
-- ...
-
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
+- [Team Meeting 1](./Meeting1.md)
+- [Team Meeting 2](./Meeting1.md)
+- [Team Meeting 3](./Meeting1.md)
+- [Team Meeting 4](./Meeting1.md)
+- [Team Meeting 5](./Meeting1.md)
