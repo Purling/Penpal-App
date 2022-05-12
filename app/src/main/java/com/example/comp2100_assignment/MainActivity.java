@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     UserPartial user;
 
     ConversationsAvailable available;
+    HashMap<String, String> conversationsAvailable = new HashMap<>();
 
     DatabaseReference availableReference;
 
@@ -97,14 +99,32 @@ public class MainActivity extends AppCompatActivity {
 
         availableReference = manager.getDatabase().getReference("availableConversations");
 
-        availableReference.addValueEventListener(new ValueEventListener() {
+        availableReference.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                available = snapshot.getValue(ConversationsAvailable.class);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                conversationsAvailable.put(snapshot.getKey(), snapshot.getValue(String.class));
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                conversationsAvailable.remove(previousChildName);
+                conversationsAvailable.put(snapshot.getKey(), snapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                conversationsAvailable.remove(snapshot.getKey());
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
         });
     }
 
@@ -121,31 +141,28 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     };
-    //public AdapterView.OnItemClickListener list_listener = (view)
 
     public View.OnClickListener match_listener = (view)->{
-        if (available == null) {
-            available = new ConversationsAvailable();
-            availableReference.setValue(available);
+        for (String otherUser : conversationsAvailable.keySet()) {
+            if (conversationsAvailable.get(otherUser).equals("#QUEUED")) {
+                final String conversationName = "new convo";
+                availableReference.child(otherUser).setValue(conversationName);
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, QueueActivity.class);
+                intent.putExtra("conversationName", otherUser);
+                intent.putExtra("user", user);
+                //intent.putExtra("owner", true);
+                startActivity(intent);
+                return;
+            }
         }
 
-        boolean owner;
-        String joiningConversation;
-        if (available.usernames.size() == 0) {
-            joiningConversation = user.username;
-            availableReference.setValue(available.add(user.username));
-            owner = true;
-        } else {
-            joiningConversation = available.usernames.get(0);
-            availableReference.setValue(available.removeFirst());
-            owner = false;
-        }
+        availableReference.child(user.username).setValue("#QUEUED");
 
         Intent intent = new Intent();
-        intent.setClass(MainActivity.this, ConversationActivity.class);
-        intent.putExtra("conversationName", joiningConversation);
+        intent.setClass(MainActivity.this, QueueActivity.class);
+        intent.putExtra("conversationName", user.username);
         intent.putExtra("user", user);
-        intent.putExtra("owner", owner);
         startActivity(intent);
     };
 }

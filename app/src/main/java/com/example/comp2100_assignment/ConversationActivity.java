@@ -15,6 +15,7 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -29,8 +30,7 @@ public class ConversationActivity extends AppCompatActivity {
     DatabaseReference conversationRoot;
     DatabaseReference conversationMessagesRoot;
 
-    DatabaseReference conversationsAvailable;
-    ConversationsAvailable available;
+    DatabaseReference availableReference;
 
     UserPartial user;
 
@@ -42,26 +42,19 @@ public class ConversationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (UserPartial) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
+        String queueName = intent.getStringExtra("queueName");
         boolean owner = intent.getBooleanExtra("owner", true);
         messageBox = findViewById(R.id.messageBox);
         messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
-        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation").child(conversationName);
+        FirebaseDatabase database = DatabaseUserManager.getInstance(getBaseContext()).getDatabase();
+
+        conversationRoot = database.getReference("conversation").child(conversationName);
         conversationMessagesRoot = conversationRoot.child("messages");
 
-        conversationsAvailable = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations");
-        conversationsAvailable.addValueEventListener(new ValueEventListener() {
-             @Override
-             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 available = snapshot.getValue(ConversationsAvailable.class);
-             }
-
-             @Override
-             public void onCancelled(@NonNull DatabaseError error) {
-
-             }
-        });
+        System.out.println(conversationName);
+        availableReference = database.getReference("availableConversations").child(queueName);
 
         conversationRoot.child(owner ? "user1" : "user2").setValue(user.username);
 
@@ -106,15 +99,39 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.exitConversationButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                conversationRoot.removeValue();
-                intent.setClass(ConversationActivity.this, MainActivity.class);
-                intent.putExtra("user", user);
+                availableReference.setValue("#CLOSED");
+                returnToMainActivity();
+            }
+        });
 
-                available.usernames.remove(conversationName);
-                conversationsAvailable.setValue(available);
+        availableReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println(snapshot.getKey() + " key has value: ::::: " + snapshot.getValue(String.class));
+                if ((snapshot.getValue(String.class) == null) || snapshot.getValue(String.class).equals("#CLOSED"))
+                    returnToMainActivity();
+            }
 
-                startActivity(intent);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        associateLabel(R.id.user1Label, conversationRoot.child("user1"));
+        associateLabel(R.id.user2Label, conversationRoot.child("user2"));
+    }
+
+    void associateLabel(int label, DatabaseReference reference) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ((TextView)findViewById(label)).setText(snapshot.getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -127,5 +144,14 @@ public class ConversationActivity extends AppCompatActivity {
         }
         System.out.println(sb.toString());
         conversation.setText(sb.toString());
+    }
+
+    void returnToMainActivity() {
+        Intent intent = new Intent();
+        conversationRoot.removeValue();
+        intent.setClass(ConversationActivity.this, MainActivity.class);
+        intent.putExtra("user", user);
+
+        startActivity(intent);
     }
 }
