@@ -188,34 +188,21 @@ A use case of this application is in the case of two students wanting to practic
 
 ## Implemented Features
 
-*[What features have you implemented?]*
-
-*Here is an example:*
-
-*Privacy*
-1. *Featue 1: Users may ... . (easy)*
-2. *Feature 2: A user must ... . (easy)*
-3. *Feature 3: A user can only ... . (medium)*
-
-*Firebase Integration*
-1. *Feature 1: Use Firebase to implement ... . (easy)*
-2. *Feature 2: Use Firebase to persist ... .(medium)*
+Firebase Integration
+1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
 
 *Surprise*
 Code Smells
 Potential:
-  returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
-  fixable: yes!
-  public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
-  fixable: yes!
-  potential god class: User class
-  fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
-  reasons: all of the functionality makes sense to be in user class
+  - returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
+    - fixable: yes!
+  - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
+    - fixable: yes!
+  - potential god class: User class
+    - fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
+    - reasons: all of the functionality makes sense to be in user class
             making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
             as a countermeasure, be especially vigilant when adding new fields or methods to User class
-
-
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
 
 ## Team Meetings
 
