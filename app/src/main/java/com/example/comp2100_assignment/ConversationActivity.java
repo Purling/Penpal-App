@@ -38,6 +38,11 @@ public class ConversationActivity extends AppCompatActivity {
 
     User user;
 
+    User user1;
+    User user2;
+    boolean metadataGenerated;
+    boolean owner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +52,7 @@ public class ConversationActivity extends AppCompatActivity {
         user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
         String queueName = intent.getStringExtra("queueName");
-        boolean owner = intent.getBooleanExtra("owner", true);
+        owner = intent.getBooleanExtra("owner", false);
         messageBox = findViewById(R.id.messageBox);
         messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
@@ -122,16 +127,31 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
-        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"));
-        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"));
+        conversationRoot.child("topic").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ConversationTopic topic = snapshot.getValue(ConversationTopic.class);
+                ((TextView)findViewById(R.id.conversationTopic)).setText(topic == null ? "" : topic.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
+        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
     }
 
-    void associateLabel(int label, int avatarID, DatabaseReference reference) {
+    void associateLabel(int label, int avatarID, DatabaseReference reference, int userNumber) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User u = DatabaseUserManager.get(snapshot.getValue(String.class));
                 if (u == null) return;
+                if (userNumber == 1) user1 = u;
+                if (userNumber == 2) user2 = u;
                 ((TextView)findViewById(label)).setText(u.getDisplayName());
                 new Thread(() -> {
                     try {
@@ -139,6 +159,11 @@ public class ConversationActivity extends AppCompatActivity {
                         runOnUiThread(() -> ((ImageView)findViewById(avatarID)).setImageBitmap(bitmap));
                     } catch (Exception ignored) {}
                 }).start();
+                if (owner && !metadataGenerated && user1 != null && user2 != null) {
+                    metadataGenerated = true;
+                    TransitoryConversation generatedConversation = ConversationFormer.getInstance().formConversation(user1, user2);
+                    conversationRoot.child("topic").setValue(generatedConversation.getTopic());
+                }
             }
 
             @Override
