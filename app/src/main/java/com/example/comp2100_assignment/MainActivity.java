@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ImageView profilePicture;
     private Button match;
+    private Button settingsButton;
 
     DatabaseUserManager manager;
 
@@ -65,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         match = findViewById(R.id.match);
         match.setOnClickListener(match_listener);
         profilePicture = findViewById(R.id.profile_picture);
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(settings_listener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
@@ -92,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener friend_listener = (view) -> {
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, FriendActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    };
+    public View.OnClickListener settings_listener = (view) -> {
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, AccountSettingsActivity.class);
         intent.putExtra("user", user);
         startActivity(intent);
     };
