@@ -79,6 +79,15 @@ public class DatabaseUserManager {
         return null;
     }
 
+    public boolean userExists(String username){
+        for (UserPartial user : users.values()){
+            if (user.username.equals(username)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private final FirebaseDatabase database;
 
     public FirebaseDatabase getDatabase() {

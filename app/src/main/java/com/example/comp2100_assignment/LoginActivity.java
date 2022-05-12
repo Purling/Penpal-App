@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -72,11 +73,19 @@ public class LoginActivity extends AppCompatActivity {
     //TODO: write data into the file( But it seems that we cannot wrtie file in android studio)
 
 
-    // this should be jump to register one
     public View.OnClickListener registerListener = (view) -> {
-        Intent intent = new Intent();
-        intent.setClass(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+        // if username already exists, notify user
+        if(manager.userExists(username.getText().toString())){
+            Toast.makeText(getApplicationContext(),"Username already exists",Toast.LENGTH_LONG).show();
+        }
+        // create account
+        else{
+            // todo: create new user
+            Intent intent = new Intent();
+            intent.setClass(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+        }
+
     };
 
 }
