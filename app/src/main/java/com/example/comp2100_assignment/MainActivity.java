@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener match_listener = (view)->{
         for (String otherUser : conversationsAvailable.keySet()) {
             if (conversationsAvailable.get(otherUser).equals("#QUEUED")) {
-                final String conversationName = "new convo";
+                final String conversationName = otherUser + "_transitory";
                 availableReference.child(otherUser).setValue(conversationName);
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, QueueActivity.class);
