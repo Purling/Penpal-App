@@ -148,50 +148,7 @@ A use case of this application is in the case of two students wanting to practic
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
-**Surpise Item**
-
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
-
-**Other**
-
-*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
-
-## Summary of Known Errors and Bugs
-
-*[Where are the known errors and bugs? What consequences might they lead to?]*
-
-*Here is an example:*
-
-1. *Bug 1:*
-
-- *A space bar (' ') in the sign in email will crash the application.*
-- ...
-
-2. *Bug 2:*
-3. ...
-
-*List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
-
-## Testing Summary
-
-*[What features have you tested? What is your testing coverage?]*
-
-*Here is an example:*
-
-*Number of test cases: ...*
-
-*Code coverage: ...*
-
-*Types of tests created: ...*
-
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
-
-## Implemented Features
-
-Firebase Integration
-1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
-
-*Surprise*
+**Surprise Feature**
 Code Smells
 Potential:
   - returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
@@ -203,6 +160,55 @@ Potential:
     - reasons: all of the functionality makes sense to be in user class
             making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
             as a countermeasure, be especially vigilant when adding new fields or methods to User class
+**Other**
+
+*[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
+
+## Summary of Known Errors and Bugs
+
+1. *Bug 1:* Empty messages and those with newlines can be sent in ConversationActivity. This has only incorrect visual feedback.
+
+2. *Bug 2:* Empty or invalid usernames (like those containing `.` or `#` or `[` or `]`) are usable
+
+3. *Bug 3:* Exiting the conversation by closing the app rather than pressing the exit button keeps it active in memory, but you cannot rejoin.
+
+*List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
+
+## Testing Summary
+
+Number of test cases: 15+61
+
+Code coverage: `ConversationFormer.java`, `QueuedUserObserver.java`
+
+Types of tests created: We have tested many of the back-end algorithmic features, but little of the database connections or the GUI.
+
+
+
+
+
+*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
+
+## Implemented Features
+
+User Interactivity
+1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
+post/message/event) [stored in-memory]. (easy)
+
+Greater Data Usage, Handling and Sophistication
+2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
+
+Peer to Peer Messaging
+1. Provide users with the ability to message each other or an institution directly (e.g., a
+user can message an event/movement that is managed by another user). (hard)
+
+Firebase Integration
+1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
+2. Use Firebase to persist all data used in your app (this item replaces the requirement to
+retrieve data from a local file) (medium)
+3. Using Firebase or another remote database to store user information and having the
+app updated as the remote database is updated without restarting the application. E.g.
+User A makes a transfer, user B on a separate instance of the application sees user A’s
+transfer appear on their app instance without restarting their application. (very hard)
 
 ## Team Meetings
 
