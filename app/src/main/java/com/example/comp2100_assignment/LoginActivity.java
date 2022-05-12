@@ -78,8 +78,14 @@ public class LoginActivity extends AppCompatActivity {
         if(manager.userExists(username.getText().toString())){
             Toast.makeText(getApplicationContext(),"Username already exists",Toast.LENGTH_LONG).show();
         }
+        // if password doesn't meet policy
+        else if(!passwordMeetsPolicy(password.getText().toString())){
+            Toast.makeText(getApplicationContext(),"Password doesn't meet requirements",Toast.LENGTH_SHORT).show();
+        }
         // create account
         else{
+            // check that inputted password is okay
+
             // todo: create new user
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), MainActivity.class);
@@ -87,5 +93,17 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     };
+    // verifies that a password meets defined password policy
+    // current policy is:
+    // password must be at least 1 character
+    public boolean passwordMeetsPolicy(String password){
+        if(password == null){
+            return false;
+        }
+        if(password.equals("")){
+            return false;
+        }
+        return true;
+    }
 
 }
