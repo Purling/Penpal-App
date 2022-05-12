@@ -84,33 +84,15 @@ Our application is a messaging/social media app aimed at helping people who want
 
 **Application Use Cases and or Examples**
 
-A use case of this application is 
+Target Users: Students or amateur learners of a new language.
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+A use case of this application is in the case of two students wanting to practice a language taught in school.
 
-*Here is a pet training application example*
-
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
-
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
-
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+1. George is fluent in English but is learning Spanish in school
+2. Amy is fluent in Spanish but is learning English in school
+3. Both George and Amy want to practice the languages they are learning in school
+4. George and Amy create an account of the language learning app and match each other
+5. George and Amy chat and improve their understanding of each other's language
 
 ## Application UML
 
