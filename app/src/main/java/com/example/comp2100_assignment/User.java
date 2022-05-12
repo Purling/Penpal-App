@@ -55,7 +55,10 @@ public class User implements Serializable {
     public User(String username, String password, String avatar, String displayName, String commaSeparatedTopics) {
         this(username, password);
         this.avatar = avatar;
+        if (avatar == null) avatar = "";
         this.displayName = displayName;
+        if (displayName == null) displayName = username;
+        if (commaSeparatedTopics == null) commaSeparatedTopics = "";
         String[] stringTopics = commaSeparatedTopics.split("[,]");
         for (String stringTopic : stringTopics) {
             setConversationTopic(conversationTopicFromString(stringTopic), true);

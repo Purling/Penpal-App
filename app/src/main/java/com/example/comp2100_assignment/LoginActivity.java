@@ -96,20 +96,7 @@ public class LoginActivity extends AppCompatActivity {
     };
 
     private void addDataToFireBase(String name, String pass){
-        newUser = new User("","");
-        newUser.setUsername(name);
-        newUser.setPassword(pass);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                databaseReference.setValue(newUser);
-                Toast.makeText(getApplicationContext(), "data added", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Fail to add data " + error, Toast.LENGTH_SHORT).show();
-            }
-        });
+        DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("userList").child(name).setValue(new User(name, pass));
     }
 
 
