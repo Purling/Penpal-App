@@ -17,7 +17,7 @@ public class QueueActivity extends AppCompatActivity {
 
     DatabaseReference awaitingConversation;
 
-    UserPartial user;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class QueueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_queue);
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
 
         awaitingConversation = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations").child(conversationName);

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;
 
-    UserPartial user;
+    User user;
 
     DatabaseReference availableReference;
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
         //System.out.println(user);
         // The avatar, stored in user.avatar, is either null or a String representing the address of the image
         if(user == null || user.avatar == null){
@@ -126,11 +126,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        availableReference.child(user.username).setValue("#QUEUED");
+        availableReference.child(user.getUsername()).setValue("#QUEUED");
 
         Intent intent = new Intent();
         intent.setClass(MainActivity.this, QueueActivity.class);
-        intent.putExtra("conversationName", user.username);
+        intent.putExtra("conversationName", user.getUsername());
         intent.putExtra("user", user);
         startActivity(intent);
     };

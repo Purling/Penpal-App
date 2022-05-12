@@ -23,6 +23,8 @@ public class LoginActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;
 
+    User adam;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,17 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(loginListener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
+
+        adam = new User("adam", "adampass");
+
+        manager.getDatabase().getReference("userList").child("adam").setValue(adam);
     }
 
 
     public View.OnClickListener loginListener = (view) -> {
-        UserPartial successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
+        User successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
         if (successful != null) {
-            System.out.println("Logged in successfully as " + successful.username);
+            System.out.println("Logged in successfully as " + successful.getUsername());
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), MainActivity.class);
             intent.putExtra("user", successful);

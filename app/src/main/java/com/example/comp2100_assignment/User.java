@@ -3,15 +3,18 @@ package com.example.comp2100_assignment;
 import android.graphics.Bitmap;
 import android.media.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
-public class User {
+public class User implements Serializable {
     private String username;
-    private String password; // this should be hashed
+    public  String password; // this should be hashed
+
+    public String avatar;
 
     private String displayName;
 
@@ -47,9 +50,15 @@ public class User {
         friends = new ArrayList<>();
 
         blockedUsers = new ArrayList<>();
+    }
 
+    public User(String username, String password, String avatar) {
+        this(username, password);
+        this.avatar = avatar;
+    }
 
-
+    public boolean tryLogin(String enteredUsername, String enteredPassword) {
+        return username.equals(enteredUsername) && password.equals(enteredPassword);
     }
 
 

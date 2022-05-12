@@ -32,7 +32,7 @@ public class ConversationActivity extends AppCompatActivity {
 
     DatabaseReference availableReference;
 
-    UserPartial user;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public class ConversationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversation);
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
         String queueName = intent.getStringExtra("queueName");
         boolean owner = intent.getBooleanExtra("owner", true);
@@ -56,9 +56,9 @@ public class ConversationActivity extends AppCompatActivity {
         System.out.println(conversationName);
         availableReference = database.getReference("availableConversations").child(queueName);
 
-        conversationRoot.child(owner ? "user1" : "user2").setValue(user.username);
+        conversationRoot.child(owner ? "user1" : "user2").setValue(user.getUsername());
 
-        UserMessage message = new UserMessage("", user.username + " joined.");
+        UserMessage message = new UserMessage("", user.getUsername() + " joined.");
         conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
 
         conversationMessagesRoot.addChildEventListener(new ChildEventListener() {
@@ -90,7 +90,7 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserMessage message = new UserMessage(user.username, messageBox.getText().toString());
+                UserMessage message = new UserMessage(user.getUsername(), messageBox.getText().toString());
                 conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
                 messageBox.setText("");
             }
