@@ -80,15 +80,11 @@ If the conflict is more of personality, we will try to resolve things through co
 
 ## Application Description
 
-The application 
-
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
-
-*Here is a pet specific application example*
-
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+Our application is a messaging/social media app aimed at helping people who want to practice new languages. Each user first creates an account wherein they specify the language they are fluent in and the language they would like to learn. The app then matches users against each other based on language fluency and which language each user would like to learn.
 
 **Application Use Cases and or Examples**
+
+A use case of this application is 
 
 *[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
 
@@ -149,7 +145,11 @@ The application
 
 **Design Patterns**
 
-*[What design patterns did your team utilise? Where and why?]*
+- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database.
+
+- 
+
+- 
 
 **Grammar(s)**
 
