@@ -1,7 +1,6 @@
 package com.example.comp2100_assignment;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,17 +11,32 @@ import java.util.HashSet;
 
 public class User implements Serializable {
     private String username;
-    public  String password; // this should be hashed
-
-    public String avatar;
-
+    private String password; // this should be hashed
     private String displayName;
+    private String avatar;
 
     private Bitmap profilePicture;
 
+    public String getAvatar() {
+        return avatar;
+    }
 
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
-    private ArrayList<User> blockedUsers;
+    public void setBlockedUsers(List<User> blockedUsers) {
+        this.blockedUsers = blockedUsers;
+    }
+
+    public void setFriends(List<FriendshipRequest> friends) {
+        this.friends = friends;
+    }
+
+    public User() {
+    }
+
+    private List<User> blockedUsers;
 
 
     interface FamiliarityFunction {
@@ -30,13 +44,22 @@ public class User implements Serializable {
     }
 
     private HashMap<Language, Familiarity> familiarity;
-    private Set<ConversationTopic> topics;
+    private Set<ConversationTopic> topicsSet;
+    private String topics;
+
+    public String getTopics() {
+        return topics;
+    }
+
+    public void setTopics(String topics) {
+        this.topics = topics;
+    }
 
     private TransitoryConversation conversation;
 
     private boolean inQueue;
 
-    public ArrayList<FriendshipRequest> friends;
+    public List<FriendshipRequest> friends;
 
     public User(String username, String password) {
         this.username = username;
@@ -45,7 +68,7 @@ public class User implements Serializable {
         this.displayName = username;
 
         familiarity = new HashMap<>();
-        topics = new HashSet<>();
+        topicsSet = new HashSet<>();
 
         friends = new ArrayList<>();
 
@@ -84,9 +107,6 @@ public class User implements Serializable {
         return username;
     }
 
-    public void setUsername(String username){this.username = username;}
-    public void setPassword(String password){this.password = password;}
-
     @Override
     public String toString() {
         return username;
@@ -110,12 +130,13 @@ public class User implements Serializable {
     }
 
     public boolean getConversationTopic(ConversationTopic topic) {
-        return topics.contains(topic);
+        return topicsSet.contains(topic);
     }
 
+    // Why not just have this in two methods?
     public void setConversationTopic(ConversationTopic topic, boolean interested) {
-        if (interested) topics.add(topic);
-        else topics.remove(topic);
+        if (interested) topicsSet.add(topic);
+        else topicsSet.remove(topic);
     }
 
     public void enterQueue() {
@@ -174,6 +195,50 @@ public class User implements Serializable {
 
     public void setProfilePicture(Bitmap profilePicture) {
         this.profilePicture = profilePicture;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<User> getBlockedUsers() {
+        return blockedUsers;
+    }
+
+    public HashMap<Language, Familiarity> getFamiliarity() {
+        return familiarity;
+    }
+
+    public void setFamiliarity(HashMap<Language, Familiarity> familiarity) {
+        this.familiarity = familiarity;
+    }
+
+    public Set<ConversationTopic> getTopicsSet() {
+        return topicsSet;
+    }
+
+    public void setTopicsSet(Set<ConversationTopic> topicsSet) {
+        this.topicsSet = topicsSet;
+    }
+
+    public TransitoryConversation getConversation() {
+        return conversation;
+    }
+
+    public void setConversation(TransitoryConversation conversation) {
+        this.conversation = conversation;
+    }
+
+    public void setInQueue(boolean inQueue) {
+        this.inQueue = inQueue;
     }
 
     //adds userToBlock to this' list of blocked users

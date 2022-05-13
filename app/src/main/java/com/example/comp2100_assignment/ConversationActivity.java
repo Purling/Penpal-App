@@ -155,7 +155,7 @@ public class ConversationActivity extends AppCompatActivity {
                 ((TextView)findViewById(label)).setText(u.getDisplayName());
                 new Thread(() -> {
                     try {
-                        Bitmap bitmap = BitmapFactory.decodeStream(new URL(u.avatar).openConnection().getInputStream());
+                        Bitmap bitmap = BitmapFactory.decodeStream(new URL(u.getAvatar()).openConnection().getInputStream());
                         runOnUiThread(() -> ((ImageView)findViewById(avatarID)).setImageBitmap(bitmap));
                     } catch (Exception ignored) {}
                 }).start();
