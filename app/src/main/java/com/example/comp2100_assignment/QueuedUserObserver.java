@@ -6,9 +6,8 @@ import java.util.Random;
 
 public class QueuedUserObserver {
 
-    public static QueuedUserObserver instance;
+    public static final QueuedUserObserver instance = new QueuedUserObserver();
     public static QueuedUserObserver getInstance() {
-        if (instance == null) instance = new QueuedUserObserver();
         return instance;
     }
 
