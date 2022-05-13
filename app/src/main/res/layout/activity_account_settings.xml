@@ -10,72 +10,181 @@
         android:id="@+id/accountSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:text="Account Settings"
         android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Switch
-        android:id="@+id/switchMusic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:minHeight="48dp"
-        android:switchMinWidth="175px"
-        android:text="Music"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountSettingsTitle" />
-
-    <Switch
-        android:id="@+id/switchTravel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        android:switchMinWidth="175px"
-        android:text="Travel"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchMusic" />
-
-    <Switch
-        android:id="@+id/switchFood"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        android:switchMinWidth="175px"
-        android:text="Food"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchTravel" />
-
-    <Switch
-        android:id="@+id/switchSports"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:minHeight="48dp"
-        android:switchMinWidth="175px"
-        android:text="Sports"
-        android:textSize="34sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchFood" />
 
     <Button
         android:id="@+id/saveSettingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="16dp"
         android:text="SAVE"
+        app:layout_constraintBottom_toBottomOf="@+id/accountSettingsTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/accountSettingsTitle"
+        app:layout_constraintTop_toTopOf="@+id/accountSettingsTitle" />
+
+    <EditText
+        android:id="@+id/editDisplayName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/switchSports" />
+        app:layout_constraintTop_toBottomOf="@+id/accountSettingsTitle" />
+
+    <TextView
+        android:id="@+id/languageLabel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="German"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/languageLabel2" />
+
+    <Spinner
+        android:id="@+id/languageSpinner4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/languageLabel1"
+        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+        app:layout_constraintTop_toTopOf="@+id/languageLabel4" />
+
+    <Spinner
+        android:id="@+id/languageSpinner3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/languageLabel1"
+        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+        app:layout_constraintTop_toTopOf="@+id/languageLabel3" />
+
+    <Spinner
+        android:id="@+id/languageSpinner1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:labelFor="@id/languageLabel1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/languageLabel1" />
+
+    <TextView
+        android:id="@+id/languageLabel4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="French"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/languageLabel3" />
+
+    <TextView
+        android:id="@+id/languageLabel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Italian"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/languageLabel1" />
+
+    <Spinner
+        android:id="@+id/languageSpinner2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/languageLabel1"
+        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+        app:layout_constraintTop_toTopOf="@+id/languageLabel2" />
+
+    <Spinner
+        android:id="@+id/languageSpinner5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:labelFor="@id/languageLabel1"
+        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+        app:layout_constraintTop_toTopOf="@+id/languageLabel5" />
+
+    <TextView
+        android:id="@+id/languageLabel1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:text="English"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+    <TextView
+        android:id="@+id/languageLabel5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Japanese"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+        app:layout_constraintTop_toBottomOf="@+id/languageLabel4" />
+
+    <HorizontalScrollView
+        android:id="@+id/horizontalScrollView"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDisplayName">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <Switch
+                android:id="@+id/switchSports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:switchMinWidth="90dp"
+                android:text="Sports"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/switchFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:switchMinWidth="90dp"
+                android:text="Food"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/switchMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:switchMinWidth="90dp"
+                android:text="Music"
+                android:textSize="14sp" />
+
+            <Switch
+                android:id="@+id/switchTravel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                android:switchMinWidth="90dp"
+                android:text="Travel"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
