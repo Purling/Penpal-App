@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         new Thread(() -> {
             try {
-                Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.avatar).openConnection().getInputStream());
+                Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.getAvatar()).openConnection().getInputStream());
                 runOnUiThread(() -> profilePicture.setImageBitmap(bitmap));
             } catch (Exception ignored) {}
         }).start();
