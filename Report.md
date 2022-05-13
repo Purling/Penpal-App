@@ -156,6 +156,7 @@ Potential:
     - fixable: yes!
     - Fixed commit: TBD
   - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
+  - This code smell was also identified by the Embold code analysis tool, and is an example of leaky encapsulation. If a field is public and static but not final, the object referenced by that field can be modified from anywhere in the code, which in our use case of an observer object instance was unintended. The new implementation fixes this by making the field final as well as public and static, preventing it from being changed unexpectedly from a different class.
     - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
     - fixable: yes!
     - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
