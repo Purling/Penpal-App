@@ -152,9 +152,13 @@ A use case of this application is in the case of two students wanting to practic
 Code Smells
 Potential:
   - returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
+    - First commit: 2c2a096df05bc1ee5e74a1c79160094041051f7d, 22/4, lines 21, 24, 32, 40, 58 (User class), 
     - fixable: yes!
+    - Fixed commit: TBD
   - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
+    - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
     - fixable: yes!
+    - Fixed commit: TBD
   - potential god class: User class
     - fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
     - reasons: all of the functionality makes sense to be in user class
