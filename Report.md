@@ -158,7 +158,7 @@ Potential:
   - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
     - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
     - fixable: yes!
-    - Fixed commit: TBD
+    - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
   - potential god class: User class
     - fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
     - reasons: all of the functionality makes sense to be in user class
