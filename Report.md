@@ -161,6 +161,8 @@ Potential:
     - fixable: yes!
     - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
   - potential god class: User class
+    - The user class exhibits characteristics of the "multifaceted abstraction" (god class) code smell, as it has many responsibilities, being used in every activity for both the current user and other users they interact with. It contains many fields and methods used by both the backend (e.g. username) and frontend (e.g. profile picture). However, we decided not to refactor it for 2 main reasons. First, while it has a lot of functionality, all of it makes sense being encapsulated in the User class, and refactoring it could very easily lead to creating other code smells such as "unnecessary abstraction" and "broken modularization". Secondly, we are quite close to the deadline, and refactoring this class, which is a central and critical part of the app, would take a lot of time. In order to try and avoid making the problem any worse, we will try and pay special attention when adding new fields or methods to this class, only adding anything if absolutely necessary.
+    - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, whole class
     - fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
     - reasons: all of the functionality makes sense to be in user class
             making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
