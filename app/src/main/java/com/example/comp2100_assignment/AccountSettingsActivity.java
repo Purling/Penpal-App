@@ -23,12 +23,15 @@ public class AccountSettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
 
+        // Get the user passed in from the MainActivity
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
 
+        // Get the switches from the UI
         int[] switchIDs = {R.id.switchMusic, R.id.switchTravel, R.id.switchFood, R.id.switchSports};
         ConversationTopic[] topics = {ConversationTopic.MUSIC, ConversationTopic.TRAVEL, ConversationTopic.FOOD, ConversationTopic.SPORTS};
 
+        // Gets the language dropdown from the UI
         int[] languageSpinnerIDs = {R.id.languageSpinner1, R.id.languageSpinner2, R.id.languageSpinner3, R.id.languageSpinner4, R.id.languageSpinner5};
         Language[] languages = {Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
 
@@ -42,7 +45,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         switches = new Switch[switchIDs.length];
         for (int i = 0; i < switches.length; i++) {
             switches[i] = findViewById(switchIDs[i]);
-            switches[i].setChecked(user.getConversationTopic(topics[i]));
+            switches[i].setChecked(user.getTopicsSet(topics[i]));
         }
 
         ((Button)findViewById(R.id.saveSettingsButton)).setOnClickListener(new View.OnClickListener() {
@@ -53,7 +56,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
                 boolean firstTopicString = true;
 
                 for (int i = 0; i < switches.length; i++) {
-                    user.setConversationTopic(topics[i], switches[i].isChecked());
+                    user.setTopicsSet(topics[i], switches[i].isChecked());
                     if (switches[i].isChecked()) {
                         if (!firstTopicString) topicString.append(",");
                         topicString.append(topics[i].toString());

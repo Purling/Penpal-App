@@ -19,34 +19,34 @@ public class ConversationFormerTest {
         alice.setFamiliarity(Language.ENGLISH, Familiarity.FLUENT);
         alice.setFamiliarity(Language.ITALIAN, Familiarity.INTERMEDIATE);
         alice.setFamiliarity(Language.GERMAN, Familiarity.BEGINNER);
-        alice.setConversationTopic(ConversationTopic.TRAVEL, true);
-        alice.setConversationTopic(ConversationTopic.MUSIC, true);
+        alice.setTopicsSet(ConversationTopic.TRAVEL, true);
+        alice.setTopicsSet(ConversationTopic.MUSIC, true);
 
         bob = new User("bob", "");
         bob.setFamiliarity(Language.ENGLISH, Familiarity.FLUENT);
         bob.setFamiliarity(Language.KOREAN, Familiarity.BEGINNER);
-        bob.setConversationTopic(ConversationTopic.FOOD, true);
-        bob.setConversationTopic(ConversationTopic.MUSIC, true);
-        bob.setConversationTopic(ConversationTopic.SPORTS, true);
+        bob.setTopicsSet(ConversationTopic.FOOD, true);
+        bob.setTopicsSet(ConversationTopic.MUSIC, true);
+        bob.setTopicsSet(ConversationTopic.SPORTS, true);
 
         cass = new User("cass", "");
         cass.setFamiliarity(Language.FRENCH, Familiarity.FLUENT);
         cass.setFamiliarity(Language.GERMAN, Familiarity.ADVANCED);
         cass.setFamiliarity(Language.ENGLISH, Familiarity.INTERMEDIATE);
-        cass.setConversationTopic(ConversationTopic.MUSIC, true);
-        cass.setConversationTopic(ConversationTopic.SPORTS, true);
+        cass.setTopicsSet(ConversationTopic.MUSIC, true);
+        cass.setTopicsSet(ConversationTopic.SPORTS, true);
 
         deb = new User("deb", "");
         deb.setFamiliarity(Language.KOREAN, Familiarity.FLUENT);
         deb.setFamiliarity(Language.MANDARIN, Familiarity.FLUENT);
         deb.setFamiliarity(Language.ENGLISH, Familiarity.INTERMEDIATE);
-        deb.setConversationTopic(ConversationTopic.FOOD, true);
+        deb.setTopicsSet(ConversationTopic.FOOD, true);
 
         eddy = new User("eddy", "");
         eddy.setFamiliarity(Language.ITALIAN, Familiarity.FLUENT);
         eddy.setFamiliarity(Language.MANDARIN, Familiarity.BEGINNER);
         eddy.setFamiliarity(Language.ENGLISH, Familiarity.ADVANCED);
-        eddy.setConversationTopic(ConversationTopic.SPORTS, true);
+        eddy.setTopicsSet(ConversationTopic.SPORTS, true);
 
         franz = new User("franz", "");
         franz.setFamiliarity(Language.GERMAN, Familiarity.FLUENT);
@@ -54,10 +54,10 @@ public class ConversationFormerTest {
         franz.setFamiliarity(Language.ENGLISH, Familiarity.INTERMEDIATE);
         franz.setFamiliarity(Language.MANDARIN, Familiarity.BEGINNER);
         franz.setFamiliarity(Language.ITALIAN, Familiarity.INTERMEDIATE);
-        franz.setConversationTopic(ConversationTopic.TRAVEL, true);
-        franz.setConversationTopic(ConversationTopic.SPORTS, true);
-        franz.setConversationTopic(ConversationTopic.FOOD, true);
-        franz.setConversationTopic(ConversationTopic.MUSIC, true);
+        franz.setTopicsSet(ConversationTopic.TRAVEL, true);
+        franz.setTopicsSet(ConversationTopic.SPORTS, true);
+        franz.setTopicsSet(ConversationTopic.FOOD, true);
+        franz.setTopicsSet(ConversationTopic.MUSIC, true);
 
         data = new ValidConversationData[] {
                 new ValidConversationData(alice, bob, null, null, ConversationTopic.MUSIC),

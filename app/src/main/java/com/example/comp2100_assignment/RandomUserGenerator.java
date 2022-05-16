@@ -20,7 +20,7 @@ public class RandomUserGenerator {
             user.setFamiliarity(l, f);
         }
         for (ConversationTopic t : ConversationTopic.values()) {
-            user.setConversationTopic(t, r.nextBoolean());
+            user.setTopicsSet(t, r.nextBoolean());
         }
 
         return user;

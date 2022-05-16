@@ -16,7 +16,7 @@ public class ConversationFormer {
 
         ArrayList<ConversationTopic> validTopics = new ArrayList<>();
         for (ConversationTopic topic : ConversationTopic.values()) {
-            if (user1.getConversationTopic(topic) && user2.getConversationTopic(topic)) validTopics.add(topic);
+            if (user1.getTopicsSet(topic) && user2.getTopicsSet(topic)) validTopics.add(topic);
         }
 
         if (validTopics.size() == 0) return null;
