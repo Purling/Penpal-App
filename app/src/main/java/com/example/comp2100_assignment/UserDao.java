@@ -11,7 +11,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements DaoPattern<User, String> {
+public class UserDao implements DaoPattern<User, String>, Singleton {
+
+    private static UserDao userDao = null;
+
+    private UserDao() {
+    }
+
+    public static UserDao singleton() {
+
+        if (userDao == null) {
+            userDao = new UserDao();
+        }
+        return userDao;
+    }
 
     @Override
     public String getChildName() {
