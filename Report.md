@@ -1,4 +1,4 @@
-# [Team Name] Report
+# $500 for a kitchen table and bedside sofa Report
 
 The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
 
@@ -31,10 +31,10 @@ The following is a report template to help your team successfully provide all th
 
 | UID | Name | Role |
 | :--- | :----: | ---: |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
-| [uid] | [name] | [role] |
+| u7312578 | Ziling Ouyang | Backend Developer |
+| u6710622 | Xingkun Chen | Frontend Developer |
+| u7283599 | William Loughton | Backend Developer |
+| u7334218 | Zane Gates | Database Manager |
 
 ## Summary of Individual Contributions
 
@@ -42,12 +42,25 @@ The following is a report template to help your team successfully provide all th
 
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
-*Here is an example:*
+u7312578, Ziling Ouyang, code contribution percentage: .
+*
+*
+*
 
-*UID1, Name1, I contribute 30% of the code. Here are my contributions:*
-* A.class
-* B.class: function1(), function2(), ...
-* ....
+u6710622, Xingkun Chen, code contribution percentage: .
+*
+*
+*
+
+u7283599, William Loughton, code contribution percentage: .
+*
+*
+*
+
+u7334218, Zane Gates, code contribution percentage: .
+*
+*
+*
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
@@ -61,43 +74,25 @@ The following is a report template to help your team successfully provide all th
 
 ## Conflict Resolution Protocol
 
-*[Write a well defined protocol your team can use to handle conflicts. That is, if your group has problems, what is the procedure for reaching consensus or solving a problem? (If you choose to make this an external document, link to it here)]*
+If the conflict is strictly one of opinion, the group will hold a democratic vote to determine the best course of action for the project. If this vote ends in a tie, the tie-breaker will come from the group member who has been assigned that particular component of the project. (e.g., if the conflict is about the UI, Xingkun will be the tiebreaker vote).
+
+If the conflict is more of personality, we will try to resolve things through conversation, or if really necessary get a third-party person to mediate (e.g., tutor or maybe another unrelated person from the group).
 
 ## Application Description
 
-*[What is your application, what does it do? Include photos or diagrams if necessary]*
-
-*Here is a pet specific application example*
-
-*PetBook is a social media application specifically targetting pet owners... it provides... certified practitioners, such as veterians are indicated by a label next to their profile...*
+Our application is a messaging/social media app aimed at helping people who want to practice new languages. Each user first creates an account wherein they specify the language they are fluent in and the language they would like to learn. The app then matches users against each other based on language fluency and which language each user would like to learn.
 
 **Application Use Cases and or Examples**
 
-*[Provide use cases and examples of people using your application. Who are the target users of your application? How do the users use your application?]*
+Target Users: Students or amateur learners of a new language.
 
-*Here is a pet training application example*
+A use case of this application is in the case of two students wanting to practice a language taught in school.
 
-*Molly wants to inquiry about her cat, McPurr's recent troublesome behaviour*
-1. *Molly notices that McPurr has been hostile since...*
-2. *She makes a post about... with the tag...*
-3. *Lachlan, a vet, writes a reply to Molly's post...*
-4. ...
-5. *Molly gives Lachlan's reply a 'tick' response*
-
-*Here is a map navigation application example*
-
-*Targets Users: Drivers*
-
-* *Users can use it to navigate in order to reach the destinations.*
-* *Users can learn the traffic conditions*
-* ...
-
-*Target Users: Those who want to find some good restaurants*
-
-* *Users can find nearby restaurants and the application can give recommendations*
-* ...
-
-*List all the use cases in text descriptions or create use case diagrams. Please refer to https://www.visual-paradigm.com/guide/uml-unified-modeling-language/what-is-use-case-diagram/ for use case diagram.*
+1. George is fluent in English but is learning Spanish in school
+2. Amy is fluent in Spanish but is learning English in school
+3. Both George and Amy want to practice the languages they are learning in school
+4. George and Amy create an account of the language learning app and match each other
+5. George and Amy chat and improve their understanding of each other's language
 
 ## Application UML
 
@@ -132,7 +127,11 @@ The following is a report template to help your team successfully provide all th
 
 **Design Patterns**
 
-*[What design patterns did your team utilise? Where and why?]*
+- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database.
+
+- 
+
+- 
 
 **Grammar(s)**
 
@@ -149,80 +148,81 @@ The following is a report template to help your team successfully provide all th
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
-**Surpise Item**
-
-*[If you implement the surprise item, explain how your solution addresses the surprise task. What decisions do your team make in addressing the problem?]*
-
+**Surprise Feature**
+Code Smells
+Potential:
+  - returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
+    - First commit: 2c2a096df05bc1ee5e74a1c79160094041051f7d, 22/4, lines 21, 24, 32, 40, 58 (User class), 
+    - fixable: yes!
+    - Fixed commit: TBD
+  - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
+  - This code smell was also identified by the Embold code analysis tool, and is an example of leaky encapsulation. If a field is public and static but not final, the object referenced by that field can be modified from anywhere in the code, which in our use case of an observer object instance was unintended. The new implementation fixes this by making the field final as well as public and static, preventing it from being changed unexpectedly from a different class.
+    - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
+    - fixable: yes!
+    - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
+  - potential god class: User class
+    - The user class exhibits characteristics of the "multifaceted abstraction" (god class) code smell, as it has many responsibilities, being used in every activity for both the current user and other users they interact with. It contains many fields and methods used by both the backend (e.g. username) and frontend (e.g. profile picture). However, we decided not to refactor it for 2 main reasons. First, while it has a lot of functionality, all of it makes sense being encapsulated in the User class, and refactoring it could very easily lead to creating other code smells such as "unnecessary abstraction" and "broken modularization". Secondly, we are quite close to the deadline, and refactoring this class, which is a central and critical part of the app, would take a lot of time. In order to try and avoid making the problem any worse, we will try and pay special attention when adding new fields or methods to this class, only adding anything if absolutely necessary.
+    - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, whole class
+    - fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
+    - reasons: all of the functionality makes sense to be in user class
+            making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
+            as a countermeasure, be especially vigilant when adding new fields or methods to User class
 **Other**
 
 *[What other design decisions have you made which you feel are relevant? Feel free to separate these into their own subheadings.]*
 
 ## Summary of Known Errors and Bugs
 
-*[Where are the known errors and bugs? What consequences might they lead to?]*
+1. *Bug 1:* Empty messages and those with newlines can be sent in ConversationActivity. This has only incorrect visual feedback.
 
-*Here is an example:*
+2. *Bug 2:* Empty or invalid usernames (like those containing `.` or `#` or `[` or `]`) are usable
 
-1. *Bug 1:*
+3. *Bug 3:* Exiting the conversation by closing the app rather than pressing the exit button keeps it active in memory, but you cannot rejoin.
 
-- *A space bar (' ') in the sign in email will crash the application.*
-- ...
-
-2. *Bug 2:*
-3. ...
+4. *Bug 4:* Users may log in concurrently to the same account on two different devices, causing wacky results in they queue together.
 
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
 ## Testing Summary
 
-*[What features have you tested? What is your testing coverage?]*
+Number of test cases: 15+61
 
-*Here is an example:*
+Code coverage: `ConversationFormer.java`, `QueuedUserObserver.java`
 
-*Number of test cases: ...*
+Types of tests created: We have tested many of the back-end algorithmic features, but little of the database connections or the GUI.
 
-*Code coverage: ...*
 
-*Types of tests created: ...*
+
+
 
 *Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
 
 ## Implemented Features
 
-*[What features have you implemented?]*
+User Interactivity
+1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
+post/message/event) [stored in-memory]. (easy)
 
-*Here is an example:*
+Greater Data Usage, Handling and Sophistication
+2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
 
-*Privacy*
-1. *Featue 1: Users may ... . (easy)*
-2. *Feature 2: A user must ... . (easy)*
-3. *Feature 3: A user can only ... . (medium)*
+Peer to Peer Messaging
+1. Provide users with the ability to message each other or an institution directly (e.g., a
+user can message an event/movement that is managed by another user). (hard)
 
-*Firebase Integration*
-1. *Feature 1: Use Firebase to implement ... . (easy)*
-2. *Feature 2: Use Firebase to persist ... .(medium)*
-
-*Surprise*
-Code Smells
-Potential:
-  returning private field from public class (User class, friendship request) (leaky encapsulation) - https://cwe.mitre.org/data/definitions/495.html
-  fixable: yes!
-  public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
-  fixable: yes!
-  potential god class: User class
-  fixable: probably not... (if someone thinks of a way to fix this feel free to update =D)
-  reasons: all of the functionality makes sense to be in user class
-            making multiple objects has high potential to cause "unnecessary abstraction"/"broken modularization" code smell
-            as a countermeasure, be especially vigilant when adding new fields or methods to User class
-
-
-*List all features you have completed in their separate categories with their difficulty classification. If they are features that are suggested and approved, please state this somewhere as well.*
+Firebase Integration
+1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
+2. Use Firebase to persist all data used in your app (this item replaces the requirement to
+retrieve data from a local file) (medium)
+3. Using Firebase or another remote database to store user information and having the
+app updated as the remote database is updated without restarting the application. E.g.
+User A makes a transfer, user B on a separate instance of the application sees user A’s
+transfer appear on their app instance without restarting their application. (very hard)
 
 ## Team Meetings
 
-*Here is an example:*
-
-- *[Team Meeting 1](./MeetingTemplate.md)*
-- ...
-
-*Either write your meeting minutes here or link to documents that contain them. There must be at least 4 team meetings. Note that you must commit your minute meetings shortly after your meeting has taken place (e.g., within 24h), otherwise your meeting minute will not be accepted.*
+- [Team Meeting 1](./Meeting1.md)
+- [Team Meeting 2](./Meeting2.md)
+- [Team Meeting 3](./Meeting3.md)
+- [Team Meeting 4](./Meeting4.md)
+- [Team Meeting 5](./Meeting5.md)

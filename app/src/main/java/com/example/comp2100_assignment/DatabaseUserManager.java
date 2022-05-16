@@ -20,23 +20,25 @@ public class DatabaseUserManager {
         return instance;
     }
 
-    final static HashMap<String, UserPartial> users = new HashMap<>();
+    final static HashMap<String, User> users = new HashMap<>();
 
     private DatabaseUserManager(Context baseContext) {
         FirebaseApp.initializeApp(baseContext);
         database = FirebaseDatabase.getInstance(
                 "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
         );
-        DatabaseReference usersRoot = database.getReference("users");
+        DatabaseReference usersRoot = database.getReference("userList");
         System.out.println("Generated users root.");
 
         usersRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                users.put(snapshot.getKey(), new UserPartial(
+                users.put(snapshot.getKey(), new User(
                         tryToGet(snapshot, "username"),
                         tryToGet(snapshot, "password"),
-                        tryToGet(snapshot, "avatar")
+                        tryToGet(snapshot, "avatar"),
+                        tryToGet(snapshot, "displayName"),
+                        tryToGet(snapshot, "conversationTopics")
                 ));
             }
 
@@ -70,22 +72,26 @@ public class DatabaseUserManager {
         }
     }
 
-    public UserPartial attemptLogin(String username, String password) {
-        for (UserPartial user : users.values()) {
-            if (user.username.equals(username) && user.password.equals(password)) {
+    public User attemptLogin(String username, String password) {
+        for (User user : users.values()) {
+            if (user.tryLogin(username, password)) {
                 return user;
             }
         }
         return null;
     }
 
-    public boolean userExists(String username){
-        for (UserPartial user : users.values()){
-            if (user.username.equals(username)) {
-                return true;
+    public static boolean userExists(String username){
+        return get(username) != null;
+    }
+
+    public static User get(String username) {
+        for (User user : users.values()){
+            if (user.getUsername().equals(username)) {
+                return user;
             }
         }
-        return false;
+        return null;
     }
 
     private final FirebaseDatabase database;

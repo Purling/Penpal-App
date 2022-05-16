@@ -1,20 +1,37 @@
 package com.example.comp2100_assignment;
 
 import android.graphics.Bitmap;
-import android.media.Image;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
-public class User {
+public class User implements Serializable {
     private String username;
     private String password; // this should be hashed
     private String displayName;
+    private String avatar;
 
     private Bitmap profilePicture;
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public void setBlockedUsers(List<User> blockedUsers) {
+        this.blockedUsers = blockedUsers;
+    }
+
+    public void setFriends(List<FriendshipRequest> friends) {
+        this.friends = friends;
+    }
 
     public User() {
     }
@@ -27,7 +44,16 @@ public class User {
     }
 
     private HashMap<Language, Familiarity> familiarity;
-    private List<ConversationTopic> topics;
+    private Set<ConversationTopic> topicsSet;
+    private String topics;
+
+    public String getTopics() {
+        return topics;
+    }
+
+    public void setTopics(String topics) {
+        this.topics = topics;
+    }
 
     private TransitoryConversation conversation;
 
@@ -42,11 +68,38 @@ public class User {
         this.displayName = username;
 
         familiarity = new HashMap<>();
-        topics = new ArrayList<>();
+        topicsSet = new HashSet<>();
 
         friends = new ArrayList<>();
 
         blockedUsers = new ArrayList<>();
+    }
+
+    public User(String username, String password, String avatar, String displayName, String commaSeparatedTopics) {
+        this(username, password);
+        this.avatar = avatar;
+        if (avatar == null) avatar = "";
+        this.displayName = displayName;
+        if (displayName == null) displayName = username;
+        if (commaSeparatedTopics == null) commaSeparatedTopics = "";
+        String[] stringTopics = commaSeparatedTopics.split("[,]");
+        for (String stringTopic : stringTopics) {
+            setConversationTopic(conversationTopicFromString(stringTopic), true);
+        }
+    }
+
+    ConversationTopic conversationTopicFromString(String stringTopic) {
+        switch (stringTopic) {
+            case "MUSIC": return ConversationTopic.MUSIC;
+            case "SPORTS": return ConversationTopic.SPORTS;
+            case "FOOD": return ConversationTopic.FOOD;
+            case "TRAVEL": return ConversationTopic.TRAVEL;
+            default: return ConversationTopic.MUSIC;
+        }
+    }
+
+    public boolean tryLogin(String enteredUsername, String enteredPassword) {
+        return username.equals(enteredUsername) && password.equals(enteredPassword);
     }
 
 
@@ -77,14 +130,13 @@ public class User {
     }
 
     public boolean getConversationTopic(ConversationTopic topic) {
-        return topics.contains(topic);
+        return topicsSet.contains(topic);
     }
 
     // Why not just have this in two methods?
     public void setConversationTopic(ConversationTopic topic, boolean interested) {
-        if (topics.contains(topic)) return;
-        if (interested) topics.add(topic);
-        else topics.remove(topic);
+        if (interested) topicsSet.add(topic);
+        else topicsSet.remove(topic);
     }
 
     public void enterQueue() {
@@ -161,10 +213,6 @@ public class User {
         return blockedUsers;
     }
 
-    public void setBlockedUsers(ArrayList<User> blockedUsers) {
-        this.blockedUsers = blockedUsers;
-    }
-
     public HashMap<Language, Familiarity> getFamiliarity() {
         return familiarity;
     }
@@ -173,12 +221,12 @@ public class User {
         this.familiarity = familiarity;
     }
 
-    public List<ConversationTopic> getTopics() {
-        return topics;
+    public Set<ConversationTopic> getTopicsSet() {
+        return topicsSet;
     }
 
-    public void setTopics(List<ConversationTopic> topics) {
-        this.topics = topics;
+    public void setTopicsSet(Set<ConversationTopic> topicsSet) {
+        this.topicsSet = topicsSet;
     }
 
     public TransitoryConversation getConversation() {
@@ -191,10 +239,6 @@ public class User {
 
     public void setInQueue(boolean inQueue) {
         this.inQueue = inQueue;
-    }
-
-    public void setFriends(ArrayList<FriendshipRequest> friends) {
-        this.friends = friends;
     }
 
     //adds userToBlock to this' list of blocked users

@@ -5,18 +5,23 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.URL;
 import java.util.ArrayList;
 
 public class ConversationActivity extends AppCompatActivity {
@@ -29,10 +34,14 @@ public class ConversationActivity extends AppCompatActivity {
     DatabaseReference conversationRoot;
     DatabaseReference conversationMessagesRoot;
 
-    DatabaseReference conversationsAvailable;
-    ConversationsAvailable available;
+    DatabaseReference availableReference;
 
-    UserPartial user;
+    User user;
+
+    User user1;
+    User user2;
+    boolean metadataGenerated;
+    boolean owner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,32 +49,25 @@ public class ConversationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversation);
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("user");
+        user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
-        boolean owner = intent.getBooleanExtra("owner", true);
+        String queueName = intent.getStringExtra("queueName");
+        owner = intent.getBooleanExtra("owner", false);
         messageBox = findViewById(R.id.messageBox);
         messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
-        conversationRoot = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("conversation").child(conversationName);
+        FirebaseDatabase database = DatabaseUserManager.getInstance(getBaseContext()).getDatabase();
+
+        conversationRoot = database.getReference("conversation").child(conversationName);
         conversationMessagesRoot = conversationRoot.child("messages");
 
-        conversationsAvailable = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations");
-        conversationsAvailable.addValueEventListener(new ValueEventListener() {
-             @Override
-             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                 available = snapshot.getValue(ConversationsAvailable.class);
-             }
+        System.out.println(conversationName);
+        availableReference = database.getReference("availableConversations").child(queueName);
 
-             @Override
-             public void onCancelled(@NonNull DatabaseError error) {
+        conversationRoot.child(owner ? "user1" : "user2").setValue(user.getUsername());
 
-             }
-        });
-
-        conversationRoot.child(owner ? "user1" : "user2").setValue(user.username);
-
-        UserMessage message = new UserMessage("", user.username + " joined.");
+        UserMessage message = new UserMessage("", user.getUsername() + " joined.");
         conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
 
         conversationMessagesRoot.addChildEventListener(new ChildEventListener() {
@@ -97,7 +99,7 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.sendButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                UserMessage message = new UserMessage(user.username, messageBox.getText().toString());
+                UserMessage message = new UserMessage(user.getUsername(), messageBox.getText().toString());
                 conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
                 messageBox.setText("");
             }
@@ -106,15 +108,67 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.exitConversationButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent();
-                conversationRoot.removeValue();
-                intent.setClass(ConversationActivity.this, MainActivity.class);
-                intent.putExtra("user", user);
+                availableReference.setValue("#CLOSED");
+                returnToMainActivity();
+            }
+        });
 
-                available.usernames.remove(conversationName);
-                conversationsAvailable.setValue(available);
+        availableReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println(snapshot.getKey() + " key has value: ::::: " + snapshot.getValue(String.class));
+                if ((snapshot.getValue(String.class) == null) || snapshot.getValue(String.class).equals("#CLOSED"))
+                    returnToMainActivity();
+            }
 
-                startActivity(intent);
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        conversationRoot.child("topic").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ConversationTopic topic = snapshot.getValue(ConversationTopic.class);
+                ((TextView)findViewById(R.id.conversationTopic)).setText(topic == null ? "" : topic.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
+        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
+    }
+
+    void associateLabel(int label, int avatarID, DatabaseReference reference, int userNumber) {
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User u = DatabaseUserManager.get(snapshot.getValue(String.class));
+                if (u == null) return;
+                if (userNumber == 1) user1 = u;
+                if (userNumber == 2) user2 = u;
+                ((TextView)findViewById(label)).setText(u.getDisplayName());
+                new Thread(() -> {
+                    try {
+                        Bitmap bitmap = BitmapFactory.decodeStream(new URL(u.getAvatar()).openConnection().getInputStream());
+                        runOnUiThread(() -> ((ImageView)findViewById(avatarID)).setImageBitmap(bitmap));
+                    } catch (Exception ignored) {}
+                }).start();
+                if (owner && !metadataGenerated && user1 != null && user2 != null) {
+                    metadataGenerated = true;
+                    TransitoryConversation generatedConversation = ConversationFormer.getInstance().formConversation(user1, user2);
+                    conversationRoot.child("topic").setValue(generatedConversation.getTopic());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
@@ -127,5 +181,14 @@ public class ConversationActivity extends AppCompatActivity {
         }
         System.out.println(sb.toString());
         conversation.setText(sb.toString());
+    }
+
+    void returnToMainActivity() {
+        Intent intent = new Intent();
+        conversationRoot.removeValue();
+        intent.setClass(ConversationActivity.this, MainActivity.class);
+        intent.putExtra("user", user);
+
+        startActivity(intent);
     }
 }

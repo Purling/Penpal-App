@@ -1,5 +1,6 @@
 package com.example.comp2100_assignment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,10 +10,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -20,9 +28,12 @@ public class LoginActivity extends AppCompatActivity {
     private Button register;
     private EditText username;
     private EditText password;
-    BufferedReader bufferedReader;
 
+    FirebaseDatabase firebaseDatabase;
+    DatabaseReference databaseReference;
     DatabaseUserManager manager;
+    User newUser;
+    User adam;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,30 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(loginListener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
-
-    try {
-        bufferedReader = new BufferedReader(new InputStreamReader(getAssets().open("logindetails.csv"), StandardCharsets.UTF_8));
-        String line;
-        while ((line = bufferedReader.readLine()) != null) {
-            String[] tokens = line.split(",");
-            for (String token : tokens) {
-                if (token.contains(username.getText().toString())) {
-                    login.setOnClickListener(loginListener);
-                } else
-                    login.setOnClickListener(registerListener);
-            }
-        }
-        bufferedReader.close();
-        }catch (IOException e){
-        }
     }
-    //TODO: read data from the file to check username and password.
 
 
     public View.OnClickListener loginListener = (view) -> {
-        UserPartial successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
+        User successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
         if (successful != null) {
-            System.out.println("Logged in successfully as " + successful.username);
+            System.out.println("Logged in successfully as " + successful.getUsername());
             Intent intent = new Intent();
             intent.setClass(getApplicationContext(), MainActivity.class);
             intent.putExtra("user", successful);
@@ -85,14 +79,29 @@ public class LoginActivity extends AppCompatActivity {
         // create account
         else{
             // check that inputted password is okay
+            // check that inputted password is okay
+
+            // TODO: If this cannot work delete it.
+            firebaseDatabase = FirebaseDatabase.getInstance();
+            databaseReference = firebaseDatabase.getReference("userList");
+            String name = username.getText().toString();
+            String pass = password.getText().toString();
+            addDataToFireBase(name,pass);
 
             // todo: create new user
-            Intent intent = new Intent();
-            intent.setClass(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+            //Intent intent = new Intent();
+            //intent.setClass(getApplicationContext(), MainActivity.class);
+            //startActivity(intent);
         }
 
     };
+
+    private void addDataToFireBase(String name, String pass){
+        DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("userList").child(name).setValue(new User(name, pass));
+    }
+
+
+
     // verifies that a password meets defined password policy
     // current policy is:
     // password must be at least 1 character

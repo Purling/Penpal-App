@@ -30,6 +30,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -39,14 +40,15 @@ public class MainActivity extends AppCompatActivity {
     private ListView listView;
     private ImageView profilePicture;
     private Button match;
+    private Button settingsButton;
 
     DatabaseUserManager manager;
 
-    UserPartial user;
-
-    ConversationsAvailable available;
+    User user;
 
     DatabaseReference availableReference;
+
+    DatabaseDictionaryWatcher queueWatcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
-
-        //Intent intent = getIntent();
-        //user = (UserPartial) intent.getSerializableExtra("USER");
 
         input = findViewById(R.id.input_text);
         friend = findViewById(R.id.friend);
@@ -67,45 +66,23 @@ public class MainActivity extends AppCompatActivity {
         match = findViewById(R.id.match);
         match.setOnClickListener(match_listener);
         profilePicture = findViewById(R.id.profile_picture);
+        settingsButton = findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(settings_listener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         Intent intent = getIntent();
-        user = (UserPartial) intent.getSerializableExtra("user");
-        //System.out.println(user);
-        // The avatar, stored in user.avatar, is either null or a String representing the address of the image
-        if(user == null || user.avatar == null){
-            //notify user if avatar isn't set
-            Toast.makeText(getApplicationContext(),"User has no avatar",Toast.LENGTH_SHORT).show();
-        }
-        else {
-            // need to create a new thread to load data from web
-            // https://stackoverflow.com/a/14443056
-            Thread profilepicthread = new Thread(() -> {
-                try {
-                    Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.avatar).openConnection().getInputStream());
-                    // ui can't be updated in thread
-                    // https://stackoverflow.com/a/5162096
-                    runOnUiThread(() -> profilePicture.setImageBitmap(bitmap));
-                } catch (IOException e) {
-                    //if image can't be found
-                    Toast.makeText(getApplicationContext(),"Unable to get avatar from url",Toast.LENGTH_SHORT).show();
-                }
-            });
-            profilepicthread.start();
-        }
+        user = (User) intent.getSerializableExtra("user");
+
+        new Thread(() -> {
+            try {
+                Bitmap bitmap = BitmapFactory.decodeStream(new URL(user.getAvatar()).openConnection().getInputStream());
+                runOnUiThread(() -> profilePicture.setImageBitmap(bitmap));
+            } catch (Exception ignored) {}
+        }).start();
 
         availableReference = manager.getDatabase().getReference("availableConversations");
-
-        availableReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                available = snapshot.getValue(ConversationsAvailable.class);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {}
-        });
+        queueWatcher = new DatabaseDictionaryWatcher(availableReference);
     }
 
     public View.OnClickListener search_listener = (view) -> {
@@ -121,31 +98,38 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     };
-    //public AdapterView.OnItemClickListener list_listener = (view)
+    public View.OnClickListener settings_listener = (view) -> {
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, AccountSettingsActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    };
 
     public View.OnClickListener match_listener = (view)->{
-        if (available == null) {
-            available = new ConversationsAvailable();
-            availableReference.setValue(available);
+        for (String otherUser : queueWatcher.map.keySet()) {
+            if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
+                User other = DatabaseUserManager.get(otherUser);
+                Conversation formed = ConversationFormer.getInstance().formConversation(user, other);
+                if (formed != null) {
+                    availableReference.child(otherUser).setValue(System.currentTimeMillis() + "_transitory");
+                    Intent intent = new Intent();
+                    intent.setClass(MainActivity.this, QueueActivity.class);
+                    intent.putExtra("conversationName", otherUser);
+                    intent.putExtra("user", user);
+                    intent.putExtra("willBeOwner", true);
+                    startActivity(intent);
+                    return;
+                }
+            }
         }
 
-        boolean owner;
-        String joiningConversation;
-        if (available.usernames.size() == 0) {
-            joiningConversation = user.username;
-            availableReference.setValue(available.add(user.username));
-            owner = true;
-        } else {
-            joiningConversation = available.usernames.get(0);
-            availableReference.setValue(available.removeFirst());
-            owner = false;
-        }
+        availableReference.child(user.getUsername()).setValue("#QUEUED");
 
         Intent intent = new Intent();
-        intent.setClass(MainActivity.this, ConversationActivity.class);
-        intent.putExtra("conversationName", joiningConversation);
+        intent.setClass(MainActivity.this, QueueActivity.class);
+        intent.putExtra("conversationName", user.getUsername());
         intent.putExtra("user", user);
-        intent.putExtra("owner", owner);
+        intent.putExtra("willBeOwner", false);
         startActivity(intent);
     };
 }

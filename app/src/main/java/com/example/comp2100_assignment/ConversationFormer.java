@@ -21,6 +21,7 @@ public class ConversationFormer {
 
         if (validTopics.size() == 0) return null;
 
+        /*
         ArrayList<Language> validLanguages1 = new ArrayList<>();
         ArrayList<Language> validLanguages2 = new ArrayList<>();
         for (Language language : Language.values()) {
@@ -38,11 +39,15 @@ public class ConversationFormer {
 
         if (validLanguages1.size() == 0 || validLanguages2.size() == 0) return null;
 
-        Random r = new Random();
 
-        ConversationTopic chosenTopic = validTopics.get(r.nextInt(validTopics.size()));
+
         Language chosenLanguage1 = validLanguages1.get(r.nextInt(validLanguages1.size()));
         Language chosenLanguage2 = validLanguages2.get(r.nextInt(validLanguages2.size()));
+         */
+        Random r = new Random();
+        ConversationTopic chosenTopic = validTopics.get(r.nextInt(validTopics.size()));
+        Language chosenLanguage1 = Language.ENGLISH;
+        Language chosenLanguage2 = Language.ITALIAN;
 
         return new TransitoryConversation(user1, chosenLanguage1, user2, chosenLanguage2, chosenTopic);
     }
