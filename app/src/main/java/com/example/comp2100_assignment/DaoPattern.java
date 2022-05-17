@@ -13,7 +13,9 @@ import java.util.List;
 public interface DaoPattern<T, V> {
 
         default void get(V id, OnGetDataListener<T> listener) {
-                DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference mDatabase = FirebaseDatabase.getInstance(
+                        "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
+                ).getReference();
 
                 mDatabase.child(getChildName()).child(id.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
