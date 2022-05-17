@@ -46,9 +46,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
             spinners[i].setAdapter(adapter);
             switch(user.getFamiliarity(languages[i])) {
                 case BEGINNER: spinners[i].setSelection(1); break;
-                case INTERMEDIATE: spinners[i].setSelection(1); break;
-                case ADVANCED: spinners[i].setSelection(2); break;
-                case FLUENT: spinners[i].setSelection(2); break;
+                case INTERMEDIATE: spinners[i].setSelection(2); break;
+                case ADVANCED: spinners[i].setSelection(3); break;
+                case FLUENT: spinners[i].setSelection(4); break;
                 default: spinners[i].setSelection(0); break;
             }
         }
