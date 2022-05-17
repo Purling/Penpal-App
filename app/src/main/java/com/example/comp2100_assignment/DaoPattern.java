@@ -25,7 +25,9 @@ public interface DaoPattern<T, V> {
      * @param listener The listener which activates when the operation to return data has succeeded
      */
     default void get(V id, OnGetDataListener<T> listener) {
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance(
+                "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        ).getReference();
 
         mDatabase.child(getChildName()).child(id.toString()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
