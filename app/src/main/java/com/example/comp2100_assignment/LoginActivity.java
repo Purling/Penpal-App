@@ -1,8 +1,5 @@
 package com.example.comp2100_assignment;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,30 +7,83 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.List;
+import java.util.HashSet;
 
 public class LoginActivity extends AppCompatActivity {
 
+    DatabaseUserManager manager;
     private Button login;
     private Button register;
     private EditText username;
     private EditText password;
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
-    DatabaseUserManager manager;
-    User newUser;
-    User adam;
+    /***
+     * Listener to check if the login details are correct. If they are, go to the main activity.
+     *
+     */
+    public View.OnClickListener loginListener = (view) -> {
+
+        // Create new user dao object
+        UserDao userDao = new UserDao();
+
+        // When the Firebase database returns with the data, then do the operation.
+        // Do not assume that the Firebase database has already returned with the data.
+        userDao.get(username.getText().toString(), data -> {
+
+            // If both the username and password match the database user details
+            if (data != null && data.getUsername().equals(username.getText().toString())
+                    && data.getPassword().equals(password.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Logged in successfully as " + data.getDisplayName(), Toast.LENGTH_SHORT).show();
+                if (data.getConversationTopics() != null) data.setAllTopicsSet(new HashSet<>(data.getConversationTopics()));
+                passToMain(data);
+            } else {
+                Toast.makeText(getApplicationContext(), "Login Failed: Incorrect Credentials", Toast.LENGTH_LONG).show();
+            }
+        });
+    };
+
+    /***
+     * Listener which activates upon clicking the register button.
+     * It creates a new User if there doesn't exist one with the same username already, in the database.
+     *
+     */
+    public View.OnClickListener registerListener = (view) -> {
+
+        // Create new UserDao object
+        UserDao userDao = new UserDao();
+
+        // Check if the username already exists
+        userDao.get(username.getText().toString(), data -> {
+
+            // If User already exists, notify the app user
+            if (data != null) {
+                Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
+            // If the password doesn't meet the policy, notify the app user
+            } else if (!passwordMeetsPolicy(password.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Password doesn't meet requirements", Toast.LENGTH_SHORT).show();
+            } else { // Create the account and store in database
+                User newUser = new User(username.getText().toString(), password.getText().toString());
+                userDao.save(newUser, true);
+                Toast.makeText(getApplicationContext(), "Registered successfully as " + newUser.getDisplayName()
+                        , Toast.LENGTH_SHORT).show();
+                passToMain(newUser);
+            }
+        });
+    };
+
+    /***
+     * Method passes the user received from the database into the MainActivity class
+     *
+     * @param user The user to pass
+     */
+    public void passToMain(User user) {
+        Intent intent = new Intent();
+        intent.setClass(getApplicationContext(), MainActivity.class);
+        intent.putExtra("user", user);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,68 +101,15 @@ public class LoginActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
     }
 
+    // Verifies that a password meets defined password policy.
+    // Current policy is:
+    // Password must be at least 1 letter
 
-    public View.OnClickListener loginListener = (view) -> {
-        User successful = manager.attemptLogin(username.getText().toString(), password.getText().toString());
-        if (successful != null) {
-            System.out.println("Logged in successfully as " + successful.getUsername());
-            Intent intent = new Intent();
-            intent.setClass(getApplicationContext(), MainActivity.class);
-            intent.putExtra("user", successful);
-            startActivity(intent);
-        } else {
-            System.out.println("Login failed... incorrect credentials?");
-        }
-    };
-    //TODO: write data into the file( But it seems that we cannot wrtie file in android studio)
+    // TODO Could create a helper class or put this method somewhere else.
+    public boolean passwordMeetsPolicy(String password) {
 
-
-    public View.OnClickListener registerListener = (view) -> {
-        // if username already exists, notify user
-        if(manager.userExists(username.getText().toString())){
-            Toast.makeText(getApplicationContext(),"Username already exists",Toast.LENGTH_LONG).show();
-        }
-        // if password doesn't meet policy
-        else if(!passwordMeetsPolicy(password.getText().toString())){
-            Toast.makeText(getApplicationContext(),"Password doesn't meet requirements",Toast.LENGTH_SHORT).show();
-        }
-        // create account
-        else{
-            // check that inputted password is okay
-            // check that inputted password is okay
-
-            // TODO: If this cannot work delete it.
-            firebaseDatabase = FirebaseDatabase.getInstance();
-            databaseReference = firebaseDatabase.getReference("userList");
-            String name = username.getText().toString();
-            String pass = password.getText().toString();
-            addDataToFireBase(name,pass);
-
-            // todo: create new user
-            //Intent intent = new Intent();
-            //intent.setClass(getApplicationContext(), MainActivity.class);
-            //startActivity(intent);
-        }
-
-    };
-
-    private void addDataToFireBase(String name, String pass){
-        DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("userList").child(name).setValue(new User(name, pass));
-    }
-
-
-
-    // verifies that a password meets defined password policy
-    // current policy is:
-    // password must be at least 1 character
-    public boolean passwordMeetsPolicy(String password){
-        if(password == null){
-            return false;
-        }
-        if(password.equals("")){
-            return false;
-        }
-        return true;
+        // Check if the String contains at least one letter
+        return !(password == null) && password.matches(".*[a-zA-Z]+.*");
     }
 
 }

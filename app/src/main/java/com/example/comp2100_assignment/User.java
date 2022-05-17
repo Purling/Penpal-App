@@ -2,64 +2,31 @@ package com.example.comp2100_assignment;
 
 import android.graphics.Bitmap;
 
+import com.google.firebase.database.Exclude;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.HashSet;
 
 public class User implements Serializable {
+    public List<FriendshipRequest> friends;
     private String username;
     private String password; // this should be hashed
     private String displayName;
     private String avatar;
-
     private Bitmap profilePicture;
-
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public void setBlockedUsers(List<User> blockedUsers) {
-        this.blockedUsers = blockedUsers;
-    }
-
-    public void setFriends(List<FriendshipRequest> friends) {
-        this.friends = friends;
-    }
+    private List<User> blockedUsers;
+    private HashMap<Language, Familiarity> familiarity;
+    private Set<ConversationTopic> topicsSet;
+    private List<ConversationTopic> conversationTopics;
+    private TransitoryConversation conversation;
+    private boolean inQueue;
 
     public User() {
     }
-
-    private List<User> blockedUsers;
-
-
-    interface FamiliarityFunction {
-        Familiarity run(Familiarity f);
-    }
-
-    private HashMap<Language, Familiarity> familiarity;
-    private Set<ConversationTopic> topicsSet;
-    private String topics;
-
-    public String getTopics() {
-        return topics;
-    }
-
-    public void setTopics(String topics) {
-        this.topics = topics;
-    }
-
-    private TransitoryConversation conversation;
-
-    private boolean inQueue;
-
-    public List<FriendshipRequest> friends;
 
     public User(String username, String password) {
         this.username = username;
@@ -69,6 +36,7 @@ public class User implements Serializable {
 
         familiarity = new HashMap<>();
         topicsSet = new HashSet<>();
+        conversationTopics = new ArrayList<>();
 
         friends = new ArrayList<>();
 
@@ -81,30 +49,40 @@ public class User implements Serializable {
         if (avatar == null) avatar = "";
         this.displayName = displayName;
         if (displayName == null) displayName = username;
-        if (commaSeparatedTopics == null) commaSeparatedTopics = "";
-        String[] stringTopics = commaSeparatedTopics.split("[,]");
-        for (String stringTopic : stringTopics) {
-            setConversationTopic(conversationTopicFromString(stringTopic), true);
+        if (!(commaSeparatedTopics == null || commaSeparatedTopics.equals(""))) {
+            String[] stringTopics = commaSeparatedTopics.split(",");
+            for (String stringTopic : stringTopics) {
+                addConversationTopic(ConversationTopic.valueOf(stringTopic));
+            }
         }
     }
 
-    ConversationTopic conversationTopicFromString(String stringTopic) {
-        switch (stringTopic) {
-            case "MUSIC": return ConversationTopic.MUSIC;
-            case "SPORTS": return ConversationTopic.SPORTS;
-            case "FOOD": return ConversationTopic.FOOD;
-            case "TRAVEL": return ConversationTopic.TRAVEL;
-            default: return ConversationTopic.MUSIC;
-        }
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public List<ConversationTopic> getConversationTopics() {
+        return conversationTopics;
+    }
+
+    public void setConversationTopics(List<ConversationTopic> conversationTopics) {
+        this.conversationTopics = conversationTopics;
     }
 
     public boolean tryLogin(String enteredUsername, String enteredPassword) {
         return username.equals(enteredUsername) && password.equals(enteredPassword);
     }
 
-
     public String getUsername() {
         return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -129,15 +107,30 @@ public class User implements Serializable {
         familiarity.put(language, newFamiliarity);
     }
 
-    public boolean getConversationTopic(ConversationTopic topic) {
+    public boolean getTopicsSet(ConversationTopic topic) {
         return topicsSet.contains(topic);
     }
 
     // Why not just have this in two methods?
-    public void setConversationTopic(ConversationTopic topic, boolean interested) {
+    public void setTopicsSet(ConversationTopic topic, boolean interested) {
         if (interested) topicsSet.add(topic);
         else topicsSet.remove(topic);
     }
+
+    public void setAllTopicsSet (Set<ConversationTopic> topicsSet) {
+        this.topicsSet = topicsSet;
+    }
+
+    /***
+     * Adds a topic to both the set and the list of topics.
+     *
+     * @param topic The topic to be added to the list and set
+     */
+    public void addConversationTopic(ConversationTopic topic) {
+        topicsSet.add(topic);
+        conversationTopics.add(topic);
+    }
+
 
     public void enterQueue() {
         inQueue = true;
@@ -153,8 +146,16 @@ public class User implements Serializable {
         return inQueue;
     }
 
+    public void setInQueue(boolean inQueue) {
+        this.inQueue = inQueue;
+    }
+
     public List<FriendshipRequest> getFriends() {
         return friends;
+    }
+
+    public void setFriends(List<FriendshipRequest> friends) {
+        this.friends = friends;
     }
 
     public void receiveFriendRequest(FriendshipRequest request) {
@@ -197,10 +198,6 @@ public class User implements Serializable {
         this.profilePicture = profilePicture;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -213,6 +210,10 @@ public class User implements Serializable {
         return blockedUsers;
     }
 
+    public void setBlockedUsers(List<User> blockedUsers) {
+        this.blockedUsers = blockedUsers;
+    }
+
     public HashMap<Language, Familiarity> getFamiliarity() {
         return familiarity;
     }
@@ -221,6 +222,7 @@ public class User implements Serializable {
         this.familiarity = familiarity;
     }
 
+    @Exclude
     public Set<ConversationTopic> getTopicsSet() {
         return topicsSet;
     }
@@ -237,25 +239,25 @@ public class User implements Serializable {
         this.conversation = conversation;
     }
 
-    public void setInQueue(boolean inQueue) {
-        this.inQueue = inQueue;
-    }
-
     //adds userToBlock to this' list of blocked users
-    public void blockUser(User userToBlock){
-        if(!blockedUsers.contains(userToBlock)){
+    public void blockUser(User userToBlock) {
+        if (!blockedUsers.contains(userToBlock)) {
             blockedUsers.add(userToBlock);
         }
     }
 
     //removes userToBlock from this' list of blocked users
-    public void unblockUser(User userToUnblock){
+    public void unblockUser(User userToUnblock) {
         blockedUsers.remove(userToUnblock);
     }
 
     //returns if userToCheck is blocked by this
-    public boolean isBlocked(User userToCheck){
+    public boolean isBlocked(User userToCheck) {
         return blockedUsers.contains(userToCheck);
+    }
+
+    interface FamiliarityFunction {
+        Familiarity run(Familiarity f);
     }
 
 }
