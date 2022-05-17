@@ -39,7 +39,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
         Language[] languages = {Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
         Spinner[] spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
-        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.FLUENT};
+        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
 
         for (int i = 0; i < languageSpinnerIDs.length; i++) {
             spinners[i] = findViewById(languageSpinnerIDs[i]);
