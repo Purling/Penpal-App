@@ -7,10 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
 import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
 
 public class AccountSettingsActivity extends AppCompatActivity {
 
@@ -34,12 +37,20 @@ public class AccountSettingsActivity extends AppCompatActivity {
         // Gets the language dropdown from the UI
         int[] languageSpinnerIDs = {R.id.languageSpinner1, R.id.languageSpinner2, R.id.languageSpinner3, R.id.languageSpinner4, R.id.languageSpinner5};
         Language[] languages = {Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
-
+        Spinner[] spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
+        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.FLUENT};
 
-        for (int spinnerID : languageSpinnerIDs) {
-            Spinner spinner = (Spinner) findViewById(spinnerID);
-            spinner.setAdapter(adapter);
+        for (int i = 0; i < languageSpinnerIDs.length; i++) {
+            spinners[i] = findViewById(languageSpinnerIDs[i]);
+            spinners[i].setAdapter(adapter);
+            switch(user.getFamiliarity(languages[i])) {
+                case BEGINNER: spinners[i].setSelection(1); break;
+                case INTERMEDIATE: spinners[i].setSelection(1); break;
+                case ADVANCED: spinners[i].setSelection(2); break;
+                case FLUENT: spinners[i].setSelection(2); break;
+                default: spinners[i].setSelection(0); break;
+            }
         }
 
         switches = new Switch[switchIDs.length];
@@ -48,24 +59,25 @@ public class AccountSettingsActivity extends AppCompatActivity {
             switches[i].setChecked(user.getTopicsSet(topics[i]));
         }
 
+        EditText displayNameEditor = findViewById(R.id.editDisplayName);
+        displayNameEditor.setText(user.getDisplayName());
+
         ((Button)findViewById(R.id.saveSettingsButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                StringBuilder topicString = new StringBuilder();
-                boolean firstTopicString = true;
-
                 for (int i = 0; i < switches.length; i++) {
                     user.setTopicsSet(topics[i], switches[i].isChecked());
-                    if (switches[i].isChecked()) {
-                        if (!firstTopicString) topicString.append(",");
-                        topicString.append(topics[i].toString());
-                        firstTopicString = false;
-                    }
                 }
-                DatabaseReference userReference = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("userList").child(user.getUsername());
 
-                userReference.child("conversationTopics").setValue(topicString.toString());
+                for (int i = 0; i < spinners.length; i++) {
+                    user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
+                    System.out.println(languages[i] + "; " + user.getFamiliarity(languages[i]));
+                }
+
+                user.setDisplayName(displayNameEditor.getText().toString());
+
+                UserDao dao = new UserDao();
+                //dao.save(user, true);
 
                 Intent intent = new Intent();
                 intent.setClass(AccountSettingsActivity.this, MainActivity.class);
