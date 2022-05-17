@@ -19,7 +19,7 @@ public class User implements Serializable {
     private String avatar;
     private Bitmap profilePicture;
     private List<User> blockedUsers;
-    private HashMap<Language, Familiarity> familiarity;
+    private HashMap<String, Familiarity> familiarity;
     private Set<ConversationTopic> topicsSet;
     private List<ConversationTopic> conversationTopics;
     private TransitoryConversation conversation;
@@ -104,11 +104,11 @@ public class User implements Serializable {
 
     public Familiarity getFamiliarity(Language language) {
         FamiliarityFunction uninterestedIfNull = (f -> f == null ? Familiarity.UNINTERESTED : f);
-        return uninterestedIfNull.run(familiarity.get(language));
+        return uninterestedIfNull.run(familiarity.get(language.name()));
     }
 
     public void setFamiliarity(Language language, Familiarity newFamiliarity) {
-        familiarity.put(language, newFamiliarity);
+        familiarity.put(language.name(), newFamiliarity);
     }
 
     public boolean getTopicsSet(ConversationTopic topic) {
@@ -218,11 +218,11 @@ public class User implements Serializable {
         this.blockedUsers = blockedUsers;
     }
 
-    public HashMap<Language, Familiarity> getFamiliarity() {
+    public HashMap<String, Familiarity> getFamiliarity() {
         return familiarity;
     }
 
-    public void setFamiliarity(HashMap<Language, Familiarity> familiarity) {
+    public void setFamiliarity(HashMap<String, Familiarity> familiarity) {
         this.familiarity = familiarity;
     }
 
