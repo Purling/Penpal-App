@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 
 public class LoginActivity extends AppCompatActivity {
@@ -36,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
             if (data != null && data.getUsername().equals(username.getText().toString())
                     && data.getPassword().equals(password.getText().toString())) {
                 Toast.makeText(getApplicationContext(), "Logged in successfully as " + data.getDisplayName(), Toast.LENGTH_SHORT).show();
-                if (data.getConversationTopics() != null) data.setAllTopicsSet(new HashSet<>(data.getConversationTopics()));
+                if (data.getConversationTopics() == null) data.setConversationTopics(new HashMap<>());
                 passToMain(data);
             } else {
                 Toast.makeText(getApplicationContext(), "Login Failed: Incorrect Credentials", Toast.LENGTH_LONG).show();

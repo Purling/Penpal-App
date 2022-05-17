@@ -56,7 +56,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
         switches = new Switch[switchIDs.length];
         for (int i = 0; i < switches.length; i++) {
             switches[i] = findViewById(switchIDs[i]);
-            switches[i].setChecked(user.getTopicsSet(topics[i]));
+            System.out.println(user + ": " + user.getConversationTopics());
+            System.out.println(user.getConversationTopic(topics[i]) == Interestedness.INTERESTED);
+            switches[i].setChecked(user.getConversationTopic(topics[i]) == Interestedness.INTERESTED);
         }
 
         EditText displayNameEditor = findViewById(R.id.editDisplayName);
@@ -66,12 +68,11 @@ public class AccountSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < switches.length; i++) {
-                    user.setTopicsSet(topics[i], switches[i].isChecked());
+                    user.setConversationTopic(topics[i], switches[i].isChecked() ? Interestedness.INTERESTED : Interestedness.UNINTERESTED);
                 }
 
                 for (int i = 0; i < spinners.length; i++) {
                     user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
-                    System.out.println(languages[i] + "; " + user.getFamiliarity(languages[i]));
                 }
 
                 user.setDisplayName(displayNameEditor.getText().toString());
