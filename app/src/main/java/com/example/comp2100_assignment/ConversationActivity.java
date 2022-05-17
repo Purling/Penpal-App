@@ -140,6 +140,32 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
+        conversationRoot.child("language1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Language language = snapshot.getValue(Language.class);
+                ((TextView)findViewById(R.id.language1)).setText(language == null ? "" : language.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        conversationRoot.child("language2").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Language language = snapshot.getValue(Language.class);
+                ((TextView)findViewById(R.id.language2)).setText(language == null ? "" : language.toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
         associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
     }
@@ -163,6 +189,8 @@ public class ConversationActivity extends AppCompatActivity {
                     metadataGenerated = true;
                     TransitoryConversation generatedConversation = ConversationFormer.getInstance().formConversation(user1, user2);
                     conversationRoot.child("topic").setValue(generatedConversation.getTopic());
+                    conversationRoot.child("language1").setValue(generatedConversation.getLanguage1());
+                    conversationRoot.child("language2").setValue(generatedConversation.getLanguage2());
                 }
             }
 

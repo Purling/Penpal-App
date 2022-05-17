@@ -101,6 +101,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/language1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/user1Avatar"
+        app:layout_constraintTop_toBottomOf="@+id/user1Label" />
+
+    <TextView
         android:id="@+id/user2Label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,6 +120,17 @@
         android:textAlignment="textEnd"
         app:layout_constraintEnd_toStartOf="@+id/user2Avatar"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/language2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        android:textAlignment="textEnd"
+        app:layout_constraintEnd_toStartOf="@+id/user2Avatar"
+        app:layout_constraintTop_toBottomOf="@+id/user2Label" />
 
     <TextView
         android:id="@+id/conversationTopic"

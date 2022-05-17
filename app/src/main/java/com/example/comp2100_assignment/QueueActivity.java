@@ -28,7 +28,7 @@ public class QueueActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
-        boolean willBeOwner = intent.getBooleanExtra("willBeOwner", false);
+        willBeOwner = intent.getBooleanExtra("willBeOwner", false);
 
         awaitingConversation = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations").child(conversationName);
 
