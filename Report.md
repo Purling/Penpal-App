@@ -175,8 +175,6 @@ Potential:
 
 1. *Bug 1:* Empty messages and those with newlines can be sent in ConversationActivity. This has only incorrect visual feedback.
 
-2. *Bug 2:* Empty or invalid usernames (like those containing `.` or `#` or `[` or `]`) are usable
-
 3. *Bug 3:* Exiting the conversation by closing the app rather than pressing the exit button keeps it active in memory, but you cannot rejoin.
 
 4. *Bug 4:* Users may log in concurrently to the same account on two different devices, causing wacky results in they queue together.

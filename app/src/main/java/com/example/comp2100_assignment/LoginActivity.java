@@ -63,7 +63,9 @@ public class LoginActivity extends AppCompatActivity {
             if (data != null) {
                 Toast.makeText(getApplicationContext(), "Username already exists", Toast.LENGTH_LONG).show();
             // If the password doesn't meet the policy, notify the app user
-            } else if (!passwordMeetsPolicy(password.getText().toString())) {
+            } else if (!usernameMeetsPolicy(username.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Username doesn't meet requirements", Toast.LENGTH_SHORT).show();
+            } if (!passwordMeetsPolicy(password.getText().toString())) {
                 Toast.makeText(getApplicationContext(), "Password doesn't meet requirements", Toast.LENGTH_SHORT).show();
             } else { // Create the account and store in database
                 User newUser = new User(username.getText().toString(), password.getText().toString());
@@ -101,6 +103,17 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(loginListener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
+    }
+
+    public boolean usernameMeetsPolicy(String username) {
+        if (username == null) return false;
+        if (username.length() <= 3) return false;
+        // permitted characters: alphanumeric, -, _
+        for (char x : username.toCharArray()) {
+            if (x == '-' || x == '_') continue;
+            if (x < '0' || ('9' < x && x < 'A') || ('Z' < x && x < 'a') || 'z' < x) return false;
+        }
+        return true;
     }
 
     // Verifies that a password meets defined password policy.
