@@ -13,15 +13,18 @@ public class ConversationFormer {
     }
 
     public TransitoryConversation formConversation(User user1, User user2) {
+        System.out.println("forming conversation::::: " + user1 + " " + user2);
+
+        if (user1 == user2) return null;
 
         ArrayList<ConversationTopic> validTopics = new ArrayList<>();
         for (ConversationTopic topic : ConversationTopic.values()) {
-            if (user1.getTopicsSet(topic) && user2.getTopicsSet(topic)) validTopics.add(topic);
+            if (user1.getConversationTopic(topic) == Interestedness.INTERESTED && user2.getConversationTopic(topic) == Interestedness.INTERESTED) validTopics.add(topic);
         }
 
+        System.out.println(validTopics);
         if (validTopics.size() == 0) return null;
 
-        /*
         ArrayList<Language> validLanguages1 = new ArrayList<>();
         ArrayList<Language> validLanguages2 = new ArrayList<>();
         for (Language language : Language.values()) {
@@ -37,17 +40,16 @@ public class ConversationFormer {
             if (learning2 && !learning1) validLanguages2.add(language);
         }
 
+        System.out.println(validLanguages1);
+        System.out.println(validLanguages2);
+
         if (validLanguages1.size() == 0 || validLanguages2.size() == 0) return null;
 
-
+        Random r = new Random();
 
         Language chosenLanguage1 = validLanguages1.get(r.nextInt(validLanguages1.size()));
         Language chosenLanguage2 = validLanguages2.get(r.nextInt(validLanguages2.size()));
-         */
-        Random r = new Random();
         ConversationTopic chosenTopic = validTopics.get(r.nextInt(validTopics.size()));
-        Language chosenLanguage1 = Language.ENGLISH;
-        Language chosenLanguage2 = Language.ITALIAN;
 
         return new TransitoryConversation(user1, chosenLanguage1, user2, chosenLanguage2, chosenTopic);
     }

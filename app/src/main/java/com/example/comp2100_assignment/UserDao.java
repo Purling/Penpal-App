@@ -25,6 +25,7 @@ public class UserDao implements DaoPattern<User, String> {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(getModelClass());
                 if (user.getFamiliarity() == null) user.setFamiliarity(new HashMap<>());
+                if (user.getConversationTopics() == null) user.setConversationTopics(new HashMap<>());
                 listener.onSuccess(user);
             }
 

@@ -19,9 +19,8 @@ public class User implements Serializable {
     private String avatar;
     private Bitmap profilePicture;
     private List<User> blockedUsers;
-    private HashMap<Language, Familiarity> familiarity;
-    private Set<ConversationTopic> topicsSet;
-    private List<ConversationTopic> conversationTopics;
+    private HashMap<String, Familiarity> familiarity;
+    private HashMap<String, Interestedness> conversationTopics;
     private TransitoryConversation conversation;
     private boolean inQueue;
 
@@ -35,29 +34,10 @@ public class User implements Serializable {
         this.displayName = username;
 
         familiarity = new HashMap<>();
-        topicsSet = new HashSet<>();
-        conversationTopics = new ArrayList<>();
+        conversationTopics = new HashMap<>();
 
         friends = new ArrayList<>();
 
-        blockedUsers = new ArrayList<>();
-    }
-
-    public User(String username, String password, String avatar, String displayName, String commaSeparatedTopics) {
-        this(username, password);
-        this.avatar = avatar;
-        if (avatar == null) avatar = "";
-        this.displayName = displayName;
-        if (displayName == null) displayName = username;
-        if (!(commaSeparatedTopics == null || commaSeparatedTopics.equals(""))) {
-            String[] stringTopics = commaSeparatedTopics.split(",");
-            for (String stringTopic : stringTopics) {
-                addConversationTopic(ConversationTopic.valueOf(stringTopic));
-            }
-        }
-        familiarity = new HashMap<>();
-        topicsSet = new HashSet<>();
-        friends = new ArrayList<>();
         blockedUsers = new ArrayList<>();
     }
 
@@ -69,11 +49,11 @@ public class User implements Serializable {
         this.avatar = avatar;
     }
 
-    public List<ConversationTopic> getConversationTopics() {
+    public HashMap<String, Interestedness> getConversationTopics() {
         return conversationTopics;
     }
 
-    public void setConversationTopics(List<ConversationTopic> conversationTopics) {
+    public void setConversationTopics(HashMap<String, Interestedness> conversationTopics) {
         this.conversationTopics = conversationTopics;
     }
 
@@ -104,25 +84,11 @@ public class User implements Serializable {
 
     public Familiarity getFamiliarity(Language language) {
         FamiliarityFunction uninterestedIfNull = (f -> f == null ? Familiarity.UNINTERESTED : f);
-        return uninterestedIfNull.run(familiarity.get(language));
+        return uninterestedIfNull.run(familiarity.get(language.name()));
     }
 
     public void setFamiliarity(Language language, Familiarity newFamiliarity) {
-        familiarity.put(language, newFamiliarity);
-    }
-
-    public boolean getTopicsSet(ConversationTopic topic) {
-        return topicsSet.contains(topic);
-    }
-
-    // Why not just have this in two methods?
-    public void setTopicsSet(ConversationTopic topic, boolean interested) {
-        if (interested) topicsSet.add(topic);
-        else topicsSet.remove(topic);
-    }
-
-    public void setAllTopicsSet (Set<ConversationTopic> topicsSet) {
-        this.topicsSet = topicsSet;
+        familiarity.put(language.name(), newFamiliarity);
     }
 
     /***
@@ -130,9 +96,13 @@ public class User implements Serializable {
      *
      * @param topic The topic to be added to the list and set
      */
-    public void addConversationTopic(ConversationTopic topic) {
-        topicsSet.add(topic);
-        conversationTopics.add(topic);
+    public void setConversationTopic(ConversationTopic topic, Interestedness interested) {
+        conversationTopics.put(topic.name(), interested);
+    }
+
+    public Interestedness getConversationTopic(ConversationTopic topic) {
+        InterestednessFunction uninterestedIfNull = (f -> f == null ? Interestedness.UNINTERESTED : f);
+        return uninterestedIfNull.run(conversationTopics.get(topic.name()));
     }
 
 
@@ -218,21 +188,12 @@ public class User implements Serializable {
         this.blockedUsers = blockedUsers;
     }
 
-    public HashMap<Language, Familiarity> getFamiliarity() {
+    public HashMap<String, Familiarity> getFamiliarity() {
         return familiarity;
     }
 
-    public void setFamiliarity(HashMap<Language, Familiarity> familiarity) {
+    public void setFamiliarity(HashMap<String, Familiarity> familiarity) {
         this.familiarity = familiarity;
-    }
-
-    @Exclude
-    public Set<ConversationTopic> getTopicsSet() {
-        return topicsSet;
-    }
-
-    public void setTopicsSet(Set<ConversationTopic> topicsSet) {
-        this.topicsSet = topicsSet;
     }
 
     public TransitoryConversation getConversation() {
@@ -264,4 +225,7 @@ public class User implements Serializable {
         Familiarity run(Familiarity f);
     }
 
+    interface InterestednessFunction {
+        Interestedness run(Interestedness f);
+    }
 }

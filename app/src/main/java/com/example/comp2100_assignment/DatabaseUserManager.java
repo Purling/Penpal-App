@@ -12,6 +12,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import android.content.Context;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class DatabaseUserManager {
     static DatabaseUserManager instance;
@@ -20,7 +21,7 @@ public class DatabaseUserManager {
         return instance;
     }
 
-    final static HashMap<String, User> users = new HashMap<>();
+    static HashMap<String, User> users = new HashMap<>();
 
     private DatabaseUserManager(Context baseContext) {
         FirebaseApp.initializeApp(baseContext);
@@ -30,29 +31,13 @@ public class DatabaseUserManager {
         DatabaseReference usersRoot = database.getReference("userList");
         System.out.println("Generated users root.");
 
-        usersRoot.addChildEventListener(new ChildEventListener() {
+        new UserDao().getAll(new OnGetDataListener<List<User>>() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                users.put(snapshot.getKey(), new User(
-                        tryToGet(snapshot, "username"),
-                        tryToGet(snapshot, "password"),
-                        tryToGet(snapshot, "avatar"),
-                        tryToGet(snapshot, "displayName"),
-                        tryToGet(snapshot, "conversationTopics")
-                ));
+            public void onSuccess(List<User> data) {
+                for (User user : data) {
+                    DatabaseUserManager.users.put(user.getUsername(), user);
+                }
             }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) { }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) { }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) { }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
 

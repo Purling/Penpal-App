@@ -48,7 +48,7 @@ public class QueueActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String newConversationName = snapshot.getValue(String.class);
-                if (!newConversationName.equals("#QUEUED")) {
+                if (newConversationName != null && !newConversationName.equals("#QUEUED")) {
                     Intent intent = new Intent();
                     intent.setClass(QueueActivity.this, ConversationActivity.class);
                     intent.putExtra("user", user);

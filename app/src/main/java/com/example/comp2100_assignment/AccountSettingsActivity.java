@@ -39,16 +39,16 @@ public class AccountSettingsActivity extends AppCompatActivity {
         Language[] languages = {Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
         Spinner[] spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
-        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.FLUENT};
+        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
 
         for (int i = 0; i < languageSpinnerIDs.length; i++) {
             spinners[i] = findViewById(languageSpinnerIDs[i]);
             spinners[i].setAdapter(adapter);
             switch(user.getFamiliarity(languages[i])) {
                 case BEGINNER: spinners[i].setSelection(1); break;
-                case INTERMEDIATE: spinners[i].setSelection(1); break;
-                case ADVANCED: spinners[i].setSelection(2); break;
-                case FLUENT: spinners[i].setSelection(2); break;
+                case INTERMEDIATE: spinners[i].setSelection(2); break;
+                case ADVANCED: spinners[i].setSelection(3); break;
+                case FLUENT: spinners[i].setSelection(4); break;
                 default: spinners[i].setSelection(0); break;
             }
         }
@@ -56,7 +56,9 @@ public class AccountSettingsActivity extends AppCompatActivity {
         switches = new Switch[switchIDs.length];
         for (int i = 0; i < switches.length; i++) {
             switches[i] = findViewById(switchIDs[i]);
-            switches[i].setChecked(user.getTopicsSet(topics[i]));
+            System.out.println(user + ": " + user.getConversationTopics());
+            System.out.println(user.getConversationTopic(topics[i]) == Interestedness.INTERESTED);
+            switches[i].setChecked(user.getConversationTopic(topics[i]) == Interestedness.INTERESTED);
         }
 
         EditText displayNameEditor = findViewById(R.id.editDisplayName);
@@ -66,18 +68,17 @@ public class AccountSettingsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < switches.length; i++) {
-                    user.setTopicsSet(topics[i], switches[i].isChecked());
+                    user.setConversationTopic(topics[i], switches[i].isChecked() ? Interestedness.INTERESTED : Interestedness.UNINTERESTED);
                 }
 
                 for (int i = 0; i < spinners.length; i++) {
                     user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
-                    System.out.println(languages[i] + "; " + user.getFamiliarity(languages[i]));
                 }
 
                 user.setDisplayName(displayNameEditor.getText().toString());
 
                 UserDao dao = new UserDao();
-                //dao.save(user, true);
+                dao.save(user, false);
 
                 Intent intent = new Intent();
                 intent.setClass(AccountSettingsActivity.this, MainActivity.class);
