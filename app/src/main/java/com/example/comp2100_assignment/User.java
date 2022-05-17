@@ -55,6 +55,10 @@ public class User implements Serializable {
                 addConversationTopic(ConversationTopic.valueOf(stringTopic));
             }
         }
+        familiarity = new HashMap<>();
+        topicsSet = new HashSet<>();
+        friends = new ArrayList<>();
+        blockedUsers = new ArrayList<>();
     }
 
     public String getAvatar() {

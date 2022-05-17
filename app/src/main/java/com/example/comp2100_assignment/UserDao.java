@@ -9,9 +9,30 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class UserDao implements DaoPattern<User, String> {
+
+    @Override
+    public void get(String id, OnGetDataListener<User> listener) {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance(
+                "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        ).getReference();
+
+        mDatabase.child(getChildName()).child(id).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User user = snapshot.getValue(getModelClass());
+                if (user.getFamiliarity() == null) user.setFamiliarity(new HashMap<>());
+                listener.onSuccess(user);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     @Override
     public String getChildName() {
