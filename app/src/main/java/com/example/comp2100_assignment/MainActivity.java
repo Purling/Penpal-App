@@ -73,6 +73,13 @@ public class MainActivity extends AppCompatActivity {
     private ImageView profilePicture;
     private Button match;
     private Button settingsButton;
+    private Button logOutButton;
+
+    public View.OnClickListener log_out_listener = (view) -> {
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +115,9 @@ public class MainActivity extends AppCompatActivity {
 
         availableReference = manager.getDatabase().getReference("availableConversations");
         queueWatcher = new DatabaseDictionaryWatcher(availableReference);
+
+        logOutButton = findViewById(R.id.logOutButton);
+        logOutButton.setOnClickListener(log_out_listener);
     }
 
     public <T extends AppCompatActivity> void passUser(Class<T> appCompatActivity) {
