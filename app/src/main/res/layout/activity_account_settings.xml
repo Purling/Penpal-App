@@ -10,24 +10,12 @@
         android:id="@+id/accountSettingsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="36dp"
         android:text="Account Settings"
         android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/saveSettingsButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
-        android:text="SAVE"
-        app:layout_constraintBottom_toBottomOf="@+id/accountSettingsTitle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/accountSettingsTitle"
-        app:layout_constraintTop_toTopOf="@+id/accountSettingsTitle" />
 
     <EditText
         android:id="@+id/editDisplayName"
@@ -186,5 +174,13 @@
                 android:textSize="14sp" />
         </LinearLayout>
     </HorizontalScrollView>
+
+    <include
+        layout="@layout/layout_tabs"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"></include>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

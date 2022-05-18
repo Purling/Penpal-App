@@ -20,14 +20,6 @@ import java.net.URL;
 public class MainActivity extends TabbedActivity {
     DatabaseUserManager manager;
 
-    public View.OnClickListener friend_listener = (view) -> {
-        passUser(FriendActivity.class);
-    };
-
-    public View.OnClickListener settings_listener = (view) -> {
-        passUser(AccountSettingsActivity.class);
-    };
-
     DatabaseReference availableReference;
     DatabaseDictionaryWatcher queueWatcher;
 
@@ -90,16 +82,12 @@ public class MainActivity extends TabbedActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         input = findViewById(R.id.input_text);
-        friend = findViewById(R.id.friend);
-        friend.setOnClickListener(friend_listener);
         search = findViewById(R.id.search);
         search.setOnClickListener(search_listener);
         listView = findViewById(R.id.my_lv);
         match = findViewById(R.id.match);
         match.setOnClickListener(match_listener);
         profilePicture = findViewById(R.id.profile_picture);
-        settingsButton = findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(settings_listener);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 

@@ -29,6 +29,8 @@ public class AccountSettingsActivity extends TabbedActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_settings);
 
+        tabs = new UITabs(findViewById(R.id.tabs), this);
+
         // Get the user passed in from the MainActivity
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
@@ -66,16 +68,6 @@ public class AccountSettingsActivity extends TabbedActivity {
 
         displayNameEditor = findViewById(R.id.editDisplayName);
         displayNameEditor.setText(user.getDisplayName());
-
-        ((Button)findViewById(R.id.saveSettingsButton)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(AccountSettingsActivity.this, MainActivity.class);
-                intent.putExtra("user", user);
-                startActivity(intent);
-            }
-        });
     }
 
 

@@ -1,5 +1,7 @@
 package com.example.comp2100_assignment;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public abstract class TabbedActivity extends AppCompatActivity {

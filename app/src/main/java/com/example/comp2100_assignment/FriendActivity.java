@@ -19,6 +19,8 @@ public class FriendActivity extends TabbedActivity {
         setContentView(R.layout.activity_friend);
         user = (User) getIntent().getSerializableExtra("user");
 
+        tabs = new UITabs(findViewById(R.id.tabs), this);
+
         ArrayList<String> friends = new ArrayList<>();
         ArrayList<String> targetConversations = new ArrayList<>();
         for (String key : user.getFriends().keySet()) {
