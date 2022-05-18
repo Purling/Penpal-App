@@ -77,7 +77,7 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
                 user.setDisplayName(displayNameEditor.getText().toString());
 
-                UserDao dao = new UserDao();
+                UserDao dao = UserDao.singleton();
                 dao.save(user, false);
 
                 Intent intent = new Intent();

@@ -174,7 +174,7 @@ public class ConversationActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User u = DatabaseUserManager.get(snapshot.getValue(String.class));
+                User u = DatabaseUserManager.users.get(DatabaseUserManager.users.getHead(), snapshot.getValue(String.class));
                 if (u == null) return;
                 if (userNumber == 1) user1 = u;
                 if (userNumber == 2) user2 = u;

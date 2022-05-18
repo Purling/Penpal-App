@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     public View.OnClickListener loginListener = (view) -> {
 
         // Create new user dao object
-        UserDao userDao = new UserDao();
+        UserDao userDao = UserDao.singleton();
 
         // When the Firebase database returns with the data, then do the operation.
         // Do not assume that the Firebase database has already returned with the data.
@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     public View.OnClickListener registerListener = (view) -> {
 
         // Create new UserDao object
-        UserDao userDao = new UserDao();
+        UserDao userDao = UserDao.singleton();
 
         // Check if the username already exists
         userDao.get(username.getText().toString(), data -> {
@@ -116,10 +116,13 @@ public class LoginActivity extends AppCompatActivity {
         return true;
     }
 
-    // Verifies that a password meets defined password policy.
-    // Current policy is:
-    // Password must be at least 1 letter
-
+    /***
+     * Checks if the password is up to standard
+     * The standard is: the password must be at least 1 letter
+     *
+     * @param password The string password to be checked
+     * @return True if the password is up to standard, false otherwise
+     */
     // TODO Could create a helper class or put this method somewhere else.
     public boolean passwordMeetsPolicy(String password) {
 
