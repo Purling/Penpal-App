@@ -28,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     public View.OnClickListener loginListener = (view) -> {
 
         // Create new user dao object
-        UserDao userDao = new UserDao();
+        UserDao userDao = UserDao.singleton();
 
         // When the Firebase database returns with the data, then do the operation.
         // Do not assume that the Firebase database has already returned with the data.
@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     public View.OnClickListener registerListener = (view) -> {
 
         // Create new UserDao object
-        UserDao userDao = new UserDao();
+        UserDao userDao = UserDao.singleton();
 
         // Check if the username already exists
         userDao.get(username.getText().toString(), data -> {
