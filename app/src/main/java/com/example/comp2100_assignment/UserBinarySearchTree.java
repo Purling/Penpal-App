@@ -94,7 +94,7 @@ public class UserBinarySearchTree implements BinarySearchTree<String, User> {
      * @param username The key used to search through the tree
      * @return The User if found, otherwise null
      */
-    public User get(UserBinaryTreeNode current, String username) {
+    private User get(UserBinaryTreeNode current, String username) {
         if (current.key.equals(username)) {
             return current.value;
         } else if (current.leftChild == null && current.rightChild == null) {
@@ -104,6 +104,11 @@ public class UserBinarySearchTree implements BinarySearchTree<String, User> {
         } else {
             return get(current.rightChild,username);
         }
+    }
+
+    public User get(String username) {
+        if (username == null || username.equals("")) return null;
+        return get(head, username);
     }
 
 }

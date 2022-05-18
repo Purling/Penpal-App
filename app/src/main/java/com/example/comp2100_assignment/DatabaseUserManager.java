@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class DatabaseUserManager {
     static DatabaseUserManager instance;
-    static UserBinarySearchTree users;
+    private static UserBinarySearchTree users;
     private final FirebaseDatabase database;
 
     private DatabaseUserManager(Context baseContext) {
@@ -29,8 +29,12 @@ public class DatabaseUserManager {
         return instance;
     }
 
+    public static User getUser(String username) {
+        return users.get(username);
+    }
+
     public static boolean userExists(String username) {
-        return users.get(users.getHead(), username) != null;
+        return getUser(username) != null;
     }
 
     public FirebaseDatabase getDatabase() {

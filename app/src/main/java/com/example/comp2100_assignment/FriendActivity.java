@@ -2,6 +2,7 @@ package com.example.comp2100_assignment;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,8 +23,10 @@ public class FriendActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("user");
 
         ArrayList<String> friends = new ArrayList<>();
+        ArrayList<String> targetConversations = new ArrayList<>();
         for (String key : user.getFriends().keySet()) {
-            friends.add(key);
+            friends.add(DatabaseUserManager.getUser(key).getDisplayName());
+            targetConversations.add(user.getFriends().get(key));
         }
 
         ArrayAdapter adapter = new ArrayAdapter<String>(
@@ -37,7 +40,14 @@ public class FriendActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println(user.getFriends().get(friends.get(i)));
+                String conversationTarget = targetConversations.get(i);
+                Intent intent = new Intent();
+                intent.setClass(FriendActivity.this, ConversationActivity.class);
+                intent.putExtra("user", user);
+                intent.putExtra("conversationName", conversationTarget);
+                intent.putExtra("permanent", true);
+                intent.putExtra("owner", true);
+                startActivity(intent);
             }
         });
     }

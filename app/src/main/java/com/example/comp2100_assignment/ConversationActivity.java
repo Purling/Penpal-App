@@ -51,7 +51,8 @@ public class ConversationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
-        String queueName = intent.getStringExtra("queueName");
+        boolean permanent = intent.getBooleanExtra("permanent", false);
+        String queueName = permanent ? "" : intent.getStringExtra("queueName");
         owner = intent.getBooleanExtra("owner", false);
         messageBox = findViewById(R.id.messageBox);
         messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
@@ -108,17 +109,18 @@ public class ConversationActivity extends AppCompatActivity {
         findViewById(R.id.exitConversationButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                availableReference.setValue("#CLOSED");
-                returnToMainActivity();
+                if (!permanent)
+                    availableReference.setValue("#CLOSED");
+                returnToMainActivity(permanent);
             }
         });
 
         availableReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println(snapshot.getKey() + " key has value: ::::: " + snapshot.getValue(String.class));
+                if (permanent) return;
                 if ((snapshot.getValue(String.class) == null) || snapshot.getValue(String.class).equals("#CLOSED"))
-                    returnToMainActivity();
+                    returnToMainActivity(permanent);
             }
 
             @Override
@@ -126,6 +128,11 @@ public class ConversationActivity extends AppCompatActivity {
 
             }
         });
+
+        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
+        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
+
+        if (permanent) return;
 
         conversationRoot.child("topic").addValueEventListener(new ValueEventListener() {
             @Override
@@ -165,16 +172,13 @@ public class ConversationActivity extends AppCompatActivity {
 
             }
         });
-
-        associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
-        associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
     }
 
     void associateLabel(int label, int avatarID, DatabaseReference reference, int userNumber) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User u = DatabaseUserManager.users.get(DatabaseUserManager.users.getHead(), snapshot.getValue(String.class));
+                User u = DatabaseUserManager.getUser(snapshot.getValue(String.class));
                 if (u == null) return;
                 if (userNumber == 1) user1 = u;
                 if (userNumber == 2) user2 = u;
@@ -211,10 +215,9 @@ public class ConversationActivity extends AppCompatActivity {
         conversation.setText(sb.toString());
     }
 
-    void returnToMainActivity() {
+    void returnToMainActivity(boolean permanent) {
         Intent intent = new Intent();
-        conversationRoot.removeValue();
-        intent.setClass(ConversationActivity.this, MainActivity.class);
+        intent.setClass(ConversationActivity.this, permanent ? FriendActivity.class : MainActivity.class);
         intent.putExtra("user", user);
 
         startActivity(intent);

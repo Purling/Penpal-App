@@ -13,9 +13,7 @@ public class ConversationFormer {
     }
 
     public TransitoryConversation formConversation(User user1, User user2) {
-        System.out.println("forming conversation::::: " + user1 + " " + user2);
-
-        if (user1 == user2) return null;
+        if (user1 == null || user2 == null || user1 == user2) return null;
 
         ArrayList<ConversationTopic> validTopics = new ArrayList<>();
         for (ConversationTopic topic : ConversationTopic.values()) {
