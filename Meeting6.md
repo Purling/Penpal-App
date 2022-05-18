@@ -47,8 +47,7 @@ It was decided that we would store users locally in a binary tree to be more eff
 ### Incomplete but in Progress
 
 1. Users must be able to search for information on your app. Depending on your app theme, you may want to allow users to search for other users, data (e.g. text), tags (e.g. #buildingABetterWorldWithCOMP2100). The search functionality must make use of a tokenizer and parser with a formal grammar of your own creation. \[12 marks\]
-2. Users must be able to search for information on your app. Depending on your app theme, you may want to allow users to search for other users, data (e.g. text), tags (e.g. #buildingABetterWorldWithCOMP2100). The search functionality must make use of a
-tokenizer and parser with a formal grammar of your own creation. \[5 marks\]
+2. There must be a data file with at least 2,500 valid data instances. The data file must be used to feed your app simulating a data stream. For example, every x seconds, a new item is read from a file. An item can be an action (e.g. like, follow, support, post, new activities, etc) \[5 marks\]
 3. At least one fully implemented data structure taught in this course (e.g., Binary Search Tree, Red-Black tree, AVL tree, B-Tree) for organising, processing, retrieving and storing data. We will also evaluate your choice and use of data structures on your project (not only trees, but also other data structures such as arrays, lists, maps, etc). \[Must implement: Planning on BST\]
 
 ## Assignment Specifics - Part 2 Additional Features
