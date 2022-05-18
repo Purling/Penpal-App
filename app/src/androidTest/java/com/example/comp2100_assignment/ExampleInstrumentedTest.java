@@ -1,14 +1,25 @@
 package com.example.comp2100_assignment;
 
-import android.content.Context;
+import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import android.content.Context;
+import android.util.Log;
+
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.rule.ActivityTestRule;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
+
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -22,5 +33,16 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.example.comp2100_assignment", appContext.getPackageName());
+    }
+    //sets the activity before and after every test is run
+    //this example sets to loginActivity directly
+    @Rule
+    public ActivityScenarioRule<LoginActivity> loginActivityTestRule = new ActivityScenarioRule<>(LoginActivity.class);
+
+    //Example test
+    //tests that text saying "LANGUAGE APP" is completely displayed
+    @Test
+    public void appTitleDisplayed() {
+        onView(withText("LANGUAGE APP")).check(matches(isDisplayed()));
     }
 }
