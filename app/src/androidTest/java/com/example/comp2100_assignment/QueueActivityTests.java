@@ -3,6 +3,7 @@ package com.example.comp2100_assignment;
 import static androidx.core.content.UnusedAppRestrictionsConstants.ERROR;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
+import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -41,17 +42,29 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-//@RunWith(AndroidJUnit4.class)
+@RunWith(AndroidJUnit4.class)
 public class QueueActivityTests {
     //sets the activity before and after every test is run
     //this example sets to loginActivity directly
-    /*
-    @Rule
-    public ActivityScenarioRule<QueueActivity> queueActivityTestRule = new ActivityScenarioRule<QueueActivity>(QueueActivity.class);
 
+    @Rule
+    public ActivityScenarioRule<LoginActivity> queueActivityTestRule = new ActivityScenarioRule<>(LoginActivity.class);
+
+    //setup to get into queue state
+    //this actually navigates the app to reach the activity
+    //so major UI changes could break this
+    @Before
+    public void queueActivityTestSetup(){
+        onView(withId(R.id.username)).perform(typeText("testUser"));
+        onView(withId(R.id.username)).perform(pressBack());
+        onView(withId(R.id.password)).perform(typeText("testUserPass"));
+        onView(withId(R.id.username)).perform(pressBack());
+        onView(withId(R.id.login)).perform(click());
+        onView(withId(R.id.match)).perform(click());
+    }
 
     //Tests that all elements are displayed
-    //@Test
+    @Test
     public void allElementsDisplayed() {
         onView(withId(R.id.textView3)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.exitQueueButton)).check(matches(isCompletelyDisplayed()));
@@ -59,13 +72,14 @@ public class QueueActivityTests {
 
     //checks exit queue button exits
     //does this by checking that title_app ("CHAT ROOM" text) is displayed after button press
-   // @Test
+    @Test
     public void exitQueueButtonWorks(){
         Intents.init();
         onView(withId(R.id.exitQueueButton)).perform(click());
-        intended(hasComponent("MainActivity"));
+        intended(hasComponent(MainActivity.class.getName()));
+        Intents.release();
     }
 
-*/
+
 
 }
