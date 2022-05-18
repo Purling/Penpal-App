@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 public class User implements Serializable {
-    public List<FriendshipRequest> friends;
     private String username;
     private String password; // this should be hashed
     private String displayName;
@@ -22,6 +21,7 @@ public class User implements Serializable {
     private HashMap<String, Familiarity> familiarity;
     private HashMap<String, Interestedness> conversationTopics;
     private TransitoryConversation conversation;
+    private HashMap<String, String> friends;
     private boolean inQueue;
 
     public User() {
@@ -36,7 +36,7 @@ public class User implements Serializable {
         familiarity = new HashMap<>();
         conversationTopics = new HashMap<>();
 
-        friends = new ArrayList<>();
+        friends = new HashMap<>();
 
         blockedUsers = new ArrayList<>();
     }
@@ -124,17 +124,17 @@ public class User implements Serializable {
         this.inQueue = inQueue;
     }
 
-    public List<FriendshipRequest> getFriends() {
+    public HashMap<String, String> getFriends() {
         return friends;
     }
 
-    public void setFriends(List<FriendshipRequest> friends) {
+    public void setFriends(HashMap<String, String> friends) {
         this.friends = friends;
     }
 
-    public void receiveFriendRequest(FriendshipRequest request) {
+    /*public void receiveFriendRequest(FriendshipRequest request) {
         friends.add(request);
-    }
+    }*/
 
     public void acceptFriendRequest(FriendshipRequest request) {
         request.accept(this);
