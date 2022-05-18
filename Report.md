@@ -202,6 +202,14 @@ Types of tests created: We have tested many of the back-end algorithmic features
 User Interactivity
 1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
 post/message/event) [stored in-memory]. (easy)
+2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)
+    - AccountSettingsActivityTests.java (whole class)
+    - FriendActivityTests.java (whole class)
+    - LoginActivityTests.java (whole class)
+    - MainActivityTests.java (whole class)
+    - QueueActivityTests.java (whole class)
+    - SearchActivityTests.java (whole class)
+   
 
 Greater Data Usage, Handling and Sophistication
 2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
@@ -218,6 +226,8 @@ retrieve data from a local file) (medium)
 app updated as the remote database is updated without restarting the application. E.g.
 User A makes a transfer, user B on a separate instance of the application sees user A’s
 transfer appear on their app instance without restarting their application. (very hard)
+
+
 
 ## Team Meetings
 
