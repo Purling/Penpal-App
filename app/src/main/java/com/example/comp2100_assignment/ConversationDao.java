@@ -31,7 +31,7 @@ public class ConversationDao implements DaoPattern<Conversation, String>, Single
     }
 
     @Override
-    public void getAll(OnGetDataListener<List<Conversation>> listener) {
+    public void getAll(OnGetDataListener<Conversation> listener) {
 
     }
 

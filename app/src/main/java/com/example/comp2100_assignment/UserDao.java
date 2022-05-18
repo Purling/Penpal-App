@@ -1,7 +1,9 @@
 package com.example.comp2100_assignment;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,9 +39,15 @@ public class UserDao implements DaoPattern<User, String>, Singleton {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.getValue(getModelClass());
-                if (user.getFamiliarity() == null) user.setFamiliarity(new HashMap<>());
-                if (user.getConversationTopics() == null) user.setConversationTopics(new HashMap<>());
-                listener.onSuccess(user);
+                if (user == null) {
+                    listener.onSuccess(null);
+                }
+                else {
+                    if (user.getFamiliarity() == null) user.setFamiliarity(new HashMap<>());
+                    if (user.getConversationTopics() == null) user.setConversationTopics(new HashMap<>());
+                    listener.onSuccess(user);
+                }
+
             }
 
             @Override
@@ -60,27 +68,39 @@ public class UserDao implements DaoPattern<User, String>, Singleton {
 
 
     @Override
-    public void getAll(OnGetDataListener<List<User>> listener) {
+    public void getAll(OnGetDataListener<User> listener) {
         DatabaseReference mDatabase = FirebaseDatabase.getInstance(
                 "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
         ).getReference();
 
-        mDatabase.child(getChildName()).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child(getChildName()).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<User> users = new ArrayList<>(); // clearing the users
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    User addUser = dataSnapshot.getValue(User.class);
-                    users.add(addUser);
-                }
-                listener.onSuccess(users);
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                User user = snapshot.getValue(User.class);
+                listener.onSuccess(user);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                User user = snapshot.getValue(User.class);
+                listener.onSuccess(user);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
-
     }
 
     @Override
