@@ -60,7 +60,7 @@ public interface DaoPattern<T, V> {
      *
      * @param listener The listener which contains the objects wanted.
      */
-    void getAll(OnGetDataListener<List<T>> listener);
+    void getAll(OnGetDataListener<T> listener);
 
     /***
      * Saves an object to the database. This object can either be a completely new object not seen in the database or one which already exists in the database.

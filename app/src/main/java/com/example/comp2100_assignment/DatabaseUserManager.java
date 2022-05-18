@@ -3,12 +3,9 @@ package com.example.comp2100_assignment;
 import android.content.Context;
 
 import com.google.firebase.FirebaseApp;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
-import java.util.List;
 
 public class DatabaseUserManager {
     static DatabaseUserManager instance;
@@ -20,34 +17,14 @@ public class DatabaseUserManager {
         database = FirebaseDatabase.getInstance(
                 "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
         );
-        DatabaseReference usersRoot = database.getReference("userList");
-        System.out.println("Generated users root.");
-
-        UserDao.singleton().getAll(new OnGetDataListener<List<User>>() {
-            @Override
-            public void onSuccess(List<User> data) {
-                for (User user : data) {
-                    DatabaseUserManager.users.put(user.getUsername(), user);
-                }
-            }
+        UserDao.singleton().getAll(data -> {
+            DatabaseUserManager.users.put(data.getUsername(), data);
         });
     }
 
     static DatabaseUserManager getInstance(Context baseContext) {
         if (instance == null) instance = new DatabaseUserManager(baseContext);
         return instance;
-    }
-
-    public static String tryToGet(DataSnapshot snapshot, String tag) {
-        try {
-            return snapshot.child(tag).getValue(Long.class).toString();
-        } catch (Exception ignored) {
-        }
-        try {
-            return snapshot.child(tag).getValue(String.class);
-        } catch (Exception ignored) {
-        }
-        return "";
     }
 
     public static boolean userExists(String username) {
@@ -67,15 +44,6 @@ public class DatabaseUserManager {
         for (String user : users.keySet()) {
             System.out.println(user + ": " + users.get(user));
         }
-    }
-
-    public User attemptLogin(String username, String password) {
-        for (User user : users.values()) {
-            if (user.tryLogin(username, password)) {
-                return user;
-            }
-        }
-        return null;
     }
 
     public FirebaseDatabase getDatabase() {

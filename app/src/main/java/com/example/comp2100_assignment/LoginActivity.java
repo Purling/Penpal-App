@@ -103,11 +103,13 @@ public class LoginActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
     }
 
-    // Verifies that a password meets defined password policy.
-    // Current policy is:
-    // Password must be at least 1 letter
-
-    // TODO Could create a helper class or put this method somewhere else.
+    /***
+     * Checks if the password is up to standard
+     * The standard is: the password must be at least 1 letter
+     *
+     * @param password The string password to be checked
+     * @return True if the password is up to standard, false otherwise
+     */
     public boolean passwordMeetsPolicy(String password) {
 
         // Check if the String contains at least one letter
