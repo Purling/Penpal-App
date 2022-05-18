@@ -6,61 +6,83 @@ package com.example.comp2100_assignment;
  */
 public class UserBinarySearchTree implements BinarySearchTree<String, User> {
 
-    UserBinarySearchTree head;
-    UserBinarySearchTree leftChild;
-    UserBinarySearchTree rightChild;
-    UserBinarySearchTree parent;
-    User value;
-    String key;
+    public static class UserBinaryTreeNode {
+        User value;
+        String key;
+        UserBinaryTreeNode leftChild;
+        UserBinaryTreeNode rightChild;
+        UserBinaryTreeNode parent;
 
-    public UserBinarySearchTree(User value) {
-        this.value = value;
-        this.key = value.getUsername();
+        public UserBinaryTreeNode getLeftChild() {
+            return leftChild;
+        }
+
+        public UserBinaryTreeNode getRightChild() {
+            return rightChild;
+        }
+
+        public UserBinaryTreeNode getParent() {
+            return parent;
+        }
+
+        public User getValue() {
+            return value;
+        }
+
+        public String getKey() {
+            return key;
+        }
+
+        public UserBinaryTreeNode(User value) {
+            this.value = value;
+            this.key = value.getUsername();
+        }
     }
 
-    public UserBinarySearchTree(User value, UserBinarySearchTree head) {
-        this.value = value;
-        this.key = value.getUsername();
-        this.head = head;
+    UserBinaryTreeNode head;
+
+    public UserBinarySearchTree() {
+        head = null;
     }
+
+    public UserBinaryTreeNode getHead() {
+        return head;
+    }
+
 
     /***
      * Creates a UserBinarySearchTree with the current node set to be the root
      *
-     * @param value The value contained in the root
+     * @param node The node to be set as the root
      * @return A binary search tree containing only one node
      */
-    public UserBinarySearchTree createRoot(User value) {
-        this.key = value.getUsername();
-        this.value = value;
-        this.parent = null;
-        this.head = this;
+    public UserBinarySearchTree setRoot(UserBinaryTreeNode node) {
+        node.parent = null;
+        this.head = node;
         return this;
     }
 
     /***
      * Searches through the binary search tree until the right place to input the new tree is found.
      *
-     * @param subTree The tree to be added
-     * @return A binary search tree with the new tree added
+     * @param node The node to be added
      */
-    public UserBinarySearchTree addSubTree(UserBinarySearchTree subTree) {
-        if (subTree.key.compareToIgnoreCase(this.key) < 0) {
-            if (leftChild == null) {
-                leftChild = subTree;
-                subTree.parent = this;
-                return subTree.head;
+    public void addSubTree(UserBinaryTreeNode current, UserBinaryTreeNode node) {
+
+        if (node.key.compareToIgnoreCase(current.key) < 0) {
+            if (current.leftChild == null) {
+                current.leftChild = node;
+                node.parent = current;
             } else {
-                return leftChild.addSubTree(subTree);
+                addSubTree(current.getLeftChild(), node);
             }
 
         } else {
-            if (rightChild == null) {
-                rightChild = subTree;
-                subTree.parent = this;
-                return subTree.head;
+            if (current.rightChild == null) {
+                current.rightChild = node;
+                node.parent = current;
             } else {
-                return rightChild.addSubTree(subTree);
+                addSubTree(current.getRightChild(), node);
             }
         }
     }
@@ -72,15 +94,15 @@ public class UserBinarySearchTree implements BinarySearchTree<String, User> {
      * @param username The key used to search through the tree
      * @return The User if found, otherwise null
      */
-    public User search(String username) {
-        if (key.equals(username)) {
-            return value;
-        } else if (leftChild == null && rightChild == null) {
+    public User get(UserBinaryTreeNode current, String username) {
+        if (current.key.equals(username)) {
+            return current.value;
+        } else if (current.leftChild == null && current.rightChild == null) {
             return null;
-        }else if(username.compareToIgnoreCase(key) < 0) {
-            return leftChild.search(username);
+        }else if(username.compareToIgnoreCase(current.key) < 0) {
+            return get(current.leftChild,username);
         } else {
-            return rightChild.search(username);
+            return get(current.rightChild,username);
         }
     }
 

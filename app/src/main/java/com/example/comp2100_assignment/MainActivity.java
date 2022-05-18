@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     public View.OnClickListener match_listener = (view) -> {
         for (String otherUser : queueWatcher.map.keySet()) {
             if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
-                User other = DatabaseUserManager.get(otherUser);
+                User other = DatabaseUserManager.users.get(DatabaseUserManager.users.getHead(), otherUser);
                 Conversation formed = ConversationFormer.getInstance().formConversation(user, other);
                 if (formed != null) {
                     availableReference.child(otherUser).setValue(System.currentTimeMillis() + "_transitory");
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
+        System.out.println(DatabaseUserManager.users);
 
         input = findViewById(R.id.input_text);
         friend = findViewById(R.id.friend);
