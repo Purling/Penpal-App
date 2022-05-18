@@ -11,25 +11,25 @@
         android:windowSoftInputMode="adjustNothing"
         android:theme="@style/Theme.Comp2100_Assignment">
         <activity
-            android:name=".AccountSettingsActivity"
+            android:name=".ui.AccountSettingsActivity"
             android:exported="false" />
         <activity
-            android:name=".QueueActivity"
+            android:name=".ui.QueueActivity"
             android:exported="false" />
         <activity
-            android:name=".ConversationActivity"
+            android:name=".ui.ConversationActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SearchActivity"
+            android:name=".ui.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".FriendActivity"
+            android:name=".ui.FriendActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

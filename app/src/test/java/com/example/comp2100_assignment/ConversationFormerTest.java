@@ -6,6 +6,13 @@ import org.junit.Test;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 
+import com.example.comp2100_assignment.conversations.ConversationFormer;
+import com.example.comp2100_assignment.conversations.ConversationTopic;
+import com.example.comp2100_assignment.users.Familiarity;
+import com.example.comp2100_assignment.users.Interestedness;
+import com.example.comp2100_assignment.users.Language;
+import com.example.comp2100_assignment.users.User;
+
 public class ConversationFormerTest {
 
     ConversationFormer former;

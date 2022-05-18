@@ -6,6 +6,10 @@ import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNotSame;
 
+import com.example.comp2100_assignment.conversations.QueuedUserObserver;
+import com.example.comp2100_assignment.users.RandomUserGenerator;
+import com.example.comp2100_assignment.users.User;
+
 public class QueuedUserObserverTest {
 
     User[] users;
