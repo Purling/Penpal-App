@@ -179,6 +179,8 @@ Potential:
 
 4. *Bug 4:* Users may log in concurrently to the same account on two different devices, causing wacky results in they queue together.
 
+5. *Bug 5:* Users in the queue who exit the app without pressing the exit queue button are still registered as being in the queue and may be pushed to a conversation, in which case the other user will have no-one to talk to.
+
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
 ## Testing Summary
