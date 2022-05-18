@@ -4,6 +4,10 @@ import com.example.comp2100_assignment.conversations.ConversationTopic;
 
 import java.util.Random;
 
+/**
+ * @author Zane Gates
+ * Makes random users, with a unique username, interests, and learnt languages
+ */
 public class RandomUserGenerator {
 
     static String[] names = {"alice", "bob", "cassandra", "deborah", "eddy", "franz", "georgia", "ingrid", "hubert", "jemima",

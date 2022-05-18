@@ -108,6 +108,14 @@ public class LoginActivity extends AppCompatActivity {
         manager = DatabaseUserManager.getInstance(getBaseContext());
     }
 
+    /**
+     * Checks if the username is up to standard, requiring
+     * its length to be at least 3 letters and contains only
+     * alphabetical, numerical, dash, and underscore characters
+     * @param username the username
+     * @return whether the password is up to standard
+     * @author Zane Gates
+     */
     public boolean usernameMeetsPolicy(String username) {
         if (username == null) return false;
         if (username.length() <= 3) return false;

@@ -1,5 +1,6 @@
 package com.example.comp2100_assignment.conversations;
 
+import com.example.comp2100_assignment.Singleton;
 import com.example.comp2100_assignment.users.Familiarity;
 import com.example.comp2100_assignment.users.Interestedness;
 import com.example.comp2100_assignment.users.Language;
@@ -8,15 +9,25 @@ import com.example.comp2100_assignment.users.User;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ConversationFormer {
+/**
+ * @author Zane Gates
+ */
+public class ConversationFormer implements Singleton {
 
+    // Implement the singleton pattern
     private static ConversationFormer instance;
-
     public static ConversationFormer getInstance() {
         if (instance == null) instance = new ConversationFormer();
         return instance;
     }
 
+    /**
+     * Attempts to generate a conversation between users, which requires that they share
+     * both a mutual interested topic and have a language each can learn from the other
+     * @param user1 the first user
+     * @param user2 the second user
+     * @return a random valid conversation if possible, null otherwise
+     */
     public TransitoryConversation formConversation(User user1, User user2) {
         if (user1 == null || user2 == null || user1 == user2) return null;
 

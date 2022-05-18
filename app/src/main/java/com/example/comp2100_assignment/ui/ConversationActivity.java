@@ -32,6 +32,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.net.URL;
 import java.util.ArrayList;
 
+/**
+ * @author Zane Gates
+ * visualises and allows users to interact with transitory and permanent conversations
+ */
 public class ConversationActivity extends AppCompatActivity {
 
     EditText messageBox;

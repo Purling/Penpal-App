@@ -15,6 +15,11 @@ import com.example.comp2100_assignment.users.User;
 import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.conversations.ConversationTopic;
 
+/**
+ * @author Zane Gates
+ * allows users to modify some details about their account
+ * including display name, interested topic, and language familiarity levels
+ */
 public class AccountSettingsActivity extends TabbedActivity {
     Switch[] switches;
 

@@ -3,7 +3,6 @@ package com.example.comp2100_assignment.users;
 import android.graphics.Bitmap;
 
 import com.example.comp2100_assignment.conversations.ConversationTopic;
-import com.example.comp2100_assignment.conversations.QueuedUserObserver;
 import com.example.comp2100_assignment.conversations.TransitoryConversation;
 import com.example.comp2100_assignment.friendships.FriendshipRequest;
 
@@ -12,6 +11,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * @author Various, majority Zane Gates
+ * Stores information pertaining to a User in the database
+ * and most importantly, the user currently logged in
+ */
 public class User implements Serializable {
     private String username;
     private String password; // this should be hashed
@@ -23,7 +27,6 @@ public class User implements Serializable {
     private HashMap<String, Interestedness> conversationTopics;
     private TransitoryConversation conversation;
     private HashMap<String, String> friends;
-    private boolean inQueue;
 
     public User() {
     }
@@ -104,25 +107,6 @@ public class User implements Serializable {
     public Interestedness getConversationTopic(ConversationTopic topic) {
         InterestednessFunction uninterestedIfNull = (f -> f == null ? Interestedness.UNINTERESTED : f);
         return uninterestedIfNull.run(conversationTopics.get(topic.name()));
-    }
-
-
-    public void enterQueue() {
-        inQueue = true;
-        QueuedUserObserver.getInstance().userEntered(this);
-    }
-
-    public void exitQueue() {
-        inQueue = false;
-        QueuedUserObserver.getInstance().userExited(this);
-    }
-
-    public boolean isInQueue() {
-        return inQueue;
-    }
-
-    public void setInQueue(boolean inQueue) {
-        this.inQueue = inQueue;
     }
 
     public HashMap<String, String> getFriends() {

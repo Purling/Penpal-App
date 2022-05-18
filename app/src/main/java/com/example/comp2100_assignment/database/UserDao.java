@@ -3,6 +3,7 @@ package com.example.comp2100_assignment.database;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.comp2100_assignment.Singleton;
 import com.example.comp2100_assignment.users.User;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;

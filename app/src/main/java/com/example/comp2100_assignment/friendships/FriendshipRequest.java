@@ -5,6 +5,10 @@ import com.example.comp2100_assignment.conversations.PermanentConversation;
 import com.example.comp2100_assignment.users.User;
 import com.example.comp2100_assignment.conversations.UserMessage;
 
+/**
+ * @author Zane Gates
+ * Skeleton class for friendship requests sent during a transitory conversation to try to establish a permanent one
+ */
 public class FriendshipRequest {
 	private User sender;
 	private User recipient;

@@ -5,6 +5,9 @@ import com.example.comp2100_assignment.users.User;
 
 import java.util.List;
 
+/**
+ * @author Zane Gates
+ */
 public abstract class Conversation implements TwoUserInterface {
     User user1, user2;
     Language language1, language2;

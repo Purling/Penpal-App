@@ -1,4 +1,4 @@
-package com.example.comp2100_assignment.database;
+package com.example.comp2100_assignment;
 
 /***
  * Interface which signifies that the class obeys the Singleton pattern

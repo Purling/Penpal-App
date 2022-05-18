@@ -2,6 +2,10 @@ package com.example.comp2100_assignment.conversations;
 
 import com.example.comp2100_assignment.users.User;
 
+/**
+ * @author Zane Gates
+ * Interface for classes using two users
+ */
 public interface TwoUserInterface {
     User user1 = null;
     User user2 = null;

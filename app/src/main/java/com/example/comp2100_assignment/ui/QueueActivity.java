@@ -16,6 +16,14 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 
+/**
+ * Here, the user waits for a suitable person to form a conversation with
+ * and moves to the conversation activity as soon as such a conversation is formed
+ *
+ * Users who are joining a preexisting conversation briefly visit here while
+ * space for the conversation is allocated in the database
+ * @author Zane Gates
+ */
 public class QueueActivity extends AppCompatActivity {
 
     DatabaseReference awaitingConversation;

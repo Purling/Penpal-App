@@ -1,6 +1,7 @@
 package com.example.comp2100_assignment.database;
 
 import com.example.comp2100_assignment.conversations.Conversation;
+import com.example.comp2100_assignment.Singleton;
 
 public class ConversationDao implements DaoPattern<Conversation, String>, Singleton {
 

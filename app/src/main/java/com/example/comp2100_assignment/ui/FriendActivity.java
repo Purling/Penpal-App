@@ -13,6 +13,10 @@ import com.example.comp2100_assignment.users.User;
 
 import java.util.ArrayList;
 
+/**
+ * @author Zane Gates
+ * allows users to visit conversations with any of their friends
+ */
 public class FriendActivity extends TabbedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
