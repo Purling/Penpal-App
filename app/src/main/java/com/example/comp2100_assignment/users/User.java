@@ -206,6 +206,37 @@ public class User implements Serializable {
         return blockedUsers.contains(userToCheck);
     }
 
+    /**
+     * @author Zane Gates
+     * Checks if the user is able to find a conversation,
+     * or if they need to change their settings
+     * @return
+     */
+    public boolean ableToFindConversation() {
+        boolean hasTopic = false;
+        boolean learningLanguage = false;
+        boolean masteredLanguage = false;
+
+        for (ConversationTopic topic : ConversationTopic.values()) {
+            if (getConversationTopic(topic) == Interestedness.INTERESTED) {
+                hasTopic = true;
+                break;
+            }
+        }
+
+        for (Language language : Language.values()) {
+            if (getFamiliarity(language) == Familiarity.BEGINNER
+                    || getFamiliarity(language) == Familiarity.INTERMEDIATE) {
+                learningLanguage = true;
+            } if (getFamiliarity(language) == Familiarity.ADVANCED
+                    || getFamiliarity(language) == Familiarity.FLUENT) {
+                masteredLanguage = true;
+            }
+        }
+
+        return hasTopic && learningLanguage && masteredLanguage;
+    }
+
     interface FamiliarityFunction {
         Familiarity run(Familiarity f);
     }

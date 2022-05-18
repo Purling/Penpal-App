@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -126,6 +127,12 @@ public class MainActivity extends TabbedActivity {
 
         logOutButton = findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(log_out_listener);
+
+        if (!user.ableToFindConversation()) {
+            ((TextView)findViewById(R.id.unmatchableWarning)).setText("Your account is not ready to queue.\nPlease use the settings tab.");
+            match.setEnabled(false);
+            match.setBackgroundColor(getColor(R.color.gray));
+        }
     }
 
     public <T extends AppCompatActivity> void passUser(Class<T> appCompatActivity) {
