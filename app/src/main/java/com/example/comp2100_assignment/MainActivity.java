@@ -17,9 +17,8 @@ import com.google.firebase.database.DatabaseReference;
 import java.net.URL;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends TabbedActivity {
     DatabaseUserManager manager;
-    User user;
 
     public View.OnClickListener friend_listener = (view) -> {
         passUser(FriendActivity.class);
@@ -85,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tabs = new UITabs(findViewById(R.id.tabs), this);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 

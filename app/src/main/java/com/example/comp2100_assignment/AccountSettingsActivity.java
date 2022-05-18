@@ -15,11 +15,14 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
-public class AccountSettingsActivity extends AppCompatActivity {
-
-    User user;
-
+public class AccountSettingsActivity extends TabbedActivity {
     Switch[] switches;
+
+    ConversationTopic[] topics;
+    Spinner[] spinners;
+    Language[] languages;
+    Familiarity[] languageFamiliarities;
+    EditText displayNameEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +35,14 @@ public class AccountSettingsActivity extends AppCompatActivity {
 
         // Get the switches from the UI
         int[] switchIDs = {R.id.switchMusic, R.id.switchTravel, R.id.switchFood, R.id.switchSports};
-        ConversationTopic[] topics = {ConversationTopic.MUSIC, ConversationTopic.TRAVEL, ConversationTopic.FOOD, ConversationTopic.SPORTS};
+        topics = new ConversationTopic[]{ConversationTopic.MUSIC, ConversationTopic.TRAVEL, ConversationTopic.FOOD, ConversationTopic.SPORTS};
 
         // Gets the language dropdown from the UI
         int[] languageSpinnerIDs = {R.id.languageSpinner1, R.id.languageSpinner2, R.id.languageSpinner3, R.id.languageSpinner4, R.id.languageSpinner5};
-        Language[] languages = {Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
-        Spinner[] spinners = new Spinner[languageSpinnerIDs.length];
+        languages = new Language[]{Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
+        spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
-        Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
+        languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
 
         for (int i = 0; i < languageSpinnerIDs.length; i++) {
             spinners[i] = findViewById(languageSpinnerIDs[i]);
@@ -61,30 +64,31 @@ public class AccountSettingsActivity extends AppCompatActivity {
             switches[i].setChecked(user.getConversationTopic(topics[i]) == Interestedness.INTERESTED);
         }
 
-        EditText displayNameEditor = findViewById(R.id.editDisplayName);
+        displayNameEditor = findViewById(R.id.editDisplayName);
         displayNameEditor.setText(user.getDisplayName());
 
         ((Button)findViewById(R.id.saveSettingsButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i < switches.length; i++) {
-                    user.setConversationTopic(topics[i], switches[i].isChecked() ? Interestedness.INTERESTED : Interestedness.UNINTERESTED);
-                }
-
-                for (int i = 0; i < spinners.length; i++) {
-                    user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
-                }
-
-                user.setDisplayName(displayNameEditor.getText().toString());
-
-                UserDao dao = UserDao.singleton();
-                dao.save(user, false);
-
                 Intent intent = new Intent();
                 intent.setClass(AccountSettingsActivity.this, MainActivity.class);
                 intent.putExtra("user", user);
                 startActivity(intent);
             }
         });
+    }
+
+
+
+    @Override
+    public void exitTabCallback() {
+        for (int i = 0; i < switches.length; i++) {
+            user.setConversationTopic(topics[i], switches[i].isChecked() ? Interestedness.INTERESTED : Interestedness.UNINTERESTED);
+        }
+        for (int i = 0; i < spinners.length; i++) {
+            user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
+        }
+        user.setDisplayName(displayNameEditor.getText().toString());
+        UserDao.singleton().save(user, false);
     }
 }

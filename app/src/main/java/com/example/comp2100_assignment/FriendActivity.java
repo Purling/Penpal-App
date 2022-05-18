@@ -12,10 +12,7 @@ import android.widget.ListView;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class FriendActivity extends AppCompatActivity {
-
-    User user;
-
+public class FriendActivity extends TabbedActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
