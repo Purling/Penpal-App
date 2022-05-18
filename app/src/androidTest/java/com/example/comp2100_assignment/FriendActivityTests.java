@@ -10,6 +10,7 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.toPackage;
+import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isEnabled;
@@ -43,12 +44,12 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class QueueActivityTests {
+public class FriendActivityTests {
     //sets the activity before and after every test is run
     //this example sets to loginActivity directly
 
     @Rule
-    public ActivityScenarioRule<LoginActivity> queueActivityTestRule = new ActivityScenarioRule<>(LoginActivity.class);
+    public ActivityScenarioRule<LoginActivity> friendActivityTestRule = new ActivityScenarioRule<>(LoginActivity.class);
 
     //setup to get into queue state
     //this actually navigates the app to reach the activity
@@ -60,23 +61,31 @@ public class QueueActivityTests {
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.match)).perform(click());
+        onView(withId(R.id.friend)).perform(click());
     }
 
-    //Tests that all elements are displayed
+    //Tests that all key elements are displayed
     @Test
     public void allElementsDisplayed() {
-        onView(withId(R.id.textView3)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.exitQueueButton)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.request)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.add_friend)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.friend_id)).check(matches(isCompletelyDisplayed()));
+
     }
 
-    //checks exit queue button exits
+    //checks buttons are set to interactable
     @Test
-    public void exitQueueButtonWorks(){
-        Intents.init();
-        onView(withId(R.id.exitQueueButton)).perform(click());
-        intended(hasComponent(MainActivity.class.getName()));
-        Intents.release();
+    public void buttonsInteractable(){
+        onView(withId(R.id.request)).check(matches(isClickable()));
+        onView(withId(R.id.add_friend)).check(matches(isClickable()));
+    }
+
+    // tests that editing id of friend to add works
+    // does NOT test if changing name adds friend with that name
+    @Test
+    public void editFriendIdWorks(){
+        onView(withId(R.id.friend_id)).perform(replaceText("friendUsername"));
+        onView(withText("friendUsername")).check(matches(isDisplayed()));
     }
 
 
