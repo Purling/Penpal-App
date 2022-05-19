@@ -95,7 +95,6 @@ public class ConversationActivity extends AppCompatActivity {
         conversationRoot = database.getReference("conversation").child(conversationName);
         conversationMessagesRoot = conversationRoot.child("messages");
 
-        System.out.println(conversationName);
         availableReference = database.getReference("availableConversations").child(queueName);
 
         conversationRoot.child(owner ? "user1" : "user2").setValue(user.getUsername());
