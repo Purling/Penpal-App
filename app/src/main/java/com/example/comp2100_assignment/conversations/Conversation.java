@@ -23,6 +23,10 @@ public abstract class Conversation implements TwoUserInterface {
         this.language2 = language2;
     }
 
+    public Conversation() {
+        // Necessary for database serialization
+    }
+
     public String getTimestamp() {
         return timestamp;
     }

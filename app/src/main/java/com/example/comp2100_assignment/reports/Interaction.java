@@ -1,5 +1,7 @@
 package com.example.comp2100_assignment.reports;
 
+import android.icu.text.DateFormat;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -24,7 +26,7 @@ public class Interaction implements Serializable {
     }
 
     public String toString() {
-        return LocalDateTime.ofEpochSecond(time, 0, ZoneOffset.UTC) + ": " + detail + " (" + type + ")";
+        return DateFormat.getInstance().format(time) + ": " + detail;
     }
 
     public void setTime(long time) {

@@ -12,6 +12,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /***
  * Class which implements the DAO and singleton patterns for a Conversation
  *
@@ -29,10 +33,51 @@ public class ConversationDao implements DaoPattern<Conversation, String>, Single
         return conversationDao;
     }
 
+    private static HashMap<String, Conversation> conversations = new HashMap<>();
+
+    private ConversationDao() {
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance(
+                "https://comp2100-team-assignment-default-rtdb.asia-southeast1.firebasedatabase.app/"
+        ).getReference();
+
+        mDatabase.child(getChildName()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Conversation conversation = snapshot.getValue(Conversation.class);
+                conversations.put(snapshot.getKey(), conversation);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Conversation conversation = snapshot.getValue(Conversation.class);
+                conversations.put(snapshot.getKey(), conversation);
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
 
     @Override
     public void get(String id, OnGetDataListener<Conversation> listener) {
         DaoPattern.super.get(id, listener);
+    }
+
+    public Conversation getConversation(String id) {
+        return conversations.get(id);
     }
 
     @Override

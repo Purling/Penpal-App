@@ -6,6 +6,7 @@ import com.example.comp2100_assignment.conversations.ConversationTopic;
 import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.reports.Interaction;
 import com.example.comp2100_assignment.reports.InteractionType;
+import com.example.comp2100_assignment.reports.ReportFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -204,18 +205,7 @@ public class User implements Serializable {
      * @return the report
      */
     public String generateUserReport() {
-        if (interactions == null) return "";
-        StringBuilder output = new StringBuilder();
-        boolean firstInteraction = true;
-        for (Interaction interaction : interactions.values()) {
-            if (interaction == null) continue;
-            if (!firstInteraction) {
-                output.append("\n");
-            }
-            firstInteraction = false;
-            output.append(interaction);
-        }
-        return output.toString();
+        return ReportFactory.generateReport(interactions);
     }
 
     /**
