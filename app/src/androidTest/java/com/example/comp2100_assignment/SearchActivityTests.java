@@ -31,6 +31,10 @@ import com.example.comp2100_assignment.ui.LoginActivity;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+/**
+ * @author William Loughton
+ * UI tests for SearchActivity
+ */
 @RunWith(AndroidJUnit4.class)
 public class SearchActivityTests {
     //sets the activity before and after every test is run

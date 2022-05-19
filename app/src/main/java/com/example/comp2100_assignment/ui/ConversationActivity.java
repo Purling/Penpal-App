@@ -220,15 +220,15 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
     }
-
+    /**
+     * @author Zane Gates and William Loughton
+     * displays all messages in the conversation
+     */
     void updateConversationDisplay() {
-        //TODO: make it look nicer
         ScrollView scrollView = findViewById(R.id.conversationScrollView);
         LinearLayout messageLayout = findViewById(R.id.conversationLinearLayout);
-
         //this code updates everything on every message
         //to prevent desync errors
-
         //clear everything
         messageLayout.removeAllViewsInLayout();
         //display each message
