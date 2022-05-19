@@ -225,20 +225,27 @@ public class ConversationActivity extends AppCompatActivity {
         //TODO: make it look nicer
         ScrollView scrollView = findViewById(R.id.conversationScrollView);
         LinearLayout messageLayout = findViewById(R.id.conversationLinearLayout);
-        //only need to do this for last message
-        //so get latest message
-        UserMessage message = messages.get(messages.size()-1);
-        //generate the view
-        LinearLayout linearLayout = new LinearLayout(this);
-        TextView messageAuthor = new TextView(this);
-        messageAuthor.setText(message.author);
-        messageAuthor.setTextSize(20);
-        TextView conversationText = new TextView(this);
-        conversationText.setText(message.content);
-        messageAuthor.setTextSize(12);
-        linearLayout.addView(messageAuthor);
-        linearLayout.addView(conversationText);
-        messageLayout.addView(linearLayout);
+
+        //this code updates everything on every message
+        //to prevent desync errors
+
+        //clear everything
+        messageLayout.removeAllViewsInLayout();
+        //display each message
+        for(UserMessage message : messages){
+            //generate the view
+            LinearLayout linearLayout = new LinearLayout(this);
+            TextView messageAuthor = new TextView(this);
+            messageAuthor.setText(message.author);
+            messageAuthor.setTextSize(20);
+            messageAuthor.setPadding(0,0,20,0);
+            TextView conversationText = new TextView(this);
+            conversationText.setText(message.content);
+            conversationText.setTextSize(16);
+            linearLayout.addView(messageAuthor);
+            linearLayout.addView(conversationText);
+            messageLayout.addView(linearLayout);
+        }
     }
 
     void returnToMainActivity(boolean permanent) {

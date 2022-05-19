@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Token {
 
-    public enum Type {AND,OR,NOT,WORD,LBRA,RBRA}
+    public enum Type {ENGLISH, ITALIAN, GERMAN, FRENCH, JAPANESE, KOREAN, MANDARIN,MUSIC, SPORTS, FOOD, TRAVEL,AND,OR,NOT,WORD,LBRA,RBRA}
 
 
     public static class IllegalTokenException extends IllegalArgumentException {
