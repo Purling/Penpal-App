@@ -33,6 +33,7 @@ public class AccountSettingsActivity extends TabbedActivity {
     Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
 
     EditText displayNameEditor;
+    EditText avatarEditor;
     Button reportButton;
 
     @Override
@@ -76,6 +77,9 @@ public class AccountSettingsActivity extends TabbedActivity {
         displayNameEditor = findViewById(R.id.editDisplayName);
         displayNameEditor.setText(user.getDisplayName());
 
+        avatarEditor = findViewById(R.id.editAvatar);
+        avatarEditor.setText(user.getAvatar());
+
         reportButton = findViewById(R.id.reportButton);
         reportButton.setOnClickListener(generateReport);
     }
@@ -100,6 +104,7 @@ public class AccountSettingsActivity extends TabbedActivity {
             user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
         }
         user.setDisplayName(displayNameEditor.getText().toString().replaceAll("\n", ""));
+        user.setAvatar(avatarEditor.getText().toString().replaceAll("\n", ""));
         UserDao.singleton().save(user, false);
     }
 }
