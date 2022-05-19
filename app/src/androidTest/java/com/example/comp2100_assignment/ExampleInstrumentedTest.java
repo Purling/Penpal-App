@@ -41,8 +41,9 @@ public class ExampleInstrumentedTest {
 
     //Example test
     //tests that text saying "LANGUAGE APP" is completely displayed
+    /*
     @Test
     public void appTitleDisplayed() {
         onView(withText("LANGUAGE APP")).check(matches(isDisplayed()));
-    }
+    }*/
 }

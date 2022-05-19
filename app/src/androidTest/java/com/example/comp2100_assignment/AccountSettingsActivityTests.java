@@ -4,6 +4,8 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
+import static androidx.test.espresso.action.ViewActions.scrollTo;
+import static androidx.test.espresso.action.ViewActions.swipeDown;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
@@ -69,6 +71,8 @@ public class AccountSettingsActivityTests {
         onView(withId(R.id.switchSports)).perform(swipeLeft());
         onView(withId(R.id.switchTravel)).check(matches(isDisplayed()));
         //language labels, these need to be changed if languages change
+        //scroll down for full visibility
+        onView(withId(R.id.languageSpinner5)).perform(scrollTo());
         onView(withId(R.id.languageLabel1)).check(matches(isDisplayed()));
         onView(withId(R.id.languageSpinner1)).check(matches(isDisplayed()));
         onView(withId(R.id.languageLabel2)).check(matches(isDisplayed()));
