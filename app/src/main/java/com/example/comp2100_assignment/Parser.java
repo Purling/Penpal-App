@@ -20,14 +20,19 @@ public class Parser {
         if (tokenizer.hasNext() && tokenizer.current().getType() == Token.Type.AND) {
             tokenizer.next();
             Exp exp = parseExp();
-            return new AndExp(term, exp);
+            if (exp == null){
+                throw new IllegalProductionException("Wrong insert");
+            }else
+                return new AndExp(term, exp);
         } else if (tokenizer.hasNext() && tokenizer.current().getType() == Token.Type.OR) {
             tokenizer.next();
             Exp exp = parseExp();
-            return new OrExp(term, exp);
+            if (exp == null){
+                throw new IllegalProductionException("Wrong insert");
+            }else
+                return new OrExp(term, exp);
         } else
             return term;
-
     }
 
     public Exp parseTerm() {
