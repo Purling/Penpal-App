@@ -2,6 +2,11 @@ package com.example.comp2100_assignment;
 
 import java.util.Objects;
 
+/***
+ * A storage of tokens
+ *
+ * @author Xingkun Chen
+ */
 public class Token {
 
     public enum Type {ENGLISH, ITALIAN, GERMAN, FRENCH, JAPANESE, KOREAN, MANDARIN,MUSIC, SPORTS, FOOD, TRAVEL,AND,OR,NOT,WORD,LBRA,RBRA}

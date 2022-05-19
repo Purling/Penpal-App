@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ import com.example.comp2100_assignment.conversations.ConversationTopic;
 import com.example.comp2100_assignment.conversations.TransitoryConversation;
 import com.example.comp2100_assignment.conversations.UserMessage;
 import com.example.comp2100_assignment.database.DatabaseUserManager;
+import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.users.Language;
 import com.example.comp2100_assignment.users.User;
 import com.google.firebase.database.ChildEventListener;
@@ -56,8 +59,14 @@ public class ConversationActivity extends AppCompatActivity {
 
     User user1;
     User user2;
+
+    User otherUser;
     boolean metadataGenerated;
     boolean owner;
+
+    Button addFriendButton;
+
+    boolean permanent;
 
     /***
      *
@@ -72,7 +81,7 @@ public class ConversationActivity extends AppCompatActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
         String conversationName = intent.getStringExtra("conversationName");
-        boolean permanent = intent.getBooleanExtra("permanent", false);
+        permanent = intent.getBooleanExtra("permanent", false);
         String queueName = permanent ? "" : intent.getStringExtra("queueName");
         owner = intent.getBooleanExtra("owner", false);
 
@@ -163,6 +172,29 @@ public class ConversationActivity extends AppCompatActivity {
         associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
         associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
 
+        addFriendButton = findViewById(R.id.addFriendButton);
+        if (permanent) {
+            addFriendButton.setBackgroundColor(getResources().getColor(R.color.gray));
+            addFriendButton.setText("Unfriend");
+        }
+        addFriendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (permanent) {
+                    user.removeFriendConversation(conversationName);
+                    for (String fName : user.getFriends().keySet()) {
+                        System.out.println(fName + ": " + user.getFriends().get(fName));
+                    }
+                    UserDao.singleton().save(user, false);
+                    returnToMainActivity(permanent);
+                } else {
+                    user.addFriendConversation(otherUser.getUsername(), conversationName);
+                    UserDao.singleton().save(user, false);
+                    addFriendButton.setEnabled(false);
+                }
+            }
+        });
+
         if (permanent) return;
 
         conversationRoot.child("topic").addValueEventListener(new ValueEventListener() {
@@ -213,6 +245,7 @@ public class ConversationActivity extends AppCompatActivity {
                 if (u == null) return;
                 if (userNumber == 1) user1 = u;
                 if (userNumber == 2) user2 = u;
+                if (u != user) otherUser = u;
                 ((TextView) findViewById(label)).setText(u.getDisplayName());
                 new Thread(() -> {
                     try {
@@ -221,7 +254,7 @@ public class ConversationActivity extends AppCompatActivity {
                     } catch (Exception ignored) {
                     }
                 }).start();
-                if (owner && !metadataGenerated && user1 != null && user2 != null) {
+                if (!permanent && owner && !metadataGenerated && user1 != null && user2 != null) {
                     metadataGenerated = true;
                     TransitoryConversation generatedConversation = ConversationFormer.getInstance().formConversation(user1, user2);
                     conversationRoot.child("topic").setValue(generatedConversation.getTopic());
@@ -263,6 +296,11 @@ public class ConversationActivity extends AppCompatActivity {
             linearLayout.addView(conversationText);
             messageLayout.addView(linearLayout);
         }
+        messageLayout.postDelayed(new Runnable() {
+            public void run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+            }
+        }, 100);
     }
 
     void returnToMainActivity(boolean permanent) {

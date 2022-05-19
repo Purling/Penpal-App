@@ -7,9 +7,9 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.FirebaseDatabase;
 
 /**
+ *  Uses a binary search tree to maintain a list of users in a database
+ *  and fetches them upon request for other classes to access
  * @author Zane Gates, Ziling Ouyang
- * Uses a binary search tree to maintain a list of users in a database
- * and fetches them upon request for other classes to access
  */
 public class DatabaseUserManager {
 

@@ -10,6 +10,9 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.HashMap;
 
+/***
+ * @author Zane Gates
+ */
 public class DatabaseDictionaryWatcher {
 
     public HashMap<String, String> map = new HashMap<>();

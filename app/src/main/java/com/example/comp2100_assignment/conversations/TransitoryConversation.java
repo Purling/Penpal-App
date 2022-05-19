@@ -4,7 +4,7 @@ import com.example.comp2100_assignment.users.Language;
 import com.example.comp2100_assignment.users.User;
 
 /**
- * @@author Zane Gates
+ * @author Zane Gates
  * Transitory conversation formed by two suitable users in a queue together
  */
 public class TransitoryConversation extends Conversation {

@@ -44,8 +44,6 @@ public class User implements Serializable {
         familiarity = new HashMap<>();
         conversationTopics = new HashMap<>();
         interactions = new HashMap<>();
-        interactions.put("base", null);
-
         friends = new HashMap<>();
 
         blockedUsers = new ArrayList<>();
@@ -285,6 +283,20 @@ public class User implements Serializable {
 
     public HashMap<String, Interaction> getInteractions() {
         return interactions;
+    }
+
+    public void addFriendConversation(String otherUser, String conversationName) {
+        friends.put(otherUser, conversationName);
+        UserDao.singleton().save(this, false);
+    }
+
+    public void removeFriendConversation(String conversationName) {
+        for (String conversation : friends.keySet()) {
+            if (friends.get(conversation).equals(conversationName)) {
+                friends.remove(conversation);
+            }
+        }
+        UserDao.singleton().save(this, false);
     }
 
     interface FamiliarityFunction {

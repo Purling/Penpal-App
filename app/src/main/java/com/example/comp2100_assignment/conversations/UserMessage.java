@@ -12,7 +12,7 @@ public class UserMessage {
 
     public UserMessage(String author, String content, String time) {
         this.author = author;
-        this.content = content;
+        this.content = content.replace('\n', ' ');
         this.time = time;
     }
 
