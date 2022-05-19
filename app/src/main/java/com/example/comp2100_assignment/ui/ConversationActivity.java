@@ -78,7 +78,6 @@ public class ConversationActivity extends AppCompatActivity {
 
         // Get UI elements
         messageBox = findViewById(R.id.messageBox);
-        messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
         FirebaseDatabase database = DatabaseUserManager.getInstance(getBaseContext()).getDatabase();
