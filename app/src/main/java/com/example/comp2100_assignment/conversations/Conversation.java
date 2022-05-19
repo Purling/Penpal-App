@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class Conversation implements TwoUserInterface {
     User user1, user2;
     Language language1, language2;
+    String timestamp;
 
     List<UserMessage> messages;
 
@@ -20,6 +21,34 @@ public abstract class Conversation implements TwoUserInterface {
         this.user2 = user2;
         this.language1 = language1;
         this.language2 = language2;
+    }
+
+    public void setUser1(User user1) {
+        this.user1 = user1;
+    }
+
+    public void setUser2(User user2) {
+        this.user2 = user2;
+    }
+
+    public void setLanguage1(Language language1) {
+        this.language1 = language1;
+    }
+
+    public void setLanguage2(Language language2) {
+        this.language2 = language2;
+    }
+
+    public void setMessages(List<UserMessage> messages) {
+        this.messages = messages;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 
     public User getUser1() {

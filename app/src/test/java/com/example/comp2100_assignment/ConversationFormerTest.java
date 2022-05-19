@@ -13,6 +13,9 @@ import com.example.comp2100_assignment.users.Interestedness;
 import com.example.comp2100_assignment.users.Language;
 import com.example.comp2100_assignment.users.User;
 
+/***
+ * @author Zane Gates, imported by William Loughton and minor changes by Ziling Ouyang
+ */
 public class ConversationFormerTest {
 
     ConversationFormer former;

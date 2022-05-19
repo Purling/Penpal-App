@@ -43,10 +43,11 @@ public class MainActivity extends TabbedActivity {
     DatabaseReference availableReference;
     DatabaseDictionaryWatcher queueWatcher;
     /**
-     * @author Zane Gates
-     * tries to join another user's conversation
+     * Tries to join another user's conversation
      * otherwise, marks in the database they are looking for
      * a conversation and joins the queue themselves
+     *
+     * @author Zane Gates
      */
     public View.OnClickListener match_listener = (view) -> {
         for (String otherUser : queueWatcher.map.keySet()) {
