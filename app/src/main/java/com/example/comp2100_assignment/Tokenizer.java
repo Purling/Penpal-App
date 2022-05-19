@@ -1,5 +1,10 @@
 package com.example.comp2100_assignment;
 
+/***
+ * A tokenizer which reads in a string and turns them into tokens
+ *
+ * @author Xingkun Chen
+ */
 public class Tokenizer {
 
         private String buffer;

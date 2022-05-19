@@ -1,7 +1,8 @@
 package com.example.comp2100_assignment;
 
 /***
- * A parser class which parses a specific grammar
+ * A parser class which parses a specific grammar.
+ * Grammar developed with the help of Ziling Ouyang
  *
  * @author Xingkun Chen
  */
