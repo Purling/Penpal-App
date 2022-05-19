@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -39,7 +38,7 @@ import java.util.ArrayList;
  * Transitory conversations are made using the queueing system.
  * Permanent conversations are between users who are friends.
  *
- * @author Zane Gates
+ * @author Zane Gates, William Loughton
  */
 public class ConversationActivity extends AppCompatActivity {
 
@@ -60,6 +59,10 @@ public class ConversationActivity extends AppCompatActivity {
     boolean metadataGenerated;
     boolean owner;
 
+    /***
+     *
+     * @author Zane Gates, Ziling Ouyang (removing joined messages)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,6 +140,7 @@ public class ConversationActivity extends AppCompatActivity {
             messageBox.setText("");
         });
 
+        // Logic for what happens when the exit button is pressed
         findViewById(R.id.exitConversationButton).setOnClickListener(view -> {
             if (!permanent)
                 availableReference.setValue("#CLOSED");
@@ -233,6 +237,7 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
     }
+
     /**
      * @author Zane Gates and William Loughton
      * displays all messages in the conversation

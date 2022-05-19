@@ -7,25 +7,21 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
-import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
+
+import com.example.comp2100_assignment.ui.LoginActivity;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import com.example.comp2100_assignment.ui.MainActivity;
-import com.example.comp2100_assignment.ui.LoginActivity;
 
 
 /**
@@ -50,7 +46,7 @@ public class AccountSettingsActivityTests {
     //this actually navigates the app to reach the activity
     //so major UI changes could break this
     @Before
-    public void queueActivityTestSetup(){
+    public void queueActivityTestSetup() {
         onView(withId(R.id.username)).perform(typeText("testUser"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
@@ -82,7 +78,6 @@ public class AccountSettingsActivityTests {
         onView(withId(R.id.languageSpinner5)).check(matches(isDisplayed()));
 
 
-
     }
 
     //Unnecessary now that settings button is removed
@@ -100,7 +95,7 @@ public class AccountSettingsActivityTests {
 
     //checks all interactables are interactable
     @Test
-    public void allInteractablesWork(){
+    public void allInteractablesWork() {
         onView(withId(R.id.switchSports)).check(matches(isClickable()));
         onView(withId(R.id.switchFood)).check(matches(isClickable()));
         onView(withId(R.id.switchMusic)).check(matches(isClickable()));
@@ -118,7 +113,7 @@ public class AccountSettingsActivityTests {
     // tests that editing display name works
     // does NOT test if changing and saving correctly saves the display name
     @Test
-    public void editDisplayNameWorks(){
+    public void editDisplayNameWorks() {
         onView(withId(R.id.editDisplayName)).perform(replaceText("newUsername"));
         onView(withText("newUsername")).check(matches(isDisplayed()));
     }

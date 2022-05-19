@@ -21,7 +21,7 @@ import java.util.List;
  */
 public class User implements Serializable {
     private String username;
-    private String password; // this should be hashed
+    private String password; // this should be encrypted
     private String displayName;
     private String avatar;
     private Bitmap profilePicture;
@@ -258,7 +258,7 @@ public class User implements Serializable {
                 output.append("\n");
             }
             firstInteraction = false;
-            output.append(interaction.toString());
+            output.append(interaction);
         }
         return output.toString();
     }
