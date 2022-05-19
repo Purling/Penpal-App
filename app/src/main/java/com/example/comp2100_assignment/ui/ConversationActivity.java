@@ -71,7 +71,6 @@ public class ConversationActivity extends AppCompatActivity {
         String queueName = permanent ? "" : intent.getStringExtra("queueName");
         owner = intent.getBooleanExtra("owner", false);
         messageBox = findViewById(R.id.messageBox);
-        messageBox.setInputType(InputType.TYPE_NULL); // Hides the keyboard
         conversation = findViewById(R.id.conversation);
 
         FirebaseDatabase database = DatabaseUserManager.getInstance(getBaseContext()).getDatabase();
