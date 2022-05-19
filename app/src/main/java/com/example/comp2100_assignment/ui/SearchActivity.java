@@ -17,11 +17,6 @@ import com.example.comp2100_assignment.users.Familiarity;
 import com.example.comp2100_assignment.users.Interestedness;
 import com.example.comp2100_assignment.users.Language;
 import com.example.comp2100_assignment.users.User;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,17 +24,17 @@ import java.util.List;
 /***
  * Class which controls logic for searching within the app
  *
- * @author Xingkun Chen
+ * @author Xingkun Chen, Ziling Ouyang
  */
 public class SearchActivity extends TabbedActivity {
     private final List<String> listViewList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
-    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("username");
     private Button button;
     private ListView listView;
     private EditText editText;
     public View.OnClickListener find_Listener = (view) -> {
 
+        listViewList.clear();
         String input = editText.getText().toString();
         Tokenizer tokenizer = new Tokenizer(input);
         if (tokenizer.current() == null)
@@ -66,7 +61,6 @@ public class SearchActivity extends TabbedActivity {
                         listViewList.add(data.getUsername());
                     }
                 } catch (Exception ignored) {
-
                 }
 
                 try {
@@ -85,9 +79,7 @@ public class SearchActivity extends TabbedActivity {
                             listViewList.remove(data.getUsername());
                         }
                     } catch (Exception ignored) {
-
                     }
-
                     try {
                         if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.UNINTERESTED) {
                             listViewList.remove(data.getUsername());
