@@ -75,13 +75,13 @@ public class SearchActivity extends TabbedActivity {
             for (String notContains : notContain) {
                 if (listViewList.contains(data.getUsername())) {
                     try {
-                        if (data.getFamiliarity(Language.valueOf(notContains)) == Familiarity.UNINTERESTED) {
+                        if (data.getFamiliarity(Language.valueOf(notContains)) != Familiarity.UNINTERESTED) {
                             listViewList.remove(data.getUsername());
                         }
                     } catch (Exception ignored) {
                     }
                     try {
-                        if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.UNINTERESTED) {
+                        if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.INTERESTED) {
                             listViewList.remove(data.getUsername());
                         }
                     } catch (Exception ignored) {
