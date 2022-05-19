@@ -8,8 +8,11 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
+import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
@@ -61,15 +64,18 @@ public class MainActivityTests {
         onView(withId(R.id.search)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.my_lv)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.match)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.settingsButton)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.friend)).check(matches(isCompletelyDisplayed()));
+        onView(allOf(withText("SETTINGS"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
+        onView(allOf(withText("FRIENDS"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
+        onView(allOf(withText("SEARCH"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
+        onView(allOf(withText("MAIN"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
+
     }
 
     //checks search button works
     @Test
     public void searchQueueButtonWorks(){
         Intents.init();
-        onView(withId(R.id.search)).perform(click());
+        onView(allOf(withText("SEARCH"),isDescendantOfA(withId(R.id.tabs)))).perform(click());
         intended(hasComponent(SearchActivity.class.getName()));
         Intents.release();
     }
@@ -87,7 +93,7 @@ public class MainActivityTests {
     @Test
     public void settingsButtonWorks(){
         Intents.init();
-        onView(withId(R.id.settingsButton)).perform(click());
+        onView(allOf(withText("SETTINGS"),isDescendantOfA(withId(R.id.tabs)))).perform(click());
         intended(hasComponent(AccountSettingsActivity.class.getName()));
         Intents.release();
     }
@@ -96,7 +102,7 @@ public class MainActivityTests {
     @Test
     public void friendsButtonWorks(){
         Intents.init();
-        onView(withId(R.id.friend)).perform(click());
+        onView(allOf(withText("FRIENDS"),isDescendantOfA(withId(R.id.tabs)))).perform(click());
         intended(hasComponent(FriendActivity.class.getName()));
         Intents.release();
     }
