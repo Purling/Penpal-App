@@ -76,7 +76,6 @@ public class MainActivity extends TabbedActivity {
         intent.putExtra("willBeOwner", false);
         startActivity(intent);
     };
-    private Button friend;
     private Button search;
     private EditText input;
     public View.OnClickListener search_listener = (view) -> {
@@ -86,11 +85,7 @@ public class MainActivity extends TabbedActivity {
         intent.putExtra("user", user);
         startActivity(intent);
     };
-    private ListView listView;
     private ImageView profilePicture;
-    private Button match;
-    private Button settingsButton;
-    private Button logOutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,8 +99,7 @@ public class MainActivity extends TabbedActivity {
         input = findViewById(R.id.input_text);
         search = findViewById(R.id.search);
         search.setOnClickListener(search_listener);
-        listView = findViewById(R.id.my_lv);
-        match = findViewById(R.id.match);
+        Button match = findViewById(R.id.match);
         match.setOnClickListener(match_listener);
         profilePicture = findViewById(R.id.profile_picture);
 
@@ -125,7 +119,7 @@ public class MainActivity extends TabbedActivity {
         availableReference = manager.getDatabase().getReference("availableConversations");
         queueWatcher = new DatabaseDictionaryWatcher(availableReference);
 
-        logOutButton = findViewById(R.id.logOutButton);
+        Button logOutButton = findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(log_out_listener);
 
         if (!user.ableToFindConversation()) {
@@ -135,10 +129,4 @@ public class MainActivity extends TabbedActivity {
         }
     }
 
-    public <T extends AppCompatActivity> void passUser(Class<T> appCompatActivity) {
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, appCompatActivity);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    }
 }

@@ -15,12 +15,68 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.AccountSettingsActivity">
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="Avatar"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editDisplayName" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:text="What picture can be displayed alongside your profile? Leave blank for no picture."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <Spinner
+                android:id="@+id/languageSpinner7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel7" />
+
+            <TextView
+                android:id="@+id/languageLabel7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mandarin"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel6" />
+
+            <Spinner
+                android:id="@+id/languageSpinner6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel6" />
+
+            <TextView
+                android:id="@+id/languageLabel6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Korean"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel5"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel5" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -88,6 +144,19 @@
                 android:textAlignment="center"
                 app:layout_constraintStart_toStartOf="@+id/textView4"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <EditText
+                android:id="@+id/editAvatar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
             <TextView
                 android:id="@+id/languageLabel3"
@@ -243,7 +312,7 @@
                 android:text="Conversation topics"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editDisplayName" />
+                app:layout_constraintTop_toBottomOf="@+id/editAvatar" />
 
             <TextView
                 android:id="@+id/textView2"
