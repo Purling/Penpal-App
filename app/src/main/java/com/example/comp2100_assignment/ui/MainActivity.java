@@ -76,15 +76,7 @@ public class MainActivity extends TabbedActivity {
         intent.putExtra("willBeOwner", false);
         startActivity(intent);
     };
-    private Button search;
-    private EditText input;
-    public View.OnClickListener search_listener = (view) -> {
-        Intent intent = new Intent();
-        intent.putExtra("search", input.getText().toString());
-        intent.setClass(MainActivity.this, SearchActivity.class);
-        intent.putExtra("user", user);
-        startActivity(intent);
-    };
+
     private ImageView profilePicture;
 
     @Override
@@ -96,17 +88,18 @@ public class MainActivity extends TabbedActivity {
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
-        input = findViewById(R.id.input_text);
-        search = findViewById(R.id.search);
-        search.setOnClickListener(search_listener);
         Button match = findViewById(R.id.match);
         match.setOnClickListener(match_listener);
+
         profilePicture = findViewById(R.id.profile_picture);
 
         manager = DatabaseUserManager.getInstance(getBaseContext());
 
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
+
+        TextView usernameDisplayer = findViewById(R.id.usernameDisplayer);
+        usernameDisplayer.setText(user.getDisplayName());
 
         new Thread(() -> {
             try {
