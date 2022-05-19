@@ -52,7 +52,8 @@ public class Parser {
                 tokenizer.current().getType() == Token.Type.OR) {
             throw new IllegalProductionException("Wrong insert");
         } else {
-            tokenizer.next();
+            if (tokenizer.hasNext()) tokenizer.next();
+            else throw new IllegalProductionException("Incorrect grammar");
             return content;
         }
     }

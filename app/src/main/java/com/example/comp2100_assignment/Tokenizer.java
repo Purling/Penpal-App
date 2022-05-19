@@ -81,8 +81,10 @@ public class Tokenizer {
             }
             else
                 currentToken = new Token("word", Token.Type.WORD);
-            int tokenLen = currentToken.getToken().length();
-            buffer = buffer.substring(tokenLen);
+            if (currentToken.getType() != Token.Type.WORD)  {
+                int tokenLen = currentToken.getToken().length();
+                buffer = buffer.substring(tokenLen);
+            }
         }
         public Token current() {
             return currentToken;
