@@ -54,6 +54,7 @@ public class UITabs {
             case "SETTINGS": return AccountSettingsActivity.class;
             case "MAIN": return MainActivity.class;
             case "FRIENDS": return FriendActivity.class;
+            case "SEARCH": return SearchActivity.class;
             default: return MainActivity.class;
         }
     }
@@ -70,6 +71,8 @@ public class UITabs {
             return 1;
         } else if (FriendActivity.class.equals(c)) {
             return 2;
+        } else if (SearchActivity.class.equals(c)) {
+            return 3;
         }
         return 1;
     }
