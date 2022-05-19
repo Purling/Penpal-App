@@ -232,11 +232,20 @@ public class User implements Serializable {
         return interactions;
     }
 
+    /**
+     * Save a conversation with a random user to the permanent friend list
+     * @param otherUser the other user (used as the label of the conversation in the friend menu)
+     * @param conversationName the database identifier pointing to the now-permanent conversation
+     */
     public void addFriendConversation(String otherUser, String conversationName) {
         friends.put(otherUser, conversationName);
         UserDao.singleton().save(this, false);
     }
 
+    /**
+     * Delete a conversation with a random user from the permanent friend list
+     * @param conversationName the database identifier to remove
+     */
     public void removeFriendConversation(String conversationName) {
         for (String conversation : friends.keySet()) {
             if (friends.get(conversation).equals(conversationName)) {

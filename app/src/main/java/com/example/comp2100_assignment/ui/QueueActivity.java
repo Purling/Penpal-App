@@ -52,6 +52,8 @@ public class QueueActivity extends AppCompatActivity {
 
         awaitingConversation = DatabaseUserManager.getInstance(getBaseContext()).getDatabase().getReference("availableConversations").child(conversationName);
 
+        // When the user exists the queue, remove their name from the queue
+        // and then return to the main activity
         ((Button)findViewById(R.id.exitQueueButton)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +66,9 @@ public class QueueActivity extends AppCompatActivity {
             }
         });
 
+        // When a suitable conversation is found
+        // (that is, the database queue pointer becomes the name of a conversation)
+        // we exit the queue and move to that conversation
         awaitingConversation.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,6 +92,10 @@ public class QueueActivity extends AppCompatActivity {
             }
         });
 
+        // Finally, display an animation of a blinking eye on the queue
+        // screen to show users the app has not crashed, and is actually
+        // working as intended
+
         int[] eyes = {R.drawable.eye_open,
                 R.drawable.eye_part_open,
                 R.drawable.eye_part_closed,
@@ -97,6 +106,9 @@ public class QueueActivity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView);
         imageView.setImageResource(eyes[1]);
 
+        // Run a tick every 100 milliseconds. Once enough ticks have passed
+        // move to the next frame and set the number of necessary ticks
+        // depending on the current image
         CountDownTimer timer = new CountDownTimer(100, 100) {
             @Override
             public void onFinish() {
@@ -124,6 +136,10 @@ public class QueueActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
+        // This code is triggered when the user exits this activity
+        // without triggering one of the other exit functions --
+        // implying their app has crashed or phone has powered off
+        // -- in which case we must manually remove them from the queue
         if (!leavingToConversaion)
             awaitingConversation.removeValue();
     }

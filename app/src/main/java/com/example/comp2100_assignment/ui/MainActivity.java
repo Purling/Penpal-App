@@ -50,6 +50,9 @@ public class MainActivity extends TabbedActivity {
      * @author Zane Gates
      */
     public View.OnClickListener match_listener = (view) -> {
+        // Check each user already in the queue
+        // If a conversation between us and them is valid, create it
+        // and move to the queue while the space in the database is allocated
         for (String otherUser : queueWatcher.map.keySet()) {
             if (queueWatcher.map.get(otherUser).equals("#QUEUED")) {
                 User other = DatabaseUserManager.getUser(otherUser);
@@ -67,6 +70,8 @@ public class MainActivity extends TabbedActivity {
             }
         }
 
+        // If we reach here, we can't join a preexisting conversation
+        // So we place ourselves in the queue and wait for someone else
         availableReference.child(user.getUsername()).setValue("#QUEUED");
 
         Intent intent = new Intent();
@@ -115,6 +120,7 @@ public class MainActivity extends TabbedActivity {
         Button logOutButton = findViewById(R.id.logOutButton);
         logOutButton.setOnClickListener(log_out_listener);
 
+        // Display a warning, and disable queuing, if the user's account is not set up
         if (!user.ableToFindConversation()) {
             ((TextView) findViewById(R.id.unmatchableWarning)).setText("Your account is not ready to queue.\nPlease use the settings tab.");
             match.setEnabled(false);

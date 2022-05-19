@@ -23,8 +23,6 @@ import java.util.HashMap;
 public class LoginActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;
-    private Button login;
-    private Button register;
     private EditText username;
     private EditText password;
 
@@ -101,8 +99,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
+        Button login = findViewById(R.id.login);
+        Button register = findViewById(R.id.register);
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
