@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Language Application</string>
+    <string name="app_name">MYKAI</string>
     <string-array name="languageSkillLevels">
         <item>Uninterested</item>
         <item>Beginner</item>

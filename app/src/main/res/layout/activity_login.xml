@@ -48,7 +48,7 @@
         android:layout_width="350dp"
         android:layout_height="73dp"
         android:layout_marginTop="16dp"
-        android:text="LANGUAGE APP"
+        android:text="MYKAI"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="42sp"
