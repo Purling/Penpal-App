@@ -1,6 +1,10 @@
-package com.example.comp2100_assignment.users;
+package com.example.comp2100_assignment;
 
 import com.example.comp2100_assignment.conversations.ConversationTopic;
+import com.example.comp2100_assignment.users.Familiarity;
+import com.example.comp2100_assignment.users.Interestedness;
+import com.example.comp2100_assignment.users.Language;
+import com.example.comp2100_assignment.users.User;
 
 import java.util.Random;
 
