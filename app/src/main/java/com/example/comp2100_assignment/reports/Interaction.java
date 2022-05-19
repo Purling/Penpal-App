@@ -24,6 +24,30 @@ public class Interaction implements Serializable {
     }
 
     public String toString() {
-        return LocalDateTime.ofEpochSecond(time, 0, ZoneOffset.of("AEST")) + ": " + detail + " (" + type + ")";
+        return LocalDateTime.ofEpochSecond(time, 0, ZoneOffset.UTC) + ": " + detail + " (" + type + ")";
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setType(InteractionType type) {
+        this.type = type;
+    }
+
+    public InteractionType getType() {
+        return type;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public String getDetail() {
+        return detail;
     }
 }

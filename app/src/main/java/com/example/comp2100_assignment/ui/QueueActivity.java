@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.R;
@@ -32,6 +34,9 @@ public class QueueActivity extends AppCompatActivity {
 
     User user;
     boolean willBeOwner;
+
+    int eyeImageIndex = 0;
+    int ticksUntilNextFrame = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,5 +83,38 @@ public class QueueActivity extends AppCompatActivity {
 
             }
         });
+
+        int[] eyes = {R.drawable.eye_open,
+                R.drawable.eye_part_open,
+                R.drawable.eye_part_closed,
+                R.drawable.eye_closed,
+                R.drawable.eye_part_closed,
+                R.drawable.eye_part_open,};
+
+        ImageView imageView = findViewById(R.id.imageView);
+        imageView.setImageResource(eyes[1]);
+
+        CountDownTimer timer = new CountDownTimer(100, 100) {
+            @Override
+            public void onFinish() {
+                ticksUntilNextFrame--;
+                if (ticksUntilNextFrame <= 0) {
+                    eyeImageIndex = (eyeImageIndex + 1) % eyes.length;
+                    imageView.setImageResource(eyes[eyeImageIndex]);
+                    switch(eyes[eyeImageIndex]) {
+                        case R.drawable.eye_open: ticksUntilNextFrame = 20; break;
+                        case R.drawable.eye_closed: ticksUntilNextFrame = 3; break;
+                        default: ticksUntilNextFrame = 1;
+                    }
+                }
+                start();
+            }
+
+            @Override
+            public void onTick(long l) {
+
+            }
+        };
+        timer.start();
     }
 }
