@@ -8,9 +8,9 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.comp2100_assignment.Parser;
+import com.example.comp2100_assignment.search.Parser;
 import com.example.comp2100_assignment.R;
-import com.example.comp2100_assignment.Tokenizer;
+import com.example.comp2100_assignment.search.Tokenizer;
 import com.example.comp2100_assignment.conversations.ConversationTopic;
 import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.users.Familiarity;
@@ -94,7 +94,7 @@ public class SearchActivity extends TabbedActivity {
                 arrayAdapter.notifyDataSetChanged();
             });
         } catch (Exception ignored) {
-
+            arrayAdapter.notifyDataSetChanged();
         }
     };
 

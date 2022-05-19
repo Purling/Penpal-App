@@ -1,4 +1,4 @@
-package com.example.comp2100_assignment;
+package com.example.comp2100_assignment.search;
 
 /***
  * A tokenizer which reads in a string and turns them into tokens

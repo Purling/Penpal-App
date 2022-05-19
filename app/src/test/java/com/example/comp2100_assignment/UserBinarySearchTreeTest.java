@@ -4,15 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 import com.example.comp2100_assignment.database.UserBinarySearchTree;
-import com.example.comp2100_assignment.reports.Interaction;
-import com.example.comp2100_assignment.reports.InteractionType;
-import com.example.comp2100_assignment.users.RandomUserGenerator;
 import com.example.comp2100_assignment.users.User;
 
 import org.junit.Test;
-
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 
 /**
  * Tests for UserBinarySearchTree class

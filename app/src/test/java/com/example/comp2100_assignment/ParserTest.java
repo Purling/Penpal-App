@@ -7,6 +7,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 
+import com.example.comp2100_assignment.search.Parser;
+import com.example.comp2100_assignment.search.Tokenizer;
+
 /**
  * Tests for Parser class
  * @author William Loughton

@@ -1,4 +1,4 @@
-package com.example.comp2100_assignment;
+package com.example.comp2100_assignment.search;
 
 /***
  * A parser class which parses a specific grammar.

@@ -1,6 +1,6 @@
 package com.example.comp2100_assignment.conversations;
 
-import com.example.comp2100_assignment.Singleton;
+import com.example.comp2100_assignment.database.Singleton;
 import com.example.comp2100_assignment.users.Familiarity;
 import com.example.comp2100_assignment.users.Interestedness;
 import com.example.comp2100_assignment.users.Language;
