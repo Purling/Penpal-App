@@ -3,18 +3,14 @@ package com.example.comp2100_assignment.database;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.comp2100_assignment.Singleton;
 import com.example.comp2100_assignment.conversations.Conversation;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 /***
  * Class which implements the DAO and singleton patterns for a Conversation
