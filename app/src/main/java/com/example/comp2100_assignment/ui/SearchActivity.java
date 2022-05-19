@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends TabbedActivity {
     private Button button;
     private ListView listView;
     private EditText editText;
@@ -42,6 +42,8 @@ public class SearchActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+        tabs = new UITabs(findViewById(R.id.tabs), this);
 
         Intent intent= getIntent();
         intent.getStringExtra("search");

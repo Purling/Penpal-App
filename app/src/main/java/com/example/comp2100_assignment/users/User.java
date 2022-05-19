@@ -4,7 +4,10 @@ import android.graphics.Bitmap;
 
 import com.example.comp2100_assignment.conversations.ConversationTopic;
 import com.example.comp2100_assignment.conversations.TransitoryConversation;
+import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.friendships.FriendshipRequest;
+import com.example.comp2100_assignment.reports.Interaction;
+import com.example.comp2100_assignment.reports.InteractionType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -27,6 +30,7 @@ public class User implements Serializable {
     private HashMap<String, Interestedness> conversationTopics;
     private TransitoryConversation conversation;
     private HashMap<String, String> friends;
+    private List<Interaction> interactions;
 
     public User() {
     }
@@ -235,6 +239,38 @@ public class User implements Serializable {
         }
 
         return hasTopic && learningLanguage && masteredLanguage;
+    }
+
+    /**
+     * @author Zane Gates
+     * Generates a report, in string form, of the user's interactions with the app
+     * @return the report
+     */
+    public String generateUserReport() {
+        if (interactions == null) return "";
+        StringBuilder output = new StringBuilder();
+        boolean firstInteraction = true;
+        for (Interaction interaction : interactions) {
+            if (!firstInteraction) {
+                output.append("\n");
+            }
+            firstInteraction = false;
+            output.append(interaction.toString());
+        }
+        return output.toString();
+    }
+
+    /**
+     * @author Zane Gates
+     * Adds an interaction constructed from the given details to the local list
+     * and pushes the update to the database
+     * @param interactionType type
+     * @param interactionName the conversation name
+     */
+    public void logInteraction(InteractionType interactionType, String interactionName) {
+        if (interactions == null) interactions = new ArrayList<>();
+        interactions.add(new Interaction(System.currentTimeMillis(), interactionType, interactionName));
+        UserDao.singleton().save(this, false);
     }
 
     interface FamiliarityFunction {

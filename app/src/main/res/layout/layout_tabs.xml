@@ -17,17 +17,28 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fadingEdge="horizontal"
+            android:icon="@drawable/symbol_settings"
             android:text="SETTINGS" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/symbol_main"
             android:text="MAIN" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:icon="@drawable/symbol_friends"
             android:text="FRIENDS" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/symbol_search"
+            android:text="SEARCH" />
     </com.google.android.material.tabs.TabLayout>
 
 </LinearLayout>
