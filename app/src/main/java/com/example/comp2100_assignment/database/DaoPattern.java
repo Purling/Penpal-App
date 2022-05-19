@@ -13,6 +13,7 @@ import com.google.firebase.database.ValueEventListener;
  *
  * @param <T> The type of the object
  * @param <V> The type of the unique key which identifies the object in the database
+ * @author Ziling Ouyang
  */
 public interface DaoPattern<T, V> {
 

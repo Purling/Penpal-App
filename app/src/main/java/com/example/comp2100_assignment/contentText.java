@@ -1,5 +1,8 @@
 package com.example.comp2100_assignment;
 
+/***
+ * @author Xingkun Chen
+ */
 public class contentText extends Exp{
 
     String content;

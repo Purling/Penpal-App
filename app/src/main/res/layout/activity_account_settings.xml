@@ -6,219 +6,270 @@
     android:layout_height="match_parent"
     tools:context=".ui.AccountSettingsActivity">
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Conversation topics"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="At what level of proficiency can you speak these languages? To match, you need to be learning (Beginner or Intermediate) at least one, and have mastered (Advanced or Fluent) another."
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/include4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="Display name"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/accountSettingsTitle" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="What name should we display to other users?\nYou probably don't need to change this."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/accountSettingsTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:text="Account Settings"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editDisplayName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
-
-    <TextView
-        android:id="@+id/languageLabel3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="German"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
-        app:layout_constraintTop_toBottomOf="@+id/languageLabel2" />
-
-    <Spinner
-        android:id="@+id/languageSpinner4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/languageLabel1"
-        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
-        app:layout_constraintTop_toTopOf="@+id/languageLabel4" />
-
-    <Spinner
-        android:id="@+id/languageSpinner3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/languageLabel1"
-        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
-        app:layout_constraintTop_toTopOf="@+id/languageLabel3" />
-
-    <Spinner
-        android:id="@+id/languageSpinner1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:labelFor="@id/languageLabel1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/languageLabel1" />
-
-    <TextView
-        android:id="@+id/languageLabel4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="French"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
-        app:layout_constraintTop_toBottomOf="@+id/languageLabel3" />
-
-    <TextView
-        android:id="@+id/languageLabel2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Italian"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
-        app:layout_constraintTop_toBottomOf="@+id/languageLabel1" />
-
-    <Spinner
-        android:id="@+id/languageSpinner2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/languageLabel1"
-        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
-        app:layout_constraintTop_toTopOf="@+id/languageLabel2" />
-
-    <Spinner
-        android:id="@+id/languageSpinner5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:labelFor="@id/languageLabel1"
-        app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
-        app:layout_constraintTop_toTopOf="@+id/languageLabel5" />
-
-    <TextView
-        android:id="@+id/languageLabel1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:text="English"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
-
-    <TextView
-        android:id="@+id/languageLabel5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Japanese"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/languageLabel1"
-        app:layout_constraintTop_toBottomOf="@+id/languageLabel4" />
-
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="0dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            tools:context=".ui.AccountSettingsActivity">
 
-            <Switch
-                android:id="@+id/switchSports"
+            <TextView
+                android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:switchMinWidth="90dp"
-                android:text="Sports"
-                android:textSize="14sp" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="Conversation topics"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
-            <Switch
-                android:id="@+id/switchFood"
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:text="At what level of proficiency can you speak these languages? To match, you need to be learning (Beginner or Intermediate) at least one, and have mastered (Advanced or Fluent) another."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <TextView
+                android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:switchMinWidth="90dp"
-                android:text="Food"
-                android:textSize="14sp" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="Display name"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/accountSettingsTitle" />
 
-            <Switch
-                android:id="@+id/switchMusic"
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:text="What name should we display to other users?\nYou probably don't need to change this."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <TextView
+                android:id="@+id/accountSettingsTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:switchMinWidth="90dp"
-                android:text="Music"
-                android:textSize="14sp" />
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:text="Account Settings"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <Switch
-                android:id="@+id/switchTravel"
+            <EditText
+                android:id="@+id/editDisplayName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:switchMinWidth="90dp"
-                android:text="Travel"
-                android:textSize="14sp" />
-        </LinearLayout>
-    </HorizontalScrollView>
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textAlignment="center"
+                app:layout_constraintStart_toStartOf="@+id/textView4"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <TextView
+                android:id="@+id/languageLabel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="German"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel2" />
+
+            <Spinner
+                android:id="@+id/languageSpinner4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel4" />
+
+            <Spinner
+                android:id="@+id/languageSpinner3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel3" />
+
+            <Spinner
+                android:id="@+id/languageSpinner1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="32dp"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel1" />
+
+            <TextView
+                android:id="@+id/languageLabel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="French"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel3" />
+
+            <TextView
+                android:id="@+id/languageLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Italian"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel1" />
+
+            <Spinner
+                android:id="@+id/languageSpinner2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel2" />
+
+            <Spinner
+                android:id="@+id/languageSpinner5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel5" />
+
+            <TextView
+                android:id="@+id/languageLabel1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:text="English"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+            <TextView
+                android:id="@+id/languageLabel5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Japanese"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel4" />
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView2">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Switch
+                        android:id="@+id/switchSports"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:switchMinWidth="90dp"
+                        android:text="Sports"
+                        android:textSize="14sp" />
+
+                    <Switch
+                        android:id="@+id/switchFood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:switchMinWidth="90dp"
+                        android:text="Food"
+                        android:textSize="14sp" />
+
+                    <Switch
+                        android:id="@+id/switchMusic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:switchMinWidth="90dp"
+                        android:text="Music"
+                        android:textSize="14sp" />
+
+                    <Switch
+                        android:id="@+id/switchTravel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:switchMinWidth="90dp"
+                        android:text="Travel"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:text="Conversation topics"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editDisplayName" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:text="Which of these are you willing and able to talk to other users about? To match, you'll need at least one."
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/textView"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/reportButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Generate Report"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/accountSettingsTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
     <include
+        android:id="@+id/include4"
         layout="@layout/layout_tabs"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -226,35 +277,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"></include>
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:text="Conversation topics"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDisplayName" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:text="Which of these are you willing and able to talk to other users about? To match, you'll need at least one."
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <Button
-        android:id="@+id/reportButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Generate Report"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/accountSettingsTitle" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+

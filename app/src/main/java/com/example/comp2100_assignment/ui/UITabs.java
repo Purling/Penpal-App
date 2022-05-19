@@ -5,10 +5,10 @@ import android.content.Intent;
 import com.google.android.material.tabs.TabLayout;
 
 /**
+ *  Adds logic to the included UI tab menu to make it
+ *  show the correct tab, and go to the correct layout
+ *  when a different tab is selected
  * @author Zane Gates
- * Adds logic to the included UI tab menu to make it
- * show the correct tab, and go to the correct layout
- * when a different tab is selected
  */
 public class UITabs {
     TabLayout view;

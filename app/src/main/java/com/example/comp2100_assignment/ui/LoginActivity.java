@@ -16,6 +16,10 @@ import com.example.comp2100_assignment.users.User;
 
 import java.util.HashMap;
 
+/***
+ *
+ * @author Xingkun Chen, Ziling Ouyang with some methods created by others
+ */
 public class LoginActivity extends AppCompatActivity {
 
     DatabaseUserManager manager;

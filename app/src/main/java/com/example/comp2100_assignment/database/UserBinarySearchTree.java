@@ -5,6 +5,7 @@ import com.example.comp2100_assignment.users.User;
 /***
  * Implementation of the Binary Search Tree
  *
+ * @author Ziling Ouyang
  */
 public class UserBinarySearchTree implements BinarySearchTree<String, User> {
 
@@ -25,14 +26,6 @@ public class UserBinarySearchTree implements BinarySearchTree<String, User> {
 
         public UserBinaryTreeNode getParent() {
             return parent;
-        }
-
-        public User getValue() {
-            return value;
-        }
-
-        public String getKey() {
-            return key;
         }
 
         public UserBinaryTreeNode(User value) {
@@ -108,6 +101,12 @@ public class UserBinarySearchTree implements BinarySearchTree<String, User> {
         }
     }
 
+    /***
+     * Gets the user from the binary search tree
+     *
+     * @param username The key to search with
+     * @return The User
+     */
     public User get(String username) {
         if (username == null || username.equals("")) return null;
         return get(head, username);
