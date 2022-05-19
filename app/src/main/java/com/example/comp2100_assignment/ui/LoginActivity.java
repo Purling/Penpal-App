@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.comp2100_assignment.R;
 import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.database.UserDao;
+import com.example.comp2100_assignment.users.Language;
 import com.example.comp2100_assignment.users.User;
 
 import java.util.HashMap;
