@@ -12,6 +12,7 @@ import com.example.comp2100_assignment.Parser;
 import com.example.comp2100_assignment.R;
 import com.example.comp2100_assignment.Tokenizer;
 import com.example.comp2100_assignment.conversations.ConversationTopic;
+import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.users.Familiarity;
 import com.example.comp2100_assignment.users.Interestedness;
 import com.example.comp2100_assignment.users.Language;
@@ -58,102 +59,46 @@ public class SearchActivity extends TabbedActivity {
                 contain.add(s.trim());
         }
 
+        UserDao.singleton().getAll(data -> {
+            for (String contains : contain) {
+                try {
+                    if (data.getFamiliarity(Language.valueOf(contains)) != Familiarity.UNINTERESTED) {
+                        listViewList.add(data.getUsername());
+                    }
+                } catch (Exception ignored) {
 
-        ValueEventListener eventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    User user = dataSnapshot.getValue(User.class);
-                    String username = user.getUsername();
-                    listViewList.clear();
-                    for (int i = 0; i < contain.toArray().length; i++) {
-                        String word = (String) contain.toArray()[i];
-                        if (!listViewList.contains(username)) {
-                            if (word.equalsIgnoreCase("ENGLISH") & user.getFamiliarity(Language.ENGLISH) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("ITALIAN") & user.getFamiliarity(Language.ITALIAN) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("GERMAN") & user.getFamiliarity(Language.GERMAN) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("FRENCH") & user.getFamiliarity(Language.FRENCH) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("JAPANESE") & user.getFamiliarity(Language.JAPANESE) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("KOREAN") & user.getFamiliarity(Language.KOREAN) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("MANDARIN") & user.getFamiliarity(Language.MANDARIN) != Familiarity.UNINTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("MUSIC") & user.getConversationTopic(ConversationTopic.MUSIC) == Interestedness.INTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("SPORTS") & user.getConversationTopic(ConversationTopic.SPORTS) == Interestedness.INTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("FOOD") & user.getConversationTopic(ConversationTopic.FOOD) == Interestedness.INTERESTED) {
-                                listViewList.add(word);
-                            }
-                            if (word.equalsIgnoreCase("TRAVEL") & user.getConversationTopic(ConversationTopic.TRAVEL) == Interestedness.INTERESTED) {
-                                listViewList.add(word);
-                            }
+                }
+
+                try {
+                    if (data.getConversationTopic(ConversationTopic.valueOf(contains)) == Interestedness.INTERESTED) {
+                        listViewList.add(data.getUsername());
+                    }
+                } catch (Exception ignored) {
+
+                }
+            }
+
+            for (String notContains : notContain) {
+                if (listViewList.contains(data.getUsername())) {
+                    try {
+                        if (data.getFamiliarity(Language.valueOf(notContains)) == Familiarity.UNINTERESTED) {
+                            listViewList.remove(data.getUsername());
                         }
-                        if (notContain.toArray().length > 0) {
-                            for (int j = 0; j < notContain.toArray().length; j++) {
-                                String notCont = (String) notContain.toArray()[j];
-                                if (listViewList.contains(username)) {
-                                    if (notCont.equalsIgnoreCase("ENGLISH") & user.getFamiliarity(Language.ENGLISH) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("ITALIAN") & user.getFamiliarity(Language.ITALIAN) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("GERMAN") & user.getFamiliarity(Language.GERMAN) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("FRENCH") & user.getFamiliarity(Language.FRENCH) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("JAPANESE") & user.getFamiliarity(Language.JAPANESE) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("KOREAN") & user.getFamiliarity(Language.KOREAN) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("MANDARIN") & user.getFamiliarity(Language.MANDARIN) == Familiarity.UNINTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("MUSIC") & user.getConversationTopic(ConversationTopic.MUSIC) != Interestedness.INTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("SPORTS") & user.getConversationTopic(ConversationTopic.SPORTS) != Interestedness.INTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("FOOD") & user.getConversationTopic(ConversationTopic.FOOD) != Interestedness.INTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                    if (notCont.equalsIgnoreCase("TRAVEL") & user.getConversationTopic(ConversationTopic.TRAVEL) != Interestedness.INTERESTED) {
-                                        listViewList.remove(notCont);
-                                    }
-                                }
-                            }
+                    } catch (Exception ignored) {
+
+                    }
+
+                    try {
+                        if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.UNINTERESTED) {
+                            listViewList.remove(data.getUsername());
                         }
+                    } catch (Exception ignored) {
+
                     }
                 }
-                arrayAdapter.notifyDataSetChanged();
             }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-        databaseReference.addListenerForSingleValueEvent(eventListener);
+            arrayAdapter.notifyDataSetChanged();
+        });
     };
 
     @Override
