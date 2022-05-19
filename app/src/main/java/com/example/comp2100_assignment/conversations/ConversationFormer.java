@@ -36,7 +36,6 @@ public class ConversationFormer implements Singleton {
             if (user1.getConversationTopic(topic) == Interestedness.INTERESTED && user2.getConversationTopic(topic) == Interestedness.INTERESTED) validTopics.add(topic);
         }
 
-//        System.out.println(validTopics);
         if (validTopics.size() == 0) return null;
 
         ArrayList<Language> validLanguages1 = new ArrayList<>();
@@ -53,9 +52,6 @@ public class ConversationFormer implements Singleton {
             if (learning1 && !learning2) validLanguages1.add(language);
             if (learning2 && !learning1) validLanguages2.add(language);
         }
-
-//        System.out.println(validLanguages1);
-//        System.out.println(validLanguages2);
 
         if (validLanguages1.size() == 0 || validLanguages2.size() == 0) return null;
 

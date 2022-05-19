@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /***
  * Class which implements the DAO and singleton patterns for a Conversation
@@ -36,12 +37,12 @@ public class ConversationDao implements DaoPattern<Conversation, String>, Single
 
     @Override
     public String getChildName() {
-        return null;
+        return "conversation";
     }
 
     @Override
     public Class<Conversation> getModelClass() {
-        return null;
+        return Conversation.class;
     }
 
     @Override
