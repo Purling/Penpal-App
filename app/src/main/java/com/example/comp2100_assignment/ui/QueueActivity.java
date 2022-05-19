@@ -117,4 +117,10 @@ public class QueueActivity extends AppCompatActivity {
         };
         timer.start();
     }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        awaitingConversation.removeValue();
+    }
 }
