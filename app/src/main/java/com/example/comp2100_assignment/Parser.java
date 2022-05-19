@@ -46,16 +46,21 @@ public class Parser {
     }
 
     public Exp parseSearch() {
-        Exp content = new contentText(tokenizer.current().getToken());
-        if (tokenizer.current().getType() == Token.Type.NOT ||
-                tokenizer.current().getType() == Token.Type.AND ||
-                tokenizer.current().getType() == Token.Type.OR) {
-            throw new IllegalProductionException("Wrong insert");
-        } else {
-            if (tokenizer.hasNext()) tokenizer.next();
-            else throw new IllegalProductionException("Incorrect grammar");
-            return content;
+        try {
+            Exp content = new contentText(tokenizer.current().getToken());
+            if (tokenizer.current().getType() == Token.Type.NOT ||
+                    tokenizer.current().getType() == Token.Type.AND ||
+                    tokenizer.current().getType() == Token.Type.OR) {
+                throw new IllegalProductionException("Wrong insert");
+            } else {
+                if (tokenizer.hasNext()) tokenizer.next();
+                else throw new IllegalProductionException("Incorrect grammar");
+                return content;
+            }
+        } catch (Exception ignored) {
+            throw new IllegalProductionException("Incorrect grammar");
         }
+
     }
 
     public static class IllegalProductionException extends IllegalArgumentException {
