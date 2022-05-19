@@ -48,7 +48,7 @@ public class FriendActivityTests {
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.friend)).perform(click());
+        onView(withText("FRIENDS")).perform(click());
     }
 
     //Tests that all key elements are displayed

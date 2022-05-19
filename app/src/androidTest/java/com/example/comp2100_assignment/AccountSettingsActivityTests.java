@@ -51,13 +51,12 @@ public class AccountSettingsActivityTests {
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.settingsButton)).perform(click());
+        onView(withText("SETTINGS")).perform(click());
     }
 
     //Tests that all key elements are displayed
     @Test
     public void allElementsDisplayed() {
-        onView(withId(R.id.saveSettingsButton)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.editDisplayName)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.switchSports)).check(matches(isDisplayed()));
         onView(withId(R.id.switchFood)).check(matches(isDisplayed()));
@@ -81,6 +80,8 @@ public class AccountSettingsActivityTests {
 
     }
 
+    //Unnecessary now that settings button is removed
+    /*
     //checks save button exits
     @Test
     public void saveButtonWorks(){
@@ -89,6 +90,8 @@ public class AccountSettingsActivityTests {
         intended(hasComponent(MainActivity.class.getName()));
         Intents.release();
     }
+
+     */
 
     //checks all interactables are interactable
     @Test

@@ -8,9 +8,12 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.intent.Intents.intended;
 import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
+
+import static org.hamcrest.Matchers.allOf;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
@@ -46,7 +49,7 @@ public class SearchActivityTests {
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.login)).perform(click());
-        onView(withId(R.id.search)).perform(click());
+        onView(allOf(withText("SEARCH"),isDescendantOfA(withId(R.id.tabs)))).perform(click());
     }
 
     //Tests that all elements are displayed
