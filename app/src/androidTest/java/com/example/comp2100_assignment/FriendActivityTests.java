@@ -27,9 +27,7 @@ import org.junit.runner.RunWith;
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 
-/**
  * @author William Loughton
  * UI tests for FriendActivity
  */
@@ -57,26 +55,8 @@ public class FriendActivityTests {
     //Tests that all key elements are displayed
     @Test
     public void allElementsDisplayed() {
-        onView(withId(R.id.request)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.add_friend)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.friend_id)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.friend_list)).check(matches(isCompletelyDisplayed()));
 
     }
-
-    //checks buttons are set to interactable
-    @Test
-    public void buttonsInteractable() {
-        onView(withId(R.id.request)).check(matches(isClickable()));
-        onView(withId(R.id.add_friend)).check(matches(isClickable()));
-    }
-
-    // tests that editing id of friend to add works
-    // does NOT test if changing name adds friend with that name
-    @Test
-    public void editFriendIdWorks() {
-        onView(withId(R.id.friend_id)).perform(replaceText("friendUsername"));
-        onView(withText("friendUsername")).check(matches(isDisplayed()));
-    }
-
 
 }
