@@ -15,12 +15,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ui.AccountSettingsActivity">
+
+            <Spinner
+                android:id="@+id/languageSpinner7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel7" />
+
+            <TextView
+                android:id="@+id/languageLabel7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Mandarin"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel1"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel6" />
+
+            <Spinner
+                android:id="@+id/languageSpinner6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:labelFor="@id/languageLabel1"
+                app:layout_constraintStart_toStartOf="@+id/languageSpinner1"
+                app:layout_constraintTop_toTopOf="@+id/languageLabel6" />
+
+            <TextView
+                android:id="@+id/languageLabel6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Korean"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/languageLabel5"
+                app:layout_constraintTop_toBottomOf="@+id/languageLabel5" />
 
             <TextView
                 android:id="@+id/textView6"

@@ -24,13 +24,15 @@ import com.example.comp2100_assignment.conversations.ConversationTopic;
  */
 public class AccountSettingsActivity extends TabbedActivity {
     Switch[] switches;
-
-    ConversationTopic[] topics;
     Spinner[] spinners;
-    Language[] languages;
-    Familiarity[] languageFamiliarities;
-    EditText displayNameEditor;
 
+    int[] switchIDs = {R.id.switchMusic, R.id.switchTravel, R.id.switchFood, R.id.switchSports};
+    ConversationTopic[] topics = new ConversationTopic[]{ConversationTopic.MUSIC, ConversationTopic.TRAVEL, ConversationTopic.FOOD, ConversationTopic.SPORTS};
+    int[] languageSpinnerIDs = {R.id.languageSpinner1, R.id.languageSpinner2, R.id.languageSpinner3, R.id.languageSpinner4, R.id.languageSpinner5, R.id.languageSpinner6, R.id.languageSpinner7};
+    Language[] languages = new Language[]{Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE, Language.KOREAN, Language.MANDARIN};
+    Familiarity[] languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
+
+    EditText displayNameEditor;
     Button reportButton;
 
     @Override
@@ -44,17 +46,12 @@ public class AccountSettingsActivity extends TabbedActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
 
-        // Get the switches from the UI
-        int[] switchIDs = {R.id.switchMusic, R.id.switchTravel, R.id.switchFood, R.id.switchSports};
-        topics = new ConversationTopic[]{ConversationTopic.MUSIC, ConversationTopic.TRAVEL, ConversationTopic.FOOD, ConversationTopic.SPORTS};
+
+
 
         // Gets the language dropdown from the UI
-        int[] languageSpinnerIDs = {R.id.languageSpinner1, R.id.languageSpinner2, R.id.languageSpinner3, R.id.languageSpinner4, R.id.languageSpinner5};
-        languages = new Language[]{Language.ENGLISH, Language.ITALIAN, Language.GERMAN, Language.FRENCH, Language.JAPANESE};
         spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
-        languageFamiliarities = new Familiarity[] {Familiarity.UNINTERESTED, Familiarity.BEGINNER, Familiarity.INTERMEDIATE, Familiarity.ADVANCED, Familiarity.FLUENT};
-
         for (int i = 0; i < languageSpinnerIDs.length; i++) {
             spinners[i] = findViewById(languageSpinnerIDs[i]);
             spinners[i].setAdapter(adapter);
@@ -67,6 +64,7 @@ public class AccountSettingsActivity extends TabbedActivity {
             }
         }
 
+        // Get the switches from the UI
         switches = new Switch[switchIDs.length];
         for (int i = 0; i < switches.length; i++) {
             switches[i] = findViewById(switchIDs[i]);
