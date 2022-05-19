@@ -34,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.net.URL;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 /**
@@ -159,8 +160,11 @@ public class ConversationActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (permanent) return;
-                if ((snapshot.getValue(String.class) == null) || snapshot.getValue(String.class).equals("#CLOSED"))
+                if ((snapshot.getValue(String.class) == null) || snapshot.getValue(String.class).equals("#CLOSED")) {
+                    System.out.println(snapshot.getValue(String.class));
+                    System.out.println("Closed by #CLOSED");
                     returnToMainActivity(permanent);
+                }
             }
 
             @Override
@@ -286,9 +290,14 @@ public class ConversationActivity extends AppCompatActivity {
             //generate the view
             LinearLayout linearLayout = new LinearLayout(this);
             TextView messageAuthor = new TextView(this);
-            messageAuthor.setText(message.author);
-            messageAuthor.setTextSize(20);
-            messageAuthor.setPadding(0, 0, 20, 0);
+            if (message.author != null) {
+                User sender = DatabaseUserManager.getUser(message.author);
+                if (sender != null) {
+                    messageAuthor.setText(DatabaseUserManager.getUser(message.author).getDisplayName());
+                    messageAuthor.setTextSize(20);
+                    messageAuthor.setPadding(0, 0, 20, 0);
+                }
+            }
             TextView conversationText = new TextView(this);
             conversationText.setText(message.content);
             conversationText.setTextSize(16);

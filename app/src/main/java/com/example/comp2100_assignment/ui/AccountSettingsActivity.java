@@ -101,7 +101,7 @@ public class AccountSettingsActivity extends TabbedActivity {
         for (int i = 0; i < spinners.length; i++) {
             user.setFamiliarity(languages[i], languageFamiliarities[spinners[i].getSelectedItemPosition()]);
         }
-        user.setDisplayName(displayNameEditor.getText().toString());
+        user.setDisplayName(displayNameEditor.getText().toString().replaceAll("\n", ""));
         UserDao.singleton().save(user, false);
     }
 }

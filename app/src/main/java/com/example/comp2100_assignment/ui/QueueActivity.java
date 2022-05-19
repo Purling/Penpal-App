@@ -38,6 +38,8 @@ public class QueueActivity extends AppCompatActivity {
     int eyeImageIndex = 0;
     int ticksUntilNextFrame = 1;
 
+    boolean leavingToConversaion = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class QueueActivity extends AppCompatActivity {
                     intent.putExtra("conversationName", newConversationName);
                     intent.putExtra("queueName", conversationName);
                     intent.putExtra("owner", willBeOwner);
+                    leavingToConversaion = true;
                     startActivity(intent);
                 }
             }
@@ -121,6 +124,7 @@ public class QueueActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        awaitingConversation.removeValue();
+        if (!leavingToConversaion)
+            awaitingConversation.removeValue();
     }
 }
