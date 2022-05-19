@@ -7,8 +7,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.R;
+import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.users.User;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class FriendActivity extends TabbedActivity {
             targetConversations.add(user.getFriends().get(key));
         }
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
                 friends);

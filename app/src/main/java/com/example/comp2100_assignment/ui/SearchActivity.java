@@ -34,25 +34,25 @@ public class SearchActivity extends TabbedActivity {
     private Button button;
     private ListView listView;
     private EditText editText;
-    private List<String> listViewList = new ArrayList<String>();
+    private List<String> listViewList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("username");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+        user = (User) getIntent().getSerializableExtra("user");
 
         tabs = new UITabs(findViewById(R.id.tabs), this);
 
-        Intent intent = getIntent();
-        intent.getStringExtra("search");
-        startActivity(intent);
+        // What does this line even do?
+        getIntent().getStringExtra("search");
 
         button = findViewById(R.id.search);
         editText = findViewById(R.id.Input);
         listView = findViewById(R.id.result);
         button.setOnClickListener(find_Listener);
-        arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listViewList);
+        arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listViewList);
         listView.setAdapter(arrayAdapter);
     }
     public View.OnClickListener find_Listener = (view) -> {
@@ -62,8 +62,8 @@ public class SearchActivity extends TabbedActivity {
         String parser = new Parser(tokenizer).parseExp().show();
 
         String[] content = parser.split(",");
-        ArrayList<String> contain = new ArrayList<String>();
-        ArrayList<String> Notcontain = new ArrayList<String>();
+        ArrayList<String> contain = new ArrayList<>();
+        ArrayList<String> Notcontain = new ArrayList<>();
 
         for (int i = 0; i < content.length; i++) {
             if (content[i].contains("not")){

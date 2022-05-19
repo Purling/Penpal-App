@@ -13,26 +13,35 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.comp2100_assignment.database.DatabaseDictionaryWatcher;
-import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.R;
-import com.example.comp2100_assignment.users.User;
 import com.example.comp2100_assignment.conversations.Conversation;
 import com.example.comp2100_assignment.conversations.ConversationFormer;
+import com.example.comp2100_assignment.database.DatabaseDictionaryWatcher;
+import com.example.comp2100_assignment.database.DatabaseUserManager;
+import com.example.comp2100_assignment.users.User;
 import com.google.firebase.database.DatabaseReference;
 
 import java.net.URL;
 
 /**
  * The primary class, serving as a menu and an account visualiser
+ *
  * @author Various, majority Zane Gates
  */
 public class MainActivity extends TabbedActivity {
+    /**
+     * Logs the user out
+     *
+     * @author Zane Gates
+     */
+    public View.OnClickListener log_out_listener = (view) -> {
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+    };
     DatabaseUserManager manager;
-
     DatabaseReference availableReference;
     DatabaseDictionaryWatcher queueWatcher;
-
     /**
      * @author Zane Gates
      * tries to join another user's conversation
@@ -82,16 +91,6 @@ public class MainActivity extends TabbedActivity {
     private Button settingsButton;
     private Button logOutButton;
 
-    /**
-     * Logs the user out
-     * @author Zane Gates
-     */
-    public View.OnClickListener log_out_listener = (view) -> {
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -129,7 +128,7 @@ public class MainActivity extends TabbedActivity {
         logOutButton.setOnClickListener(log_out_listener);
 
         if (!user.ableToFindConversation()) {
-            ((TextView)findViewById(R.id.unmatchableWarning)).setText("Your account is not ready to queue.\nPlease use the settings tab.");
+            ((TextView) findViewById(R.id.unmatchableWarning)).setText("Your account is not ready to queue.\nPlease use the settings tab.");
             match.setEnabled(false);
             match.setBackgroundColor(getColor(R.color.gray));
         }
