@@ -39,58 +39,63 @@ public class SearchActivity extends TabbedActivity {
         Tokenizer tokenizer = new Tokenizer(input);
         if (tokenizer.current() == null)
             Toast.makeText(getApplicationContext(), "Invalid Search Query", Toast.LENGTH_SHORT);
-        String parser = new Parser(tokenizer).parseExp().show();
+        try {
+            String parser = new Parser(tokenizer).parseExp().show();
+            String[] content = parser.split(",");
+            ArrayList<String> contain = new ArrayList<>();
+            ArrayList<String> notContain = new ArrayList<>();
 
-        String[] content = parser.split(",");
-        ArrayList<String> contain = new ArrayList<>();
-        ArrayList<String> notContain = new ArrayList<>();
+            for (String s : content) {
+                if (s.contains("not")) {
+                    String word = s.substring(4);
+                    word = word.trim();
+                    notContain.add(word);
+                } else
+                    contain.add(s.trim());
+            }
 
-        for (String s : content) {
-            if (s.contains("not")) {
-                String word = s.substring(4);
-                word = word.trim();
-                notContain.add(word);
-            } else
-                contain.add(s.trim());
+            UserDao.singleton().getAll(data -> {
+                for (String contains : contain) {
+                    if (!listViewList.contains(data.getUsername())) {
+                        try {
+                            if (data.getFamiliarity(Language.valueOf(contains)) != Familiarity.UNINTERESTED) {
+                                listViewList.add(data.getUsername());
+                            }
+                        } catch (Exception ignored) {
+                        }
+
+                        try {
+                            if (data.getConversationTopic(ConversationTopic.valueOf(contains)) == Interestedness.INTERESTED) {
+                                listViewList.add(data.getUsername());
+                            }
+                        } catch (Exception ignored) {
+
+                        }
+                    }
+                }
+
+                for (String notContains : notContain) {
+                    if (listViewList.contains(data.getUsername())) {
+                        try {
+                            if (data.getFamiliarity(Language.valueOf(notContains)) != Familiarity.UNINTERESTED) {
+                                listViewList.remove(data.getUsername());
+                            }
+                        } catch (Exception ignored) {
+                        }
+                        try {
+                            if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.INTERESTED) {
+                                listViewList.remove(data.getUsername());
+                            }
+                        } catch (Exception ignored) {
+
+                        }
+                    }
+                }
+                arrayAdapter.notifyDataSetChanged();
+            });
+        } catch (Exception ignored) {
+
         }
-
-        UserDao.singleton().getAll(data -> {
-            for (String contains : contain) {
-                try {
-                    if (data.getFamiliarity(Language.valueOf(contains)) != Familiarity.UNINTERESTED) {
-                        listViewList.add(data.getUsername());
-                    }
-                } catch (Exception ignored) {
-                }
-
-                try {
-                    if (data.getConversationTopic(ConversationTopic.valueOf(contains)) == Interestedness.INTERESTED) {
-                        listViewList.add(data.getUsername());
-                    }
-                } catch (Exception ignored) {
-
-                }
-            }
-
-            for (String notContains : notContain) {
-                if (listViewList.contains(data.getUsername())) {
-                    try {
-                        if (data.getFamiliarity(Language.valueOf(notContains)) != Familiarity.UNINTERESTED) {
-                            listViewList.remove(data.getUsername());
-                        }
-                    } catch (Exception ignored) {
-                    }
-                    try {
-                        if (data.getConversationTopic(ConversationTopic.valueOf(notContains)) == Interestedness.INTERESTED) {
-                            listViewList.remove(data.getUsername());
-                        }
-                    } catch (Exception ignored) {
-
-                    }
-                }
-            }
-            arrayAdapter.notifyDataSetChanged();
-        });
     };
 
     @Override
