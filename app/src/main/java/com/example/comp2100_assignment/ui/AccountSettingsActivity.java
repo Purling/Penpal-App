@@ -85,7 +85,11 @@ public class AccountSettingsActivity extends TabbedActivity {
     View.OnClickListener generateReport = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            System.out.println(user.generateUserReport());
+            exitTabCallback();
+            Intent intent = new Intent();
+            intent.setClass(AccountSettingsActivity.this, AccountReportActivity.class);
+            intent.putExtra("user", user);
+            startActivity(intent);
         }
     };
 
