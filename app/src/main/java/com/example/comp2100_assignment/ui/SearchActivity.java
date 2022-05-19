@@ -94,7 +94,7 @@ public class SearchActivity extends TabbedActivity {
                 arrayAdapter.notifyDataSetChanged();
             });
         } catch (Exception ignored) {
-
+            arrayAdapter.notifyDataSetChanged();
         }
     };
 
