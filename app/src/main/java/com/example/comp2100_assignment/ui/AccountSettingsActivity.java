@@ -47,10 +47,7 @@ public class AccountSettingsActivity extends TabbedActivity {
         Intent intent = getIntent();
         user = (User) intent.getSerializableExtra("user");
 
-
-
-
-        // Gets the language dropdown from the UI
+        // Gets the language dropdown from the UI, and sets them to the value stored in the User
         spinners = new Spinner[languageSpinnerIDs.length];
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.languageSkillLevels, android.R.layout.simple_spinner_item);
         for (int i = 0; i < languageSpinnerIDs.length; i++) {
@@ -65,7 +62,7 @@ public class AccountSettingsActivity extends TabbedActivity {
             }
         }
 
-        // Get the switches from the UI
+        // Get the switches from the UI, and sets them to the values stored in the User
         switches = new Switch[switchIDs.length];
         for (int i = 0; i < switches.length; i++) {
             switches[i] = findViewById(switchIDs[i]);
@@ -95,6 +92,10 @@ public class AccountSettingsActivity extends TabbedActivity {
         }
     };
 
+    /**
+     * When the user exits this activity (either by pressing another tab)
+     * or going to the report viewer, we must save any changed settings
+     */
     @Override
     public void exitTabCallback() {
         for (int i = 0; i < switches.length; i++) {

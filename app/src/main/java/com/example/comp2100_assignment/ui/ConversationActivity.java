@@ -107,6 +107,8 @@ public class ConversationActivity extends AppCompatActivity {
 
         }
 
+        // We use a listener to keep track of every message sent in this conversation
+        // The arrayList is updated whenever this changes, and the conversation is updated
         conversationMessagesRoot.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -143,6 +145,7 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
+        // Send a message and clear the box when the button is pressed
         findViewById(R.id.sendButton).setOnClickListener(view -> {
             UserMessage message = new UserMessage(user.getUsername(), messageBox.getText().toString());
             conversationMessagesRoot.child(String.valueOf(message.hashCode())).setValue(message);
@@ -156,6 +159,7 @@ public class ConversationActivity extends AppCompatActivity {
             returnToMainActivity(permanent);
         });
 
+        // Whenever either user presses the back button of a transitory conversation, both users should exit
         availableReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -173,10 +177,12 @@ public class ConversationActivity extends AppCompatActivity {
             }
         });
 
+        // Make the username labels and avatars correspond with the conversation's users
         associateLabel(R.id.user1Label, R.id.user1Avatar, conversationRoot.child("user1"), 1);
         associateLabel(R.id.user2Label, R.id.user2Avatar, conversationRoot.child("user2"), 2);
 
         addFriendButton = findViewById(R.id.addFriendButton);
+        // The friend button becomes an unfriend button if this is a permanent conversation
         if (permanent) {
             addFriendButton.setBackgroundColor(getResources().getColor(R.color.gray));
             addFriendButton.setText("Unfriend");
@@ -185,13 +191,12 @@ public class ConversationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (permanent) {
+                    // (As an unfriend button) remove the friend and exit the conversation
                     user.removeFriendConversation(conversationName);
-                    for (String fName : user.getFriends().keySet()) {
-                        System.out.println(fName + ": " + user.getFriends().get(fName));
-                    }
                     UserDao.singleton().save(user, false);
                     returnToMainActivity(permanent);
                 } else {
+                    // (As a friend button) save the conversation, but remain
                     user.addFriendConversation(otherUser.getUsername(), conversationName);
                     UserDao.singleton().save(user, false);
                     addFriendButton.setEnabled(false);
@@ -200,6 +205,11 @@ public class ConversationActivity extends AppCompatActivity {
         });
 
         if (permanent) return;
+
+        // Use the topic and language labels to spur conversation
+        // Each of these loads the corresponding value from the database and stores it here
+        // We can't use an immediate listener because these values might not be set
+        // by the time either user reaches this activity, depending on connection speed
 
         conversationRoot.child("topic").addValueEventListener(new ValueEventListener() {
             @Override
@@ -241,6 +251,13 @@ public class ConversationActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Makes GUI elements show the data of a particular user
+     * @param label the ID for the GUI name
+     * @param avatarID the ID for the GUI avatar
+     * @param reference the database reference to where the user is stored (as a child of conversation)
+     * @param userNumber the index of the user (1 or 2)
+     */
     void associateLabel(int label, int avatarID, DatabaseReference reference, int userNumber) {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -312,6 +329,10 @@ public class ConversationActivity extends AppCompatActivity {
         }, 100);
     }
 
+    /**
+     * Return to the appropriate activity given whether this conversation was permanent or not
+     * @param permanent whether or not the conversation was permanent
+     */
     void returnToMainActivity(boolean permanent) {
         Intent intent = new Intent();
         intent.setClass(ConversationActivity.this, permanent ? FriendActivity.class : MainActivity.class);
