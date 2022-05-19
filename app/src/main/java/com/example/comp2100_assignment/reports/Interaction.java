@@ -17,6 +17,12 @@ public class Interaction implements Serializable {
         // Default constructor required for Firebase serialization
     }
 
+    public Interaction(long time, InteractionType interactionType, String interactionName) {
+        this.time = time;
+        this.type = interactionType;
+        this.detail = interactionName;
+    }
+
     public String toString() {
         return LocalDateTime.ofEpochSecond(time, 0, ZoneOffset.of("AEST")) + ": " + detail + " (" + type + ")";
     }

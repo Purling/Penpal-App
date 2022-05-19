@@ -10,6 +10,8 @@ import android.widget.Button;
 
 import com.example.comp2100_assignment.database.DatabaseUserManager;
 import com.example.comp2100_assignment.R;
+import com.example.comp2100_assignment.reports.Interaction;
+import com.example.comp2100_assignment.reports.InteractionType;
 import com.example.comp2100_assignment.users.User;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -60,6 +62,7 @@ public class QueueActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 String newConversationName = snapshot.getValue(String.class);
                 if (newConversationName != null && !newConversationName.equals("#QUEUED")) {
+                    user.logInteraction(InteractionType.TRANSITORY_CONVERSATION, newConversationName);
                     Intent intent = new Intent();
                     intent.setClass(QueueActivity.this, ConversationActivity.class);
                     intent.putExtra("user", user);

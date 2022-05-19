@@ -4,8 +4,10 @@ import android.graphics.Bitmap;
 
 import com.example.comp2100_assignment.conversations.ConversationTopic;
 import com.example.comp2100_assignment.conversations.TransitoryConversation;
+import com.example.comp2100_assignment.database.UserDao;
 import com.example.comp2100_assignment.friendships.FriendshipRequest;
 import com.example.comp2100_assignment.reports.Interaction;
+import com.example.comp2100_assignment.reports.InteractionType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -256,6 +258,19 @@ public class User implements Serializable {
             output.append(interaction.toString());
         }
         return output.toString();
+    }
+
+    /**
+     * @author Zane Gates
+     * Adds an interaction constructed from the given details to the local list
+     * and pushes the update to the database
+     * @param interactionType type
+     * @param interactionName the conversation name
+     */
+    public void logInteraction(InteractionType interactionType, String interactionName) {
+        if (interactions == null) interactions = new ArrayList<>();
+        interactions.add(new Interaction(System.currentTimeMillis(), interactionType, interactionName));
+        UserDao.singleton().save(this, false);
     }
 
     interface FamiliarityFunction {
