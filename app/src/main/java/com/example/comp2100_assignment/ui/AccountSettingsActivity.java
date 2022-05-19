@@ -2,7 +2,9 @@ package com.example.comp2100_assignment.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -28,6 +30,8 @@ public class AccountSettingsActivity extends TabbedActivity {
     Language[] languages;
     Familiarity[] languageFamiliarities;
     EditText displayNameEditor;
+
+    Button reportButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +77,17 @@ public class AccountSettingsActivity extends TabbedActivity {
 
         displayNameEditor = findViewById(R.id.editDisplayName);
         displayNameEditor.setText(user.getDisplayName());
+
+        reportButton = findViewById(R.id.reportButton);
+        reportButton.setOnClickListener(generateReport);
     }
 
-
+    View.OnClickListener generateReport = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            System.out.println(user.generateUserReport());
+        }
+    };
 
     @Override
     public void exitTabCallback() {

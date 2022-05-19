@@ -30,7 +30,7 @@ public class User implements Serializable {
     private HashMap<String, Interestedness> conversationTopics;
     private TransitoryConversation conversation;
     private HashMap<String, String> friends;
-    private List<Interaction> interactions;
+    private HashMap<String, Interaction> interactions;
 
     public User() {
     }
@@ -43,6 +43,8 @@ public class User implements Serializable {
 
         familiarity = new HashMap<>();
         conversationTopics = new HashMap<>();
+        interactions = new HashMap<>();
+        interactions.put("base", null);
 
         friends = new HashMap<>();
 
@@ -250,7 +252,8 @@ public class User implements Serializable {
         if (interactions == null) return "";
         StringBuilder output = new StringBuilder();
         boolean firstInteraction = true;
-        for (Interaction interaction : interactions) {
+        for (Interaction interaction : interactions.values()) {
+            if (interaction == null) continue;
             if (!firstInteraction) {
                 output.append("\n");
             }
@@ -268,9 +271,20 @@ public class User implements Serializable {
      * @param interactionName the conversation name
      */
     public void logInteraction(InteractionType interactionType, String interactionName) {
-        if (interactions == null) interactions = new ArrayList<>();
-        interactions.add(new Interaction(System.currentTimeMillis(), interactionType, interactionName));
+        if (interactions == null) interactions = new HashMap<>();
+        long interactionTime = System.currentTimeMillis();
+        Interaction generated = new Interaction(System.currentTimeMillis(), interactionType, interactionName);
+        interactions.put(String.valueOf(interactionTime), generated);
+        System.out.println(generated);
         UserDao.singleton().save(this, false);
+    }
+
+    public void setInteractions(HashMap<String, Interaction> interactions) {
+        this.interactions = interactions;
+    }
+
+    public HashMap<String, Interaction> getInteractions() {
+        return interactions;
     }
 
     interface FamiliarityFunction {
