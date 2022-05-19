@@ -3,9 +3,7 @@ package com.example.comp2100_assignment.users;
 import android.graphics.Bitmap;
 
 import com.example.comp2100_assignment.conversations.ConversationTopic;
-import com.example.comp2100_assignment.conversations.TransitoryConversation;
 import com.example.comp2100_assignment.database.UserDao;
-import com.example.comp2100_assignment.friendships.FriendshipRequest;
 import com.example.comp2100_assignment.reports.Interaction;
 import com.example.comp2100_assignment.reports.InteractionType;
 
@@ -28,7 +26,6 @@ public class User implements Serializable {
     private List<User> blockedUsers;
     private HashMap<String, Familiarity> familiarity;
     private HashMap<String, Interestedness> conversationTopics;
-    private TransitoryConversation conversation;
     private HashMap<String, String> friends;
     private HashMap<String, Interaction> interactions;
 
@@ -121,38 +118,6 @@ public class User implements Serializable {
         this.friends = friends;
     }
 
-    /*public void receiveFriendRequest(FriendshipRequest request) {
-        friends.add(request);
-    }*/
-
-    public void acceptFriendRequest(FriendshipRequest request) {
-        request.accept(this);
-    }
-
-    public void ignoreFriendRequest(FriendshipRequest request) {
-        request.ignore(this);
-    }
-
-    public void unfriendFriend(FriendshipRequest request) {
-        request.unfriend(this);
-    }
-
-    public void withdrawFriendRequest(FriendshipRequest request) {
-        request.withdraw(this);
-    }
-
-    public void resendFriendRequest(FriendshipRequest request) {
-        request.resend(this);
-    }
-
-    public TransitoryConversation getTransitoryConversation() {
-        return conversation;
-    }
-
-    public void setTransitoryConversation(TransitoryConversation newConversation) {
-        conversation = newConversation;
-    }
-
     public Bitmap getProfilePicture() {
         return profilePicture;
     }
@@ -183,14 +148,6 @@ public class User implements Serializable {
 
     public void setFamiliarity(HashMap<String, Familiarity> familiarity) {
         this.familiarity = familiarity;
-    }
-
-    public TransitoryConversation getConversation() {
-        return conversation;
-    }
-
-    public void setConversation(TransitoryConversation conversation) {
-        this.conversation = conversation;
     }
 
     //adds userToBlock to this' list of blocked users
