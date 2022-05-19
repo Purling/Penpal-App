@@ -35,6 +35,10 @@ import com.example.comp2100_assignment.ui.SearchActivity;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+/**
+ * @author William Loughton
+ * UI tests for MainActivity
+ */
 @RunWith(AndroidJUnit4.class)
 public class MainActivityTests {
     //sets the activity before and after every test is run

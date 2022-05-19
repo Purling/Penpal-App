@@ -6,8 +6,6 @@ import static androidx.test.espresso.action.ViewActions.pressBack;
 import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
-import static androidx.test.espresso.intent.Intents.intended;
-import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
@@ -17,18 +15,23 @@ import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.comp2100_assignment.ui.LoginActivity;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import com.example.comp2100_assignment.ui.LoginActivity;
 
 
 /**
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
+
+/**
+ * @author William Loughton
+ * UI tests for FriendActivity
  */
 @RunWith(AndroidJUnit4.class)
 public class FriendActivityTests {
@@ -42,7 +45,7 @@ public class FriendActivityTests {
     //this actually navigates the app to reach the activity
     //so major UI changes could break this
     @Before
-    public void queueActivityTestSetup(){
+    public void queueActivityTestSetup() {
         onView(withId(R.id.username)).perform(typeText("testUser"));
         onView(withId(R.id.username)).perform(pressBack());
         onView(withId(R.id.password)).perform(typeText("testUserPass"));
@@ -62,7 +65,7 @@ public class FriendActivityTests {
 
     //checks buttons are set to interactable
     @Test
-    public void buttonsInteractable(){
+    public void buttonsInteractable() {
         onView(withId(R.id.request)).check(matches(isClickable()));
         onView(withId(R.id.add_friend)).check(matches(isClickable()));
     }
@@ -70,11 +73,10 @@ public class FriendActivityTests {
     // tests that editing id of friend to add works
     // does NOT test if changing name adds friend with that name
     @Test
-    public void editFriendIdWorks(){
+    public void editFriendIdWorks() {
         onView(withId(R.id.friend_id)).perform(replaceText("friendUsername"));
         onView(withText("friendUsername")).check(matches(isDisplayed()));
     }
-
 
 
 }

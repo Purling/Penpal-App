@@ -14,6 +14,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
+/***
+ * Class which implements the DAO pattern for Users stored in the database
+ *
+ * @author Ziling Ouyang
+ */
 public class UserDao implements DaoPattern<User, String>, Singleton {
 
     private static UserDao userDao = null;
@@ -45,6 +50,7 @@ public class UserDao implements DaoPattern<User, String>, Singleton {
                 else {
                     if (user.getFamiliarity() == null) user.setFamiliarity(new HashMap<>());
                     if (user.getConversationTopics() == null) user.setConversationTopics(new HashMap<>());
+                    if (user.getFriends() == null) user.setFriends(new HashMap<>());
                     listener.onSuccess(user);
                 }
 

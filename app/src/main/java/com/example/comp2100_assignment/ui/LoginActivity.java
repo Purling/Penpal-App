@@ -133,6 +133,10 @@ public class LoginActivity extends AppCompatActivity {
      *
      * @param password The string password to be checked
      * @return True if the password is up to standard, false otherwise
+     *
+     *  * @author Ziling Ouyang and William Loughton
+     *
+     *
      */
     // TODO Could create a helper class or put this method somewhere else.
     public boolean passwordMeetsPolicy(String password) {
