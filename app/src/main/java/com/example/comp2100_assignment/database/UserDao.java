@@ -142,7 +142,7 @@ public class UserDao implements DaoPattern<User, String>, Singleton {
                         .child("conversationTopics").setValue(user.getConversationTopics());
             if (user.getUsername() != null)
                 mDatabase.child(getChildName()).child(String.valueOf(user.getUsername()))
-                        .child("friendRequests").setValue(user.getFriends());
+                        .child("friends").setValue(user.getFriends());
             if (user.getUsername() != null)
                 mDatabase.child(getChildName()).child(String.valueOf(user.getUsername()))
                         .child("interactions").setValue(user.getInteractions());
