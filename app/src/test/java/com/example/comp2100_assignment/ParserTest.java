@@ -7,6 +7,10 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThrows;
 
+/**
+ * Tests for Parser class
+ * @author William Loughton
+ */
 public class ParserTest {
 
 

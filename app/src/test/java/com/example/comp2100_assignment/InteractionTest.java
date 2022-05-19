@@ -12,7 +12,10 @@ import com.example.comp2100_assignment.reports.InteractionType;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-
+/**
+ * Tests for interaction class
+ * @author William Loughton
+ */
 public class InteractionTest {
 
     @Test

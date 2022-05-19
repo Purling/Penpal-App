@@ -34,7 +34,6 @@ import com.example.comp2100_assignment.ui.SearchActivity;
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 /**
  * @author William Loughton
  * UI tests for MainActivity
@@ -63,11 +62,8 @@ public class MainActivityTests {
     @Test
     public void allElementsDisplayed() {
         onView(withId(R.id.profile_picture)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.title_app)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.input_text)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.search)).check(matches(isCompletelyDisplayed()));
-        onView(withId(R.id.my_lv)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.match)).check(matches(isCompletelyDisplayed()));
+        onView(withId(R.id.logOutButton)).check(matches(isCompletelyDisplayed()));
         onView(allOf(withText("SETTINGS"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
         onView(allOf(withText("FRIENDS"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
         onView(allOf(withText("SEARCH"),isDescendantOfA(withId(R.id.tabs)))).check(matches(isCompletelyDisplayed()));
@@ -110,6 +106,15 @@ public class MainActivityTests {
         intended(hasComponent(FriendActivity.class.getName()));
         Intents.release();
     }
+    //checks logout button works
+    @Test
+    public void logOutButtonWorks(){
+        Intents.init();
+        onView(withId(R.id.logOutButton)).perform(click());
+        intended(hasComponent(LoginActivity.class.getName()));
+        Intents.release();
+    }
+
 
 
 
