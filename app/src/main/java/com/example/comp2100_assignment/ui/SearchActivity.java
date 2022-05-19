@@ -6,6 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.comp2100_assignment.Parser;
 import com.example.comp2100_assignment.R;
@@ -30,27 +31,29 @@ import java.util.List;
  * @author Xingkun Chen
  */
 public class SearchActivity extends TabbedActivity {
+    private final List<String> listViewList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("username");
     private Button button;
     private ListView listView;
     private EditText editText;
-    private final List<String> listViewList = new ArrayList<>();
     public View.OnClickListener find_Listener = (view) -> {
 
         String input = editText.getText().toString();
         Tokenizer tokenizer = new Tokenizer(input);
+        if (tokenizer.current() == null)
+            Toast.makeText(getApplicationContext(), "Invalid Search Query", Toast.LENGTH_SHORT);
         String parser = new Parser(tokenizer).parseExp().show();
 
         String[] content = parser.split(",");
         ArrayList<String> contain = new ArrayList<>();
-        ArrayList<String> Notcontain = new ArrayList<>();
+        ArrayList<String> notContain = new ArrayList<>();
 
         for (String s : content) {
             if (s.contains("not")) {
                 String word = s.substring(4);
                 word = word.trim();
-                Notcontain.add(word);
+                notContain.add(word);
             } else
                 contain.add(s.trim());
         }
@@ -100,9 +103,9 @@ public class SearchActivity extends TabbedActivity {
                                 listViewList.add(word);
                             }
                         }
-                        if (Notcontain.toArray().length > 0) {
-                            for (int j = 0; j < Notcontain.toArray().length; j++) {
-                                String notCont = (String) Notcontain.toArray()[j];
+                        if (notContain.toArray().length > 0) {
+                            for (int j = 0; j < notContain.toArray().length; j++) {
+                                String notCont = (String) notContain.toArray()[j];
                                 if (listViewList.contains(username)) {
                                     if (notCont.equalsIgnoreCase("ENGLISH") & user.getFamiliarity(Language.ENGLISH) == Familiarity.UNINTERESTED) {
                                         listViewList.remove(notCont);

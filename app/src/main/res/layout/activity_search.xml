@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/Input"
         android:layout_width="0dp"
-        android:layout_height="47dp"
+        android:layout_height="48dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:ems="10"
@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="20dp"
-        android:text="Button"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="@+id/Input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/Input"
