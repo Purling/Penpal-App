@@ -3,6 +3,7 @@ package com.example.comp2100_assignment.ui;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentContainerView;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -10,8 +11,11 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.comp2100_assignment.conversations.ConversationFormer;
@@ -219,12 +223,22 @@ public class ConversationActivity extends AppCompatActivity {
 
     void updateConversationDisplay() {
         //TODO: make it look nicer
-        StringBuilder sb = new StringBuilder();
-        for (UserMessage message : messages) {
-            sb.append(message).append("\n");
-        }
-        System.out.println(sb.toString());
-        conversation.setText(sb.toString());
+        ScrollView scrollView = findViewById(R.id.conversationScrollView);
+        LinearLayout messageLayout = findViewById(R.id.conversationLinearLayout);
+        //only need to do this for last message
+        //so get latest message
+        UserMessage message = messages.get(messages.size()-1);
+        //generate the view
+        LinearLayout linearLayout = new LinearLayout(this);
+        TextView messageAuthor = new TextView(this);
+        messageAuthor.setText(message.author);
+        messageAuthor.setTextSize(20);
+        TextView conversationText = new TextView(this);
+        conversationText.setText(message.content);
+        messageAuthor.setTextSize(12);
+        linearLayout.addView(messageAuthor);
+        linearLayout.addView(conversationText);
+        messageLayout.addView(linearLayout);
     }
 
     void returnToMainActivity(boolean permanent) {
