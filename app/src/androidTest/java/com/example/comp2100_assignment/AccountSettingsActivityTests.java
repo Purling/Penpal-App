@@ -7,15 +7,20 @@ import static androidx.test.espresso.action.ViewActions.replaceText;
 import static androidx.test.espresso.action.ViewActions.swipeLeft;
 import static androidx.test.espresso.action.ViewActions.typeText;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.intent.Intents.intended;
+import static androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isCompletelyDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
+import androidx.test.espresso.intent.Intents;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import com.example.comp2100_assignment.ui.AccountReportActivity;
+import com.example.comp2100_assignment.ui.AccountSettingsActivity;
 import com.example.comp2100_assignment.ui.LoginActivity;
 
 import org.junit.Before;
@@ -28,9 +33,6 @@ import org.junit.runner.RunWith;
  * Instrumented test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
-
-/**
  * @author William Loughton
  * UI tests for AccountSettingsActivity
  */
@@ -58,6 +60,7 @@ public class AccountSettingsActivityTests {
     //Tests that all key elements are displayed
     @Test
     public void allElementsDisplayed() {
+        onView(withId(R.id.reportButton)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.editDisplayName)).check(matches(isCompletelyDisplayed()));
         onView(withId(R.id.switchSports)).check(matches(isDisplayed()));
         onView(withId(R.id.switchFood)).check(matches(isDisplayed()));
@@ -80,18 +83,6 @@ public class AccountSettingsActivityTests {
 
     }
 
-    //Unnecessary now that settings button is removed
-    /*
-    //checks save button exits
-    @Test
-    public void saveButtonWorks(){
-        Intents.init();
-        onView(withId(R.id.saveSettingsButton)).perform(click());
-        intended(hasComponent(MainActivity.class.getName()));
-        Intents.release();
-    }
-
-     */
 
     //checks all interactables are interactable
     @Test
@@ -116,6 +107,15 @@ public class AccountSettingsActivityTests {
     public void editDisplayNameWorks() {
         onView(withId(R.id.editDisplayName)).perform(replaceText("newUsername"));
         onView(withText("newUsername")).check(matches(isDisplayed()));
+    }
+
+    // tests that generate report button works
+    @Test
+    public void reportButtonWorks() {
+        Intents.init();
+        onView(withId(R.id.reportButton)).perform(click());
+        intended(hasComponent(AccountReportActivity.class.getName()));
+        Intents.release();
     }
 
 
