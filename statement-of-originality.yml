@@ -9,12 +9,19 @@ declaration: >-
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external code)
 code:
-  - comment:
-    url:
-    licence:
+  - comment: Help with the regular expression
+    url: https://stackoverflow.com/a/14278602
+    licence: CC BY-SA 3.0
 
+  - comment: Help with the regular expression
+    url: https://stackoverflow.com/a/14278602
+    licence: CC BY-SA 3.0
 
-   - comment: loading image from web asynchronously
+  - comment: Determining which method to use to access the Firebase database
+    url: https://stackoverflow.com/a/66072472
+    licence: CC BY-SA 3.0
+
+  - comment: loading image from web asynchronously
     url: https://stackoverflow.com/a/14443056
     licence: CC BY-SA 3.0
 
