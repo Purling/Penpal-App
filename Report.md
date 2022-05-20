@@ -73,7 +73,7 @@ u7283599, William Loughton, code contribution percentage: 12.5%
 * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
 * Created app title with Zane
 
-u7334218, Zane Gates, code contribution percentage: .
+u7334218, Zane Gates, code contribution percentage: 40.6%
 * Implemented account settings pages (database, interface and UI)
 * Implemented conversation generation (database, interface and UI)
 * Implemented account report generation (database, interface and UI)
@@ -87,6 +87,9 @@ u7334218, Zane Gates, code contribution percentage: .
 * Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
 * Sketched all the art used app-wide, including icons, symbols, and animations
 * Curated app title with William
+* Wrote the App Description and and Implemented Features sections of the report, and prepared the UML diagram
+* Shared meeting minute-taking duties with Ziling
+* Presented both checkpoints and will present the Minute Madness presentation
 
 ## Conflict Resolution Protocol
 
