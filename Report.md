@@ -253,7 +253,16 @@ This avatar picture may be edited through the account settings page.
 **Peer to Peer Messaging**
 
 _1. Provide users with the ability to message each other or an institution directly (e.g., a
-user can message an event/movement that is managed by another user). (hard)__
+user can message an event/movement that is managed by another user). (hard)_
+
+Conversations, both transient and permanent, can be formed between two users. The entire `conversations` package implements the backend of messaging.
+
+Transient conversations are formed in `MainActivity.java` in the `match_listener`.
+
+Permanent conversations are formed either in `ConversationActivity.java` through the `addFriendButton`'s listener (lines 183--204) or in `SearchActivity.java` through clicking on a `ListView` item (lines 118--130).
+
+A conversation is interacted with visually through the `ConversationActivity.java`. In particular, messages are sent in the `sendButton`'s listener (lines 148--152) and are read live from the database through `onChildAdded` to the conversation's root reference (lines 113-128) and displayed `updateConversationDisplay` (lines 297--329).
+
 _3. Provide users with the ability to restrict who can message them by some association
 (e.g. a setting for: can only message me if we are friends, if we support the same social
 cause/movement/event). (hard)__
