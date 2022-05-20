@@ -268,4 +268,4 @@ transfer appear on their app instance without restarting their application. (ver
 - [Team Meeting 3](./Meeting3.md)
 - [Team Meeting 4](./Meeting4.md)
 - [Team Meeting 5](./Meeting5.md)
-- [Team Meeting 5](./Meeting6.md)
+- [Team Meeting 6](./Meeting6.md)
