@@ -146,9 +146,11 @@ A use case of this application is in the case of two students wanting to practic
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
+\<text\> ::= \<exp\> | \<exp\> "and" \<text\> | \<exp\> "or" \<text\>​
 <br>
-\<Non-Terminal> ::= \<some output>
+\<exp\> ::= \<search\> | "not" \<search\>
+<br> 
+\<search\> ::= \<content\> | (\<exp\>)​
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
