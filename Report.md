@@ -68,9 +68,19 @@ u7283599, William Loughton, code contribution percentage: 12.5%
 *
 
 u7334218, Zane Gates, code contribution percentage: .
-*
-*
-*
+* Implemented account settings pages (database, interface and UI)
+* Implemented conversation generation (database, interface and UI)
+* Implemented account report generation (database, interface and UI)
+* Implemented permanent friend conversations (database, interface and UI)
+* Implemented logging in and authentication (database and interface)
+* Implemented account signups (database and interface)
+* Implemented tab-based application menu (interface and UI)
+* Wrote unit tests for conversation forming and queueing
+* Advised Ziling on how to generate a conversation in the search activity
+* Wrote the initial code skeleton for the local backend
+* Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
+* Sketched all the art used app-wide, including icons, symbols, and animations
+* Curated app title with William
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
