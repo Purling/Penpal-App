@@ -31,9 +31,22 @@ The following is a report about the application developed by the $500 for a kitc
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
 u7312578, Ziling Ouyang, code contribution percentage: .
-*
-*
-*
+* Implemented the DAO pattern
+    * Implemented the UserDao for accessing, getting and storing User objects in the Firebase database 
+    * Implemented the ConversationDao for accessing, getting and storing Conversation objects stored in the Firebase database
+* Implemented the binary search tree data structure
+    * Created the ability to store all data gotten from the Firebase database into a binary search tree
+* Assisted Xingkun Chen with the grammar to be implemented
+    * Debugged the Parser.java and Tokenizer.java classes
+    * Created the initial skeleton of a grammar before Xingkun completed it
+* Implemented search functionality
+    * Used Xingkun Chen's code as inspiration before writing up search functionality in SearchActivity.java
+    * Enabled users to tap on User displayed after search and become friends with them
+* Implemented the ability for Users to login in the LoginActivity.java
+    * Somewhat inspired by Xingkun's code logic but using the DAO
+* Refactored the DatabaseUserManager to use the DAO
+* Collaborated with others to design and complete the User class
+* Debugged various features such as text display and user matching
 
 u6710622, Xingkun Chen, code contribution percentage: .
 * Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
@@ -55,9 +68,6 @@ u7283599, William Loughton, code contribution percentage: 12.5%
   * Ported initial project from IntelliJ to AndroidStudio
   * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
   * Created app title with Zane
-*
-*
-*
 
 u7334218, Zane Gates, code contribution percentage: .
 * Implemented account settings pages (database, interface and UI)
@@ -147,11 +157,11 @@ A use case of this application is in the case of two students wanting to practic
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<text\> ::= \<exp\> | \<exp\> "and" \<text\> | \<exp\> "or" \<text\>​
+\<text> ::= \<exp> | \<exp> "and" \<text> | \<exp> "or" \<text>​
 <br>
-\<exp\> ::= \<search\> | "not" \<search\>
+\<exp> ::= \<search> | "not" \<search>
 <br> 
-\<search\> ::= \<content\> | (\<exp\>)​
+\<search> ::= \<content> | (\<exp>)​
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
