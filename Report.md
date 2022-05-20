@@ -216,9 +216,9 @@ Types of tests created: We have tested many of the back-end algorithmic features
 ## Implemented Features
 
 User Interactivity
-1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
-post/message/event) [stored in-memory]. (easy)
-2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)
+_1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
+post/message/event) [stored in-memory]. (easy)__
+_2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)_
     - AccountSettingsActivityTests.java (whole class)
     - FriendActivityTests.java (whole class)
     - LoginActivityTests.java (whole class)
@@ -239,21 +239,21 @@ This avatar picture may be edited through the account settings page.
     - Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
     - code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
 
-Greater Data Usage, Handling and Sophistication
-2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
+**Peer to Peer Messaging**
+_1. Provide users with the ability to message each other or an institution directly (e.g., a
+user can message an event/movement that is managed by another user). (hard)__
+_3. Provide users with the ability to restrict who can message them by some association
+(e.g. a setting for: can only message me if we are friends, if we support the same social
+cause/movement/event). (hard)__
 
-Peer to Peer Messaging
-1. Provide users with the ability to message each other or an institution directly (e.g., a
-user can message an event/movement that is managed by another user). (hard)
-
-Firebase Integration
-1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
-2. Use Firebase to persist all data used in your app (this item replaces the requirement to
-retrieve data from a local file) (medium)
-3. Using Firebase or another remote database to store user information and having the
+**Firebase Integration**
+_1. Use Firebase to implement user Authentication/Authorisation (easy)__
+_2. Use Firebase to persist all data used in your app (this item replaces the requirement to
+retrieve data from a local file) (medium)__
+_3. Using Firebase or another remote database to store user information and having the
 app updated as the remote database is updated without restarting the application. E.g.
 User A makes a transfer, user B on a separate instance of the application sees user A’s
-transfer appear on their app instance without restarting their application. (very hard)
+transfer appear on their app instance without restarting their application. (very hard)_
 
 
 
