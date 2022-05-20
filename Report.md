@@ -31,39 +31,18 @@ The following is a report about the application developed by the $500 for a kitc
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
 u7312578, Ziling Ouyang, code contribution percentage: .
-* Implemented the DAO pattern
-    * Implemented the UserDao for accessing, getting and storing User objects in the Firebase database 
-    * Implemented the ConversationDao for accessing, getting and storing Conversation objects stored in the Firebase database
-* Implemented the binary search tree data structure
-    * Created the ability to store all data gotten from the Firebase database into a binary search tree
-* Assisted Xingkun Chen with the grammar to be implemented
-    * Debugged the Parser.java and Tokenizer.java classes
-    * Created the initial skeleton of a grammar before Xingkun completed it
-* Implemented search functionality
-    * Used Xingkun Chen's code as inspiration before writing up search functionality in SearchActivity.java
-    * Enabled users to tap on User displayed after search and become friends with them
-* Implemented the ability for Users to login in the LoginActivity.java
-    * Somewhat inspired by Xingkun's code logic but using the DAO
-* Refactored the DatabaseUserManager to use the DAO
-* Collaborated with others to design and complete the User class
-* Debugged various features such as text display and user matching
-* Wrote parts of the report
-    * Conflict resolution protocol
-    * Application description
-    * Design patterns (partial)
-    * Team meetings
-* Created the Firebase and DAO slides
-* Alternated writing meeting minutes with Zane
+*
+*
+*
 
 u6710622, Xingkun Chen, code contribution percentage: .
-* Designed and created the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
+* Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
 * Design and complete the Token and Tokenizer class
 * Design and complete the grammar of the SearchActivity
 * Design the text, Exp , notExp, OrExp, AndExp, contentText of SearchActivity
 * Design and complete the parser of the SearchActivity
 * Assisted Zane complete the Register feature in LoginActivity but delete by using of DAO
 * Make UI more nice
-* Created the majority of the slides
 
 u7283599, William Loughton, code contribution percentage: 12.5%
   * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
@@ -76,6 +55,9 @@ u7283599, William Loughton, code contribution percentage: 12.5%
   * Ported initial project from IntelliJ to AndroidStudio
   * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
   * Created app title with Zane
+*
+*
+*
 
 u7334218, Zane Gates, code contribution percentage: .
 * Implemented account settings pages (database, interface and UI)
@@ -91,6 +73,16 @@ u7334218, Zane Gates, code contribution percentage: .
 * Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
 * Sketched all the art used app-wide, including icons, symbols, and animations
 * Curated app title with William
+
+*[Code Design. What design patterns, data structures, did the involved member propose?]*
+
+*[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
+
+*[Report Writing. Which part of the report did the involved member write?]*
+
+*[Slide preparation. Were you responsible for the slides?]*
+
+*[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
 
 ## Conflict Resolution Protocol
 
@@ -155,11 +147,11 @@ A use case of this application is in the case of two students wanting to practic
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<text> ::= \<exp> | \<exp> "and" \<text> | \<exp> "or" \<text>​
+\<text\> ::= \<exp\> | \<exp\> "and" \<text\> | \<exp\> "or" \<text\>​
 <br>
-\<exp> ::= \<search> | "not" \<search>
+\<exp\> ::= \<search\> | "not" \<search\>
 <br> 
-\<search> ::= \<content> | (\<exp>)​
+\<search\> ::= \<content\> | (\<exp\>)​
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
@@ -237,12 +229,15 @@ Types of tests created: We have tested many of the back-end algorithmic features
 _1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event) [stored in-memory]. (easy)_
 
 _2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)_
-    - AccountSettingsActivityTests.java (whole class)
-    - FriendActivityTests.java (whole class)
-    - LoginActivityTests.java (whole class)
-    - MainActivityTests.java (whole class)
-    - QueueActivityTests.java (whole class)
-    - SearchActivityTests.java (whole class)
+
+See the written UI tests in the following files:
+
+- AccountSettingsActivityTests.java (whole class)
+- FriendActivityTests.java (whole class)
+- LoginActivityTests.java (whole class)
+- MainActivityTests.java (whole class)
+- QueueActivityTests.java (whole class)
+- SearchActivityTests.java (whole class)
    
 **Greater Data Usage, Handling and Sophistication**
 
@@ -260,8 +255,7 @@ This avatar picture may be edited through the account settings page.
 
 **Peer to Peer Messaging**
 
-_1. Provide users with the ability to message each other or an institution directly (e.g., a
-user can message an event/movement that is managed by another user). (hard)_
+_1. Provide users with the ability to message each other or an institution directly (e.g., a user can message an event/movement that is managed by another user). (hard)_
 
 Conversations, both transient and permanent, can be formed between two users. The entire `conversations` package implements the backend of messaging.
 
@@ -272,6 +266,8 @@ Permanent conversations are formed either in `ConversationActivity.java` through
 A conversation is interacted with visually through the `ConversationActivity.java`. In particular, messages are sent in the `sendButton`'s listener (lines 148--152) and are read live from the database through `onChildAdded` to the conversation's root reference (lines 113-128) and displayed `updateConversationDisplay` (lines 297--329).
 
 _3. Provide users with the ability to restrict who can message them by some association (e.g. a setting for: can only message me if we are friends, if we support the same social cause/movement/event). (hard)__
+
+Conversation forming only happens between users who can each teach the other user a language and with a shared interest. See the function `formConversation` in `ConversationFormer.java`, which returns null when a valid conversation cannot be formed. Also see `MainActivity.java` (lines 56--71) to see that conversations are only initiated when the users have this association.
 
 **Firebase Integration**
 
