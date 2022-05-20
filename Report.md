@@ -227,8 +227,6 @@ Types of tests created: We have tested many of the back-end algorithmic features
 
 
 
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
-
 ## Implemented Features
 
 **User Interactivity**
