@@ -195,13 +195,7 @@ Potential:
 
 ## Summary of Known Errors and Bugs
 
-1. *Bug 1:* Empty messages and those with newlines can be sent in ConversationActivity. This has only incorrect visual feedback.
-
-3. *Bug 3:* Exiting the conversation by closing the app rather than pressing the exit button keeps it active in memory, but you cannot rejoin.
-
-4. *Bug 4:* Users may log in concurrently to the same account on two different devices, causing wacky results in they queue together.
-
-5. *Bug 5:* Users in the queue who exit the app without pressing the exit queue button are still registered as being in the queue and may be pushed to a conversation, in which case the other user will have no-one to talk to.
+1. *Bug 1:* Empty messages can be sent in ConversationActivity. This has only minor visual effects.
 
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
