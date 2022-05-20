@@ -226,6 +226,18 @@ post/message/event) [stored in-memory]. (easy)
     - QueueActivityTests.java (whole class)
     - SearchActivityTests.java (whole class)
    
+**Greater Data Usage, Handling and Sophistication**
+_2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)_
+
+User profiles contain an avatar picture displayed on the main page and within conversations they are a part of.
+
+This avatar picture may be edited through the account settings page.
+
+    - Field stored locally as a string in `User.java`, along with getter and setter methods
+    - EditText used to change the address in `AccountSettingsActivity.java` and `activity_account_settings.xml`
+    - Avatars are accessed at various other points (in `ConversationActivity.java`, and `MainActivity.java`)
+    - Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
+    - code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
 
 Greater Data Usage, Handling and Sophistication
 2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
