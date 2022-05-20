@@ -205,7 +205,7 @@ Code coverage: We decided to use 3 different metrics to look at code coverage. F
 However, the assessment rubric mentions that UI should be ignored in line coverage. If we remove all UI from the test coverage calculations, we achieved 33% line coverage.
 
 
-![ClassDiagramExample](./images/UIExcludedFull.png =400x)
+![ClassDiagramExample](./images/UIExcludedFull.png =400x100)
 
 
 Because the JUnit test cases are written outside of the code which handles the Android app, the Android Looper (a part of the Handler class) does not run. 
