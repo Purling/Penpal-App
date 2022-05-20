@@ -215,9 +215,10 @@ Types of tests created: We have tested many of the back-end algorithmic features
 
 ## Implemented Features
 
-User Interactivity
-_1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
-post/message/event) [stored in-memory]. (easy)__
+**User Interactivity**
+
+_1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event) [stored in-memory]. (easy)_
+
 _2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)_
     - AccountSettingsActivityTests.java (whole class)
     - FriendActivityTests.java (whole class)
@@ -227,19 +228,21 @@ _2. UI tests using espresso or similar. Please note that your tests must be of r
     - SearchActivityTests.java (whole class)
    
 **Greater Data Usage, Handling and Sophistication**
+
 _2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)_
 
 User profiles contain an avatar picture displayed on the main page and within conversations they are a part of.
 
 This avatar picture may be edited through the account settings page.
 
-    - Field stored locally as a string in `User.java`, along with getter and setter methods
-    - EditText used to change the address in `AccountSettingsActivity.java` and `activity_account_settings.xml`
-    - Avatars are accessed at various other points (in `ConversationActivity.java`, and `MainActivity.java`)
-    - Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
-    - code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
+- Field stored locally as a string in `User.java`, along with getter and setter methods
+- EditText used to change the address in `AccountSettingsActivity.java` and `activity_account_settings.xml`
+- Avatars are accessed at various other points (in `ConversationActivity.java`, and `MainActivity.java`)
+- Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
+- code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
 
 **Peer to Peer Messaging**
+
 _1. Provide users with the ability to message each other or an institution directly (e.g., a
 user can message an event/movement that is managed by another user). (hard)__
 _3. Provide users with the ability to restrict who can message them by some association
@@ -247,6 +250,7 @@ _3. Provide users with the ability to restrict who can message them by some asso
 cause/movement/event). (hard)__
 
 **Firebase Integration**
+
 _1. Use Firebase to implement user Authentication/Authorisation (easy)__
 _2. Use Firebase to persist all data used in your app (this item replaces the requirement to
 retrieve data from a local file) (medium)__
