@@ -127,29 +127,19 @@ Finally, users can search for others with which they can form long-term conversa
 
 ## Application Design and Decisions
 
-*Please give clear and concise descriptions for each subsections of this part. It would be better to list all the concrete items for each subsection and give no more than `5` concise, crucial reasons of your design. Here is an example for the subsection `Data Structures`:*
-
-*I used the following data structures in my project:*
-
-1. *LinkedList*
-
-   * *Objective: It is used for storing xxxx for xxx feature.*
-
-   * *Locations: line xxx in XXX.java, ..., etc.*
-
-   * *Reasons:*
-
-     * *It is more efficient than Arraylist for insertion with a time complexity O(1)*
-
-     * *We don't need to access the item by index for this feature*
-
-2. ...
-
-3. ...
-
 **Data Structures**
 
-*[What data structures did your team utilise? Where and why?]*
+1. Binary Search Tree
+
+This stores the full set of users as they are loaded from the database in the `UserBinarySearchTreeTest`. This is referenced by the `DatabaseUserManager` which observes the Firebase database for any changes to users and writes these changes to the tree as they occur.
+
+This is a reasonable decision as we will need to add users at random points in the tree frequently as they are loaded from the database. It also allows us to access users very quickly, with O(log n) time. Finally, although users store a wide range of information, we only need to access users by username. Since this is stored alphabetically, it induces an obvious ordering utilisable by the BST, so we don't need some kind of multi-keyed hash map.
+
+2. Hash Maps
+
+Some of the user data is stored with HashMaps, such as their interactions, familiarities, and interests. We use the standard `java.util` implementation in the `User` class.
+
+This is reasonable as any extension to the enumerations involved don't require any modification to the code. If we had used, say, a set, introducing a level of semi-interestedness would break the code. We were also limited by wanting efficient transformations between the serialized content here and the storage on Google Firebase, to minimise both read time and storage space. Some of the other data structures we had considered failed this criteria, as Google Firebase natively supports very few structures.
 
 **Design Patterns**
 
