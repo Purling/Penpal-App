@@ -56,13 +56,14 @@ u7312578, Ziling Ouyang, code contribution percentage: .
 * Alternated writing meeting minutes with Zane
 
 u6710622, Xingkun Chen, code contribution percentage: .
-* Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
+* Designed and created the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
 * Design and complete the Token and Tokenizer class
 * Design and complete the grammar of the SearchActivity
 * Design the text, Exp , notExp, OrExp, AndExp, contentText of SearchActivity
 * Design and complete the parser of the SearchActivity
 * Assisted Zane complete the Register feature in LoginActivity but delete by using of DAO
 * Make UI more nice
+* Created the majority of the slides
 
 u7283599, William Loughton, code contribution percentage: 12.5%
   * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
@@ -90,16 +91,6 @@ u7334218, Zane Gates, code contribution percentage: .
 * Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
 * Sketched all the art used app-wide, including icons, symbols, and animations
 * Curated app title with William
-
-*[Code Design. What design patterns, data structures, did the involved member propose?]*
-
-*[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
-
-*[Report Writing. Which part of the report did the involved member write?]*
-
-*[Slide preparation. Were you responsible for the slides?]*
-
-*[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
 
 ## Conflict Resolution Protocol
 
