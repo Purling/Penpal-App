@@ -26,7 +26,7 @@ The following is a report about the application developed by the $500 for a kitc
 
 ## Summary of Individual Contributions
 
-u7312578, Ziling Ouyang, code contribution percentage: .
+u7312578, Ziling Ouyang, code contribution percentage: 25%.
 * Implemented the DAO pattern
     * Implemented the UserDao for accessing, getting and storing User objects in the Firebase database
     * Implemented the ConversationDao for accessing, getting and storing Conversation objects stored in the Firebase database
@@ -51,7 +51,7 @@ u7312578, Ziling Ouyang, code contribution percentage: .
 * Created the Firebase and DAO slides
 * Alternated writing meeting minutes with Zane
 
-u6710622, Xingkun Chen, code contribution percentage: .
+u6710622, Xingkun Chen, code contribution percentage: 20%.
 * Designed and created the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
 * Design and complete the Token and Tokenizer class
 * Design and complete the grammar of the SearchActivity
@@ -61,7 +61,7 @@ u6710622, Xingkun Chen, code contribution percentage: .
 * Make UI more nice
 * Created the majority of the slides
 
-u7283599, William Loughton, code contribution percentage: 12.5%
+u7283599, William Loughton, code contribution percentage: 25%
 * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
 * Implemeneted "UI tests using espresso" feature (AccountReportActivityTests, AccountSettingsActivityTests, FriendActivityTests, LoginActivityTests, MainActivityTests, QueueActivityTests, SearchActivityTests)
 * Designed and initially added profilePicture and blockedUsers fields and associated methods (User)
@@ -73,7 +73,7 @@ u7283599, William Loughton, code contribution percentage: 12.5%
 * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
 * Created app title with Zane
 
-u7334218, Zane Gates, code contribution percentage: 40.6%
+u7334218, Zane Gates, code contribution percentage: 30%.
 * Implemented account settings pages (database, interface and UI)
 * Implemented conversation generation (database, interface and UI)
 * Implemented account report generation (database, interface and UI)
@@ -153,13 +153,11 @@ Finally, users can search for others with which they can form long-term conversa
 
 **Design Patterns**
 
-- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database.
+- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database. This includes the User and Conversation objects. Most access to the database which needed to retrieve a User or Conversation was done through the DAO.
 
 - Singleton: Many classes such as the DAO classes implemented the singleton pattern. In the case of Firebase access, this was to prevent unnecessary connections to the database which would just impact memory.
 
-- Observer: 
-
-- Factory:
+- Factory: 
 
 **Grammar**
 
