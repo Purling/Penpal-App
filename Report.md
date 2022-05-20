@@ -223,9 +223,6 @@ In addition to JUnit tests, we have created Espresso UI tests. These cover ~70% 
 
 Types of tests created: We have tested many of the back-end algorithmic features and a large majority of the GUI, but little of the database connections due to the above-mentioned Looper errors.
 
-![ClassDiagramExample](./images/NoExcludedByPackage.png)
-
-
 
 ## Implemented Features
 
