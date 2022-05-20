@@ -68,10 +68,12 @@ u7283599, William Loughton, code contribution percentage: 25%
 * Initially designed and implemented profilePicture UI and display of profilePicture in MainActivity
 * Initially designed and implemented password policy (method passwordMeetsPolicy in class LoginActivity)
 * Implemented final updateConversationDisplay method based on design and initial implementation by Zane (ConversationActivity)
-* Implemented and wrote up Surprise Feature 
+* Implemented and wrote up in report the Surprise Feature 
 * Ported initial project from IntelliJ to AndroidStudio
 * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
 * Created app title with Zane
+* Wrote tokenizer and parser section of report with Xingkun 
+* Wrote testing summary section of report with Ziling
 
 u7334218, Zane Gates, code contribution percentage: 30%.
 * Implemented account settings pages (database, interface and UI)
