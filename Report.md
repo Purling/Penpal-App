@@ -156,7 +156,7 @@ A use case of this application is in the case of two students wanting to practic
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
-*This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
+This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
 
 *If there are several grammars, list them all under this section and what they relate to.*
 
@@ -164,7 +164,7 @@ A use case of this application is in the case of two students wanting to practic
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
-*The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
+The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
 
 **Surprise Feature**
 Code Smells
