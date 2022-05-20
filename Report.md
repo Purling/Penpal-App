@@ -1,18 +1,6 @@
 # $500 for a kitchen table and bedside sofa Report
 
-The following is a report template to help your team successfully provide all the details necessary for your report in a structured and organised manner. Please give a straightforward and concise report that best demonstrates your project. Note that a good report will give a better impression of your project to the reviewers.
-
-*Here are some tips to write a good report:*
-
-* *Try to summarise and list the `bullet points` of your project as many as possible rather than give long, tedious paragraphs that mix up everything together.*
-
-* *Try to create `diagrams` instead of text descriptions, which are more straightforward and explanatory.*
-
-* *Try to make your report `well structured`, which is easier for the reviewers to capture the necessary information.*
-
-*We give instructions enclosed in square brackets [...] and examples for each sections to demonstrate what are expected for your project report.*
-
-*Please remove the instructions or examples in `italic` in your final report.*
+The following is a report about the application developed by the $500 for a kitchen table and bedside sofa team.
 
 ## Table of Contents
 
@@ -48,9 +36,13 @@ u7312578, Ziling Ouyang, code contribution percentage: .
 *
 
 u6710622, Xingkun Chen, code contribution percentage: .
-*
-*
-*
+* Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
+* Design and complete the Token and Tokenizer class
+* Design and complete the grammar of the SearchActivity
+* Design the text, Exp , notExp, OrExp, AndExp, contentText of SearchActivity
+* Design and complete the parser of the SearchActivity
+* Assisted Zane complete the Register feature in LoginActivity but delete by using of DAO
+* Make UI more nice
 
 u7283599, William Loughton, code contribution percentage: 12.5%
   * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
@@ -164,11 +156,15 @@ A use case of this application is in the case of two students wanting to practic
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
+This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
+
 *If there are several grammars, list them all under this section and what they relate to.*
 
 **Tokenizer and Parsers**
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
+
+The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
 
 **Surprise Feature**
 Code Smells
@@ -201,17 +197,31 @@ Potential:
 
 ## Testing Summary
 
-Number of test cases: 15+61
+Code coverage: We decided to use 3 different metrics to look at code coverage. First, when looking at the whole project, we achieved 18% line coverage.
 
-Code coverage: `ConversationFormer.java`, `QueuedUserObserver.java`
+<img src="./images/NoExcludedFull.png" width="400" />
 
-Types of tests created: We have tested many of the back-end algorithmic features, but little of the database connections or the GUI.
-
-
+However, the assessment rubric mentions that UI should be ignored in line coverage. If we remove all UI from the test coverage calculations, we achieved 33% line coverage.
 
 
+<img src="./images/UIExcludedFull.png" width="400" />
 
-*Please provide some screenshots of your testing summary, showing the achieved testing coverage. Feel free to provide further details on your tests.*
+
+Because the JUnit test cases are written outside of the code which handles the Android app, the Android Looper (a part of the Handler class) does not run. 
+
+Finally, much of our project (specifically the Dao) relies on the online Firebase database, which cannot be tested due to Looper errors.  The purpose of the Looper is to create a thread loop. This is important for functions such as database access which rely on looping a thread until data is retrieved from the database. As such, tests which rely on the Looper throw errors. For this reason, we decided to additionally remove classes which involved the Dao from coverage calculations. After doing this, we achieved 50% line coverage.
+
+<img src="./images/DaoExcludedFull.png" width="400" />
+
+Broken down by package:
+
+<img src="./images/DaoExcludedByPackage.png" width="400" />
+
+
+In addition to JUnit tests, we have created Espresso UI tests. These cover ~70% of all UI classes.
+
+Types of tests created: We have tested many of the back-end algorithmic features and a large majority of the GUI, but little of the database connections due to the above-mentioned Looper errors.
+
 
 ## Implemented Features
 
@@ -268,4 +278,4 @@ transfer appear on their app instance without restarting their application. (ver
 - [Team Meeting 3](./Meeting3.md)
 - [Team Meeting 4](./Meeting4.md)
 - [Team Meeting 5](./Meeting5.md)
-- [Team Meeting 5](./Meeting6.md)
+- [Team Meeting 6](./Meeting6.md)
