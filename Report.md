@@ -52,7 +52,17 @@ u6710622, Xingkun Chen, code contribution percentage: .
 *
 *
 
-u7283599, William Loughton, code contribution percentage: .
+u7283599, William Loughton, code contribution percentage: 12.5%
+  * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
+  * Implemeneted "UI tests using espresso" feature (AccountReportActivityTests, AccountSettingsActivityTests, FriendActivityTests, LoginActivityTests, MainActivityTests, QueueActivityTests, SearchActivityTests)
+  * Designed and initially added profilePicture and blockedUsers fields and associated methods (User)
+  * Initially designed and implemented profilePicture UI and display of profilePicture in MainActivity
+  * Initially designed and implemented password policy (method passwordMeetsPolicy in class LoginActivity)
+  * Implemented final updateConversationDisplay method based on design and initial implementation by Zane (ConversationActivity)
+  * Implemented and wrote up Surprise Feature 
+  * Ported initial project from IntelliJ to AndroidStudio
+  * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
+  * Created app title with Zane
 *
 *
 *
