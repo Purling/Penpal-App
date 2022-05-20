@@ -26,10 +26,6 @@ The following is a report about the application developed by the $500 for a kitc
 
 ## Summary of Individual Contributions
 
-*[Summarise the contributions made by each member to the project, e.g. code implementation, code design, UI design, report writing, etc.]*
-
-*[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
-
 u7312578, Ziling Ouyang, code contribution percentage: .
 * Implemented the DAO pattern
     * Implemented the UserDao for accessing, getting and storing User objects in the Firebase database
@@ -160,7 +156,9 @@ Finally, users can search for others with which they can form long-term conversa
 
 - Observer: 
 
-**Grammar(s)**
+- Factory:
+
+**Grammar**
 
 <br> *Production Rules* <br>
 \<text\> ::= \<exp\> | \<exp\> "and" \<text\> | \<exp\> "or" \<text\>​
@@ -209,9 +207,8 @@ Potential:
 
 ## Summary of Known Errors and Bugs
 
-1. *Bug 1:* Empty messages can be sent in ConversationActivity. This has only minor visual effects.
-
-*List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
+1. Empty messages can be sent in ConversationActivity. This has only minor visual effects.
+2. If network connection is bad/database connection is slow, there is no guarantee that the all Users stored in the database will be accounted for. This may cause small issues such as not all friends loading in immediately.
 
 ## Testing Summary
 
