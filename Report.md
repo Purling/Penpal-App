@@ -224,9 +224,7 @@ Types of tests created: We have tested many of the back-end algorithmic features
 
 ## Implemented Features
 
-**User Interactivity**
-
-_1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event) [stored in-memory]. (easy)_
+**UI Design and Testing**
 
 _2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)_
 
@@ -252,6 +250,13 @@ This avatar picture may be edited through the account settings page.
 - Avatars are accessed at various other points (in `ConversationActivity.java`, and `MainActivity.java`)
 - Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
 - code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
+
+_4. Report viewer. Provide users with the ability to see a report of interactions with your app (e.g., total views, total likes, total raised for a campaign, etc, in a graphical manner. (medium)_
+
+Users' activities are logged to the `User` class through the `logInteraction` method, which serializes them through the `Interaction.java` class (whole file) to store in the database (with `UserDao`). These are converted to a readable form on the fly by the `ReportGenerator`'s `generateReport` method (lines 22-39).
+
+These reports are visible by accessing the reports page through the user settings page in-app. See lines 84--93 in `AccountSettingsActivity.java` for where the user is passed to the activity, and `onCreate` in `AccountReportActivity.java` for the displaying of the report.
+
 
 **Peer to Peer Messaging**
 
