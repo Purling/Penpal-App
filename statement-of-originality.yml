@@ -6,23 +6,22 @@ declaration: >-
   I declare that everything I have submitted in this assignment is entirely our
   own work, with the following exceptions:
 
-
-# add as many "name+comment" entries as necessary
-# (or remove it altogether if you haven't collaborated with anyone outside your group)
-collaboration:
-  - name:
-    comment: >-
-
-
 # add as many "url+licence+comment" entries as necessary
 # (or remove it altogether if you haven't used any external code)
 code:
-  - comment:
-    url:
-    licence:
+  - comment: Help with the regular expression
+    url: https://stackoverflow.com/a/14278602
+    licence: CC BY-SA 3.0
 
+  - comment: Help with the regular expression
+    url: https://stackoverflow.com/a/14278602
+    licence: CC BY-SA 3.0
 
-   - comment: loading image from web asynchronously
+  - comment: Determining which method to use to access the Firebase database
+    url: https://stackoverflow.com/a/66072472
+    licence: CC BY-SA 3.0
+
+  - comment: loading image from web asynchronously
     url: https://stackoverflow.com/a/14443056
     licence: CC BY-SA 3.0
 
@@ -41,11 +40,11 @@ assets:
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
-  - name:
-    uid:
+  - name: Ziling Ouyang
+    uid: u7312578
+  - name: Zane Gates
+    uid: u7334218
+  - name: William Loughton
+    uid: u7283599
+  - name: Xingkun Chen
+    uid: u6710622

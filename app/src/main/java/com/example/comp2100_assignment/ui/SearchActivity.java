@@ -1,5 +1,6 @@
 package com.example.comp2100_assignment.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -112,6 +113,21 @@ public class SearchActivity extends TabbedActivity {
         button.setOnClickListener(find_Listener);
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, listViewList);
         listView.setAdapter(arrayAdapter);
+
+        // Logic for what happens when a friend is clicked (the conversation should open)
+        listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            UserDao.singleton().get(listViewList.get(i), data -> {
+                data.addFriendConversation(user.getUsername(), user.getUsername());
+                user.addFriendConversation(data.getUsername(), user.getUsername());
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(), ConversationActivity.class);
+                intent.putExtra("user", user);
+                intent.putExtra("conversationName", System.currentTimeMillis()+ "_permanent");
+                intent.putExtra("permanent", true);
+                intent.putExtra("owner", true);
+                startActivity(intent);
+            });
+        });
     }
 
 

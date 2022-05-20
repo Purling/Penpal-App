@@ -52,15 +52,35 @@ u6710622, Xingkun Chen, code contribution percentage: .
 *
 *
 
-u7283599, William Loughton, code contribution percentage: .
+u7283599, William Loughton, code contribution percentage: 12.5%
+  * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
+  * Implemeneted "UI tests using espresso" feature (AccountReportActivityTests, AccountSettingsActivityTests, FriendActivityTests, LoginActivityTests, MainActivityTests, QueueActivityTests, SearchActivityTests)
+  * Designed and initially added profilePicture and blockedUsers fields and associated methods (User)
+  * Initially designed and implemented profilePicture UI and display of profilePicture in MainActivity
+  * Initially designed and implemented password policy (method passwordMeetsPolicy in class LoginActivity)
+  * Implemented final updateConversationDisplay method based on design and initial implementation by Zane (ConversationActivity)
+  * Implemented and wrote up Surprise Feature 
+  * Ported initial project from IntelliJ to AndroidStudio
+  * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
+  * Created app title with Zane
 *
 *
 *
 
 u7334218, Zane Gates, code contribution percentage: .
-*
-*
-*
+* Implemented account settings pages (database, interface and UI)
+* Implemented conversation generation (database, interface and UI)
+* Implemented account report generation (database, interface and UI)
+* Implemented permanent friend conversations (database, interface and UI)
+* Implemented logging in and authentication (database and interface)
+* Implemented account signups (database and interface)
+* Implemented tab-based application menu (interface and UI)
+* Wrote unit tests for conversation forming and queueing
+* Advised Ziling on how to generate a conversation in the search activity
+* Wrote the initial code skeleton for the local backend
+* Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
+* Sketched all the art used app-wide, including icons, symbols, and animations
+* Curated app title with William
 
 *[Code Design. What design patterns, data structures, did the involved member propose?]*
 
@@ -129,16 +149,18 @@ A use case of this application is in the case of two students wanting to practic
 
 - DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database.
 
-- 
+- Singleton: Many classes such as the DAO classes implemented the singleton pattern. In the case of Firebase access, this was to prevent unnecessary connections to the database which would just impact memory.
 
-- 
+- Observer: 
 
 **Grammar(s)**
 
 <br> *Production Rules* <br>
-\<Non-Terminal> ::= \<some output>
+\<text\> ::= \<exp\> | \<exp\> "and" \<text\> | \<exp\> "or" \<text\>​
 <br>
-\<Non-Terminal> ::= \<some output>
+\<exp\> ::= \<search\> | "not" \<search\>
+<br> 
+\<search\> ::= \<content\> | (\<exp\>)​
 
 *[How do you design the grammar? What are the advantages of your designs?]*
 
@@ -158,14 +180,14 @@ Potential:
   - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
   - This code smell was also identified by the Embold code analysis tool, and is an example of leaky encapsulation. If a field is public and static but not final, the object referenced by that field can be modified from anywhere in the code, which in our use case of an observer object instance was unintended. The new implementation fixes this by making the field final as well as public and static, preventing it from being changed unexpectedly from a different class.
     - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
-    - fixable: yes!
     - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
   - potential god class: User class
     - The user class exhibits characteristics of the "multifaceted abstraction" (god class) code smell, as it has many responsibilities, being used in every activity for both the current user and other users they interact with. It contains many fields and methods used by both the backend (e.g. username) and frontend (e.g. profile picture). However, we decided not to refactor it for 2 main reasons. First, while it has a lot of functionality, all of it makes sense being encapsulated in the User class, and refactoring it could very easily lead to creating other code smells such as "unnecessary abstraction" and "broken modularization". Secondly, we are quite close to the deadline, and refactoring this class, which is a central and critical part of the app, would take a lot of time. In order to try and avoid making the problem any worse, we will try and pay special attention when adding new fields or methods to this class, only adding anything if absolutely necessary.
     - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, whole class
   - Cyclic Dependancy between User and QueuedUserObserver
-    - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, 22/4, lines 10-24 (UserQueueObserver), lines 11, 47-63 (User)
-    - These two classes are both dependent on each other, creating a cyclic dependency. The QueuedUserObserver (renamed from UserQueueObserver) relies on the User class, as it has a list of Users `usersInQueue`, and the User class relies on the QueuedUserObserver in the `enterQueue` and `exitQueue` methods. However, we have not fixed this dependency. The best way to fix it would be to create a generic observer class or interface and create an instance of it which specifically takes into account our needs. However, this would still leave any implementation of the interface containing the functionality we want with a cyclic dependency. Additionally our implementation uses the singleton design pattern anyways, and any implementation which would remove the cyclic dependency would equally remove the benefit of having a single instance we can use to manage the Iser queue.
+    - These two classes are both dependent on each other, creating a cyclic dependency. The QueuedUserObserver (renamed from UserQueueObserver) relies on the User class, as it has a list of Users `usersInQueue`, and the User class relies on the QueuedUserObserver in the `enterQueue` and `exitQueue` methods. However, we have not fixed this dependency. The best way to fix it would be to create a generic observer class or interface and create an instance of it which specifically takes into account our needs. However, this would still leave any implementation of the interface containing the functionality we want with a cyclic dependency. Additionally our implementation uses the singleton design pattern anyways, and any implementation which would remove the cyclic dependency would equally remove the benefit of having a single instance we can use to manage the User queue.
+        - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, 22/4, lines 10-24 (UserQueueObserver), lines 11, 47-63 (User)
+
         
 **Other**
 
@@ -173,13 +195,7 @@ Potential:
 
 ## Summary of Known Errors and Bugs
 
-1. *Bug 1:* Empty messages and those with newlines can be sent in ConversationActivity. This has only incorrect visual feedback.
-
-3. *Bug 3:* Exiting the conversation by closing the app rather than pressing the exit button keeps it active in memory, but you cannot rejoin.
-
-4. *Bug 4:* Users may log in concurrently to the same account on two different devices, causing wacky results in they queue together.
-
-5. *Bug 5:* Users in the queue who exit the app without pressing the exit queue button are still registered as being in the queue and may be pushed to a conversation, in which case the other user will have no-one to talk to.
+1. *Bug 1:* Empty messages can be sent in ConversationActivity. This has only minor visual effects.
 
 *List all the known errors and bugs here. If we find bugs/errors that your team does not know of, it shows that your testing is not thorough.*
 
@@ -199,10 +215,11 @@ Types of tests created: We have tested many of the back-end algorithmic features
 
 ## Implemented Features
 
-User Interactivity
-1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a
-post/message/event) [stored in-memory]. (easy)
-2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)
+**User Interactivity**
+
+_1. The ability to micro-interact with items in your app (e.g. like/dislike/support/report a post/message/event) [stored in-memory]. (easy)_
+
+_2. UI tests using espresso or similar. Please note that your tests must be of reasonable quality. (For UI testing, you may use something such as espresso) (hard)_
     - AccountSettingsActivityTests.java (whole class)
     - FriendActivityTests.java (whole class)
     - LoginActivityTests.java (whole class)
@@ -210,22 +227,37 @@ post/message/event) [stored in-memory]. (easy)
     - QueueActivityTests.java (whole class)
     - SearchActivityTests.java (whole class)
    
+**Greater Data Usage, Handling and Sophistication**
 
-Greater Data Usage, Handling and Sophistication
-2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)
+_2. User profile activity containing a media file (image, animation (e.g. gif), video). (easy)_
 
-Peer to Peer Messaging
-1. Provide users with the ability to message each other or an institution directly (e.g., a
-user can message an event/movement that is managed by another user). (hard)
+User profiles contain an avatar picture displayed on the main page and within conversations they are a part of.
 
-Firebase Integration
-1. Feature 1: Use Firebase to implement user Authentication/Authorisation (easy)
-2. Use Firebase to persist all data used in your app (this item replaces the requirement to
-retrieve data from a local file) (medium)
-3. Using Firebase or another remote database to store user information and having the
+This avatar picture may be edited through the account settings page.
+
+- Field stored locally as a string in `User.java`, along with getter and setter methods
+- EditText used to change the address in `AccountSettingsActivity.java` and `activity_account_settings.xml`
+- Avatars are accessed at various other points (in `ConversationActivity.java`, and `MainActivity.java`)
+- Avatars fetched for a user whose username is known through the `UserDao.java` and `DatabaseUserManager.java`
+- code to display both avatar and name from the username present in `ConversationActivity.java` (`associateLabel` function)
+
+**Peer to Peer Messaging**
+
+_1. Provide users with the ability to message each other or an institution directly (e.g., a
+user can message an event/movement that is managed by another user). (hard)__
+_3. Provide users with the ability to restrict who can message them by some association
+(e.g. a setting for: can only message me if we are friends, if we support the same social
+cause/movement/event). (hard)__
+
+**Firebase Integration**
+
+_1. Use Firebase to implement user Authentication/Authorisation (easy)__
+_2. Use Firebase to persist all data used in your app (this item replaces the requirement to
+retrieve data from a local file) (medium)__
+_3. Using Firebase or another remote database to store user information and having the
 app updated as the remote database is updated without restarting the application. E.g.
 User A makes a transfer, user B on a separate instance of the application sees user A’s
-transfer appear on their app instance without restarting their application. (very hard)
+transfer appear on their app instance without restarting their application. (very hard)_
 
 
 
@@ -236,3 +268,4 @@ transfer appear on their app instance without restarting their application. (ver
 - [Team Meeting 3](./Meeting3.md)
 - [Team Meeting 4](./Meeting4.md)
 - [Team Meeting 5](./Meeting5.md)
+- [Team Meeting 6](./Meeting6.md)
