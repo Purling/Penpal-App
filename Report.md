@@ -139,9 +139,9 @@ A use case of this application is in the case of two students wanting to practic
 
 - DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database.
 
-- 
+- Singleton: Many classes such as the DAO classes implemented the singleton pattern. In the case of Firebase access, this was to prevent unnecessary connections to the database which would just impact memory.
 
-- 
+- Observer: 
 
 **Grammar(s)**
 
