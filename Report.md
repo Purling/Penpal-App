@@ -47,6 +47,13 @@ u7312578, Ziling Ouyang, code contribution percentage: .
 * Refactored the DatabaseUserManager to use the DAO
 * Collaborated with others to design and complete the User class
 * Debugged various features such as text display and user matching
+* Wrote parts of the report
+    * Conflict resolution protocol
+    * Application description
+    * Design patterns (partial)
+    * Team meetings
+* Created the Firebase and DAO slides
+* Alternated writing meeting minutes with Zane
 
 u6710622, Xingkun Chen, code contribution percentage: .
 * Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
