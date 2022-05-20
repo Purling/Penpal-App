@@ -263,19 +263,28 @@ Permanent conversations are formed either in `ConversationActivity.java` through
 
 A conversation is interacted with visually through the `ConversationActivity.java`. In particular, messages are sent in the `sendButton`'s listener (lines 148--152) and are read live from the database through `onChildAdded` to the conversation's root reference (lines 113-128) and displayed `updateConversationDisplay` (lines 297--329).
 
-_3. Provide users with the ability to restrict who can message them by some association
-(e.g. a setting for: can only message me if we are friends, if we support the same social
-cause/movement/event). (hard)__
+_3. Provide users with the ability to restrict who can message them by some association (e.g. a setting for: can only message me if we are friends, if we support the same social cause/movement/event). (hard)__
 
 **Firebase Integration**
 
 _1. Use Firebase to implement user Authentication/Authorisation (easy)__
+
+Users are fetched through the `UserDao` and `DatabaseUserManager` classes (whole files).
+
+These are accessed when users try to authenticate by `loginListener` in `LoginActivity.java` (lines 34--53).
+
 _2. Use Firebase to persist all data used in your app (this item replaces the requirement to
 retrieve data from a local file) (medium)__
-_3. Using Firebase or another remote database to store user information and having the
-app updated as the remote database is updated without restarting the application. E.g.
-User A makes a transfer, user B on a separate instance of the application sees user A’s
-transfer appear on their app instance without restarting their application. (very hard)_
+
+All data is persisted. We perist it through various types of `Dao`s and every class in the `database` package.
+
+The singletons in this class are accessed at every point data is taken from the UI. These are too numerous to list, but include registering in `LoginActivity.java` (lines 60--84), user profile in `MainActivity.java` (lines 103--115), and converastion forming in `MainActivity.java` (lines 52--83).
+
+This can be further verified by the lack of data-storing files on the local system. Credentials to access the Firebase database are accessible in `firebase-login.md` for further proof.
+
+_3. Using Firebase or another remote database to store user information and having the app updated as the remote database is updated without restarting the application. E.g. User A makes a transfer, user B on a separate instance of the application sees user A’s transfer appear on their app instance without restarting their application. (very hard)_
+
+All information is fetched through persistent listeners and therefore actively updates on changes. See each of the clases implementing `Dao` for this behaviour. This is easiest to see live in conversations, in `ConversationActivity.java`'s `onChildAdded` to the conversation root reference (lines 113--128).
 
 
 
