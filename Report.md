@@ -96,7 +96,7 @@ Our application is a messaging/social media app aimed at helping people who want
 
 **Application Use Cases and or Examples**
 
-Target Users: Students or amateur learners of a new language.
+Target Users: Students or amateur learners of a new language, in addition to linguists and polyglots.
 
 A use case of this application is in the case of two students wanting to practice a language taught in school.
 
@@ -105,6 +105,14 @@ A use case of this application is in the case of two students wanting to practic
 3. Both George and Amy want to practice the languages they are learning in school
 4. George and Amy create an account of the language learning app and match each other
 5. George and Amy chat and improve their understanding of each other's language
+
+When they have a few minutes spare, users may enter a queue to be matched with another user. In the above example, George and Amy would be paired into a conversation to learn English and Spanish from each other, using one of their mutual interests as a topic to spur conversation. These conversations are text-based.
+
+Users who use the app are intended to participate in rapid-fire conversations on a variety of topics, allowing them to practice a variety of grammatical points and a range of vocabulary. The near-anonymity of these conversations allows users to be more comfortable with practising without fear of looking stupid, and reciprocating by using genuine fluent speakers of the language means that the speech patterns and slang learnt will be more naturalistic and users will be exposed to a range of local dialects.
+
+In addition, users who find a conversation they had with another enlightening (for example, they may have very similar interests, or just find that the other is good at explaining concepts) can friend a user who they are paired with. Then, using the friends menu, they may keep up their conversation for a much longer time, rather than having it lost immediately after either presses the back button. This can help to foster engagement with a language and culture on a much deeper level over longer amounts of time.
+
+Finally, users can search for others with which they can form long-term conversations directly, using the search feature. Users added here join teh friends list, from which their conversations can be permanently accessed.
 
 ## Application UML
 
@@ -144,8 +152,6 @@ A use case of this application is in the case of two students wanting to practic
 
 - Observer: 
 
-- Factory:
-
 **Grammar(s)**
 
 <br> *Production Rules* <br>
@@ -155,9 +161,15 @@ A use case of this application is in the case of two students wanting to practic
 <br> 
 \<search\> ::= \<content\> | (\<exp\>)​
 
-The grammar is able to construct sentences which resemble boolean statements. We took inspiration from both the lectures and also from the grammars learnt in COMP1600. This particular grammar generates expressions such as "Chinese and not German". This is very useful for our language searching function. The advantages of such a design is that we are able to easily evaluate the expression after parsing it. This grammar simplifies the searching function quite a bit by directly allow us to compare if the language/topic should be searched for or not.
+*[How do you design the grammar? What are the advantages of your designs?]*
+
+This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
+
+*If there are several grammars, list them all under this section and what they relate to.*
 
 **Tokenizer and Parsers**
+
+*[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
 The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
 
