@@ -31,30 +31,51 @@ The following is a report about the application developed by the $500 for a kitc
 *[Code Implementation. Which features did you implement? Which classes or methods was each member involved in? Provide an approximate proportion in pecentage of the contribution of each member to the whole code implementation, e.g. 30%.]*
 
 u7312578, Ziling Ouyang, code contribution percentage: .
-*
-*
-*
+* Implemented the DAO pattern
+    * Implemented the UserDao for accessing, getting and storing User objects in the Firebase database
+    * Implemented the ConversationDao for accessing, getting and storing Conversation objects stored in the Firebase database
+* Implemented the binary search tree data structure
+    * Created the ability to store all data gotten from the Firebase database into a binary search tree
+* Assisted Xingkun Chen with the grammar to be implemented
+    * Debugged the Parser.java and Tokenizer.java classes
+    * Created the initial skeleton of a grammar before Xingkun completed it
+* Implemented search functionality
+    * Used Xingkun Chen's code as inspiration before writing up search functionality in SearchActivity.java
+    * Enabled users to tap on User displayed after search and become friends with them
+* Implemented the ability for Users to login in the LoginActivity.java
+    * Somewhat inspired by Xingkun's code logic but using the DAO
+* Refactored the DatabaseUserManager to use the DAO
+* Collaborated with others to design and complete the User class
+* Debugged various features such as text display and user matching
+* Wrote parts of the report
+    * Conflict resolution protocol
+    * Application description
+    * Design patterns (partial)
+    * Team meetings
+* Created the Firebase and DAO slides
+* Alternated writing meeting minutes with Zane
 
 u6710622, Xingkun Chen, code contribution percentage: .
-* Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
+* Designed and created the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
 * Design and complete the Token and Tokenizer class
 * Design and complete the grammar of the SearchActivity
 * Design the text, Exp , notExp, OrExp, AndExp, contentText of SearchActivity
 * Design and complete the parser of the SearchActivity
 * Assisted Zane complete the Register feature in LoginActivity but delete by using of DAO
 * Make UI more nice
+* Created the majority of the slides
 
 u7283599, William Loughton, code contribution percentage: 12.5%
-  * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
-  * Implemeneted "UI tests using espresso" feature (AccountReportActivityTests, AccountSettingsActivityTests, FriendActivityTests, LoginActivityTests, MainActivityTests, QueueActivityTests, SearchActivityTests)
-  * Designed and initially added profilePicture and blockedUsers fields and associated methods (User)
-  * Initially designed and implemented profilePicture UI and display of profilePicture in MainActivity
-  * Initially designed and implemented password policy (method passwordMeetsPolicy in class LoginActivity)
-  * Implemented final updateConversationDisplay method based on design and initial implementation by Zane (ConversationActivity)
-  * Implemented and wrote up Surprise Feature 
-  * Ported initial project from IntelliJ to AndroidStudio
-  * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
-  * Created app title with Zane
+* Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
+* Implemeneted "UI tests using espresso" feature (AccountReportActivityTests, AccountSettingsActivityTests, FriendActivityTests, LoginActivityTests, MainActivityTests, QueueActivityTests, SearchActivityTests)
+* Designed and initially added profilePicture and blockedUsers fields and associated methods (User)
+* Initially designed and implemented profilePicture UI and display of profilePicture in MainActivity
+* Initially designed and implemented password policy (method passwordMeetsPolicy in class LoginActivity)
+* Implemented final updateConversationDisplay method based on design and initial implementation by Zane (ConversationActivity)
+* Implemented and wrote up Surprise Feature 
+* Ported initial project from IntelliJ to AndroidStudio
+* Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
+* Created app title with Zane
 
 u7334218, Zane Gates, code contribution percentage: .
 * Implemented account settings pages (database, interface and UI)
@@ -70,16 +91,6 @@ u7334218, Zane Gates, code contribution percentage: .
 * Set-up the Firebase database and related things (e.g. creating a Google account, modifying the build files)
 * Sketched all the art used app-wide, including icons, symbols, and animations
 * Curated app title with William
-
-*[Code Design. What design patterns, data structures, did the involved member propose?]*
-
-*[UI Design. Specify what design did the involved member propose? What tools were used for the design?]*
-
-*[Report Writing. Which part of the report did the involved member write?]*
-
-*[Slide preparation. Were you responsible for the slides?]*
-
-*[Miscellaneous contributions. You are welcome to provide anything that you consider as a contribution to the project or team.]*
 
 ## Conflict Resolution Protocol
 
