@@ -151,7 +151,12 @@ A use case of this application is in the case of two students wanting to practic
 \<exp\> ::= \<search\> | "not" \<search\>
 <br> 
 \<search\> ::= \<content\> | (\<exp\>)​
-
+<br>
+\<content\> ::= \<language\> | \<topic\>
+<br>
+\<language\> ::= ENGLISH | JAPANESE | KOREAN | MANDARIN | etc
+<br>
+\<topic\> ::= SPORTS | MUSIC | FOOD | etc
 *[How do you design the grammar? What are the advantages of your designs?]*
 
 *If there are several grammars, list them all under this section and what they relate to.*
