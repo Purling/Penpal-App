@@ -55,9 +55,6 @@ u7283599, William Loughton, code contribution percentage: 12.5%
   * Ported initial project from IntelliJ to AndroidStudio
   * Assisted Ziling with debugging and refactoring of Tokenizer and Parser classes
   * Created app title with Zane
-*
-*
-*
 
 u7334218, Zane Gates, code contribution percentage: .
 * Implemented account settings pages (database, interface and UI)
@@ -160,12 +157,15 @@ Finally, users can search for others with which they can form long-term conversa
 \<exp\> ::= \<search\> | "not" \<search\>
 <br> 
 \<search\> ::= \<content\> | (\<exp\>)​
+<br>
+\<content> ::= \<language> | \<topic>
+<br>
+\<language> ::= ENGLISH | GERMAN | JAPANESE | etc
+<br>
+\<topic> ::= MUSIC | SPORTS | etc
+<br>
 
-*[How do you design the grammar? What are the advantages of your designs?]*
-
-This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
-
-*If there are several grammars, list them all under this section and what they relate to.*
+The grammar is able to construct sentences which resemble boolean statements. We took inspiration from both the lectures and also from the grammars learnt in COMP1600. This particular grammar generates expressions such as "Chinese and not German". This is very useful for our language searching function. The advantages of such a design is that we are able to easily evaluate the expression after parsing it. This grammar simplifies the searching function quite a bit by directly allow us to compare if the language/topic should be searched for or not.
 
 **Tokenizer and Parsers**
 
