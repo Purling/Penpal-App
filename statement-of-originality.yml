@@ -28,15 +28,7 @@ code:
   - comment: updating ui with image loaded asynchronously
     url: https://stackoverflow.com/a/5162096 
     licence: CC BY-SA 3.0
-
-# add as many "url+licence+comment" entries as necessary
-# (or remove it altogether if you haven't used any external assets)
-assets:
-  # NOTE: "Bliss" is just here as an example, you should remove it
-  - comment: "_Bliss_ by Charles O'Rear"
-    url: https://en.wikipedia.org/wiki/Bliss_(image)
-    licence: fair use
-
+    
 # for each member, write your name and uid here
 # remove any empty "name+uid" entries
 members:
