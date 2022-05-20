@@ -151,14 +151,10 @@ A use case of this application is in the case of two students wanting to practic
 \<exp\> ::= \<search\> | "not" \<search\>
 <br> 
 \<search\> ::= \<content\> | (\<exp\>)​
-<br>
-\<content\> ::= \<language\> | \<topic\>
-<br>
-\<language\> ::= ENGLISH | JAPANESE | KOREAN | MANDARIN | etc
-<br>
-\<topic\> ::= SPORTS | MUSIC | FOOD | etc
-<br>
+
 *[How do you design the grammar? What are the advantages of your designs?]*
+
+*If there are several grammars, list them all under this section and what they relate to.*
 
 **Tokenizer and Parsers**
 
@@ -174,14 +170,14 @@ Potential:
   - public static fields should be final (QueuedUserObserver) - https://cwe.mitre.org/data/definitions/500.html
   - This code smell was also identified by the Embold code analysis tool, and is an example of leaky encapsulation. If a field is public and static but not final, the object referenced by that field can be modified from anywhere in the code, which in our use case of an observer object instance was unintended. The new implementation fixes this by making the field final as well as public and static, preventing it from being changed unexpectedly from a different class.
     - First commit: 1f9976d345c1ed9a82d161259c5e4f95d4af790c, 24/4, line 5
-    - fixable: yes!
     - Fixed commit: 8f3933708e4fb1e4b85c7accf0acb4aca7315c9e, 13/5, lines 9-12
   - potential god class: User class
     - The user class exhibits characteristics of the "multifaceted abstraction" (god class) code smell, as it has many responsibilities, being used in every activity for both the current user and other users they interact with. It contains many fields and methods used by both the backend (e.g. username) and frontend (e.g. profile picture). However, we decided not to refactor it for 2 main reasons. First, while it has a lot of functionality, all of it makes sense being encapsulated in the User class, and refactoring it could very easily lead to creating other code smells such as "unnecessary abstraction" and "broken modularization". Secondly, we are quite close to the deadline, and refactoring this class, which is a central and critical part of the app, would take a lot of time. In order to try and avoid making the problem any worse, we will try and pay special attention when adding new fields or methods to this class, only adding anything if absolutely necessary.
     - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, whole class
   - Cyclic Dependancy between User and QueuedUserObserver
-    - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, 22/4, lines 10-24 (UserQueueObserver), lines 11, 47-63 (User)
-    - These two classes are both dependent on each other, creating a cyclic dependency. The QueuedUserObserver (renamed from UserQueueObserver) relies on the User class, as it has a list of Users `usersInQueue`, and the User class relies on the QueuedUserObserver in the `enterQueue` and `exitQueue` methods. However, we have not fixed this dependency. The best way to fix it would be to create a generic observer class or interface and create an instance of it which specifically takes into account our needs. However, this would still leave any implementation of the interface containing the functionality we want with a cyclic dependency. Additionally our implementation uses the singleton design pattern anyways, and any implementation which would remove the cyclic dependency would equally remove the benefit of having a single instance we can use to manage the Iser queue.
+    - These two classes are both dependent on each other, creating a cyclic dependency. The QueuedUserObserver (renamed from UserQueueObserver) relies on the User class, as it has a list of Users `usersInQueue`, and the User class relies on the QueuedUserObserver in the `enterQueue` and `exitQueue` methods. However, we have not fixed this dependency. The best way to fix it would be to create a generic observer class or interface and create an instance of it which specifically takes into account our needs. However, this would still leave any implementation of the interface containing the functionality we want with a cyclic dependency. Additionally our implementation uses the singleton design pattern anyways, and any implementation which would remove the cyclic dependency would equally remove the benefit of having a single instance we can use to manage the User queue.
+        - First commit: 6c843f09ce34468634c41db41f8d6ce50e73ab79, 22/4, lines 10-24 (UserQueueObserver), lines 11, 47-63 (User)
+
         
 **Other**
 
