@@ -108,8 +108,7 @@ A use case of this application is in the case of two students wanting to practic
 
 ## Application UML
 
-![ClassDiagramExample](./images/ClassDiagramExample.png)
-*[Replace the above with a class diagram. You can look at how we have linked an image here as an example of how you can do it too.]*
+![ClassDiagramExample](./images/uml.png)
 
 ## Application Design and Decisions
 
