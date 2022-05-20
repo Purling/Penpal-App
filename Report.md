@@ -143,11 +143,11 @@ This is reasonable as any extension to the enumerations involved don't require a
 
 **Design Patterns**
 
-- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database. This includes the User and Conversation objects. Most access to the database which needed to retrieve a User or Conversation was done through the DAO.
+- DAO pattern: Our team uses the DAO pattern to retrieve, store and update data stored in the Firebase database. This includes the User and Conversation objects. Most access to the database which needed to retrieve a User or Conversation was done through the DAO. These patterns are implemented in the `UserDao` and `ConversationDao`.
 
-- Singleton: Many classes such as the DAO classes implemented the singleton pattern. In the case of Firebase access, this was to prevent unnecessary connections to the database which would just impact memory.
+- Singleton: Many classes such as the DAO classes (`UserDao` and `ConversationDao`) implement this singleton pattern. In the case of Firebase access, this was to prevent unnecessary connections to the database which would just impact memory.
 
-- Factory: 
+- Factory: The `ConversationFormer` class is an example of a factory method. It is a factory of conversations and attempts to create different conversations based off of User interest and topics. If the users have topics which supplement each other (e.g., both are interested in sports), the factory method creates a unique conversation. This conversation also forms based on the type of compatible language.
 
 **Grammar**
 
@@ -163,15 +163,12 @@ This is reasonable as any extension to the enumerations involved don't require a
 \<language> ::= ENGLISH | GERMAN | JAPANESE | etc
 <br>
 \<topic> ::= MUSIC | SPORTS | etc
-<br>
 
 The grammar is able to construct sentences which resemble boolean statements. We took inspiration from both the lectures and also from the grammars learnt in COMP1600. This particular grammar generates expressions such as "Chinese and not German". This is very useful for our language searching function. The advantages of such a design is that we are able to easily evaluate the expression after parsing it. This grammar simplifies the searching function quite a bit by directly allow us to compare if the language/topic should be searched for or not.
 
 **Tokenizer and Parsers**
 
-*[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
-
-The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
+The tokeniser and parser are used in the SearchActivity. The tokeniser takes the input string the user types into the search bar, and splits it into tokens, each word becoming a token. The possible types are a language (one of the valid languages), a topic (one of the valid topics), a boolean operator (and, or, not, brackets), or a generic word (anything not matching one of the other options). Then, the parser will choose the valid content from tokens which are topics and languages. An advantage of our generic word type is that invalid input, such as a language not implemented in our app, will not break the search, instead acting as a boolean false value in the search. In using the parser we are also able to define the search parameters - whether a given token must be included, can be replaced with another token or must not be included.
 
 **Surprise Feature**
 Code Smells
