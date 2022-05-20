@@ -144,6 +144,8 @@ A use case of this application is in the case of two students wanting to practic
 
 - Observer: 
 
+- Factory:
+
 **Grammar(s)**
 
 <br> *Production Rules* <br>
@@ -153,15 +155,9 @@ A use case of this application is in the case of two students wanting to practic
 <br> 
 \<search\> ::= \<content\> | (\<exp\>)​
 
-*[How do you design the grammar? What are the advantages of your designs?]*
-
-This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
-
-*If there are several grammars, list them all under this section and what they relate to.*
+The grammar is able to construct sentences which resemble boolean statements. We took inspiration from both the lectures and also from the grammars learnt in COMP1600. This particular grammar generates expressions such as "Chinese and not German". This is very useful for our language searching function. The advantages of such a design is that we are able to easily evaluate the expression after parsing it. This grammar simplifies the searching function quite a bit by directly allow us to compare if the language/topic should be searched for or not.
 
 **Tokenizer and Parsers**
-
-*[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
 
 The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
 
