@@ -199,24 +199,24 @@ Potential:
 
 Code coverage: We decided to use 3 different metrics to look at code coverage. First, when looking at the whole project, we achieved 18% line coverage.
 
-![ClassDiagramExample](./images/NoExcludedFull.png)
+![ClassDiagramExample](./images/NoExcludedFull.png =400x)
 
 
 However, the assessment rubric mentions that UI should be ignored in line coverage. If we remove all UI from the test coverage calculations, we achieved 33% line coverage.
 
 
-![ClassDiagramExample](./images/UIExcludedFull.png)
+![ClassDiagramExample](./images/UIExcludedFull.png =400x)
 
 
 Because the JUnit test cases are written outside of the code which handles the Android app, the Android Looper (a part of the Handler class) does not run. 
 
 Finally, much of our project (specifically the Dao) relies on the online Firebase database, which cannot be tested due to Looper errors.  The purpose of the Looper is to create a thread loop. This is important for functions such as database access which rely on looping a thread until data is retrieved from the database. As such, tests which rely on the Looper throw errors. For this reason, we decided to additionally remove classes which involved the Dao from coverage calculations. After doing this, we achieved 50% line coverage.
 
-![ClassDiagramExample](./images/DaoExcludedFull.png)
+![ClassDiagramExample](./images/DaoExcludedFull.png =400x)
 
 Broken down by package:
 
-![ClassDiagramExample](./images/DaoExcludedByPackage.png)
+![ClassDiagramExample](./images/DaoExcludedByPackage.png =400x)
 
 
 In addition to JUnit tests, we have created Espresso UI tests. These cover ~70% of all UI classes.
