@@ -36,9 +36,13 @@ u7312578, Ziling Ouyang, code contribution percentage: .
 *
 
 u6710622, Xingkun Chen, code contribution percentage: .
-*
-*
-*
+* Create the basic UI of application( MainActivity, LoginActivity, SearchActivity, FriendActivity)
+* Design and complete the Token and Tokenizer class
+* Design and complete the grammar of the SearchActivity
+* Design the text, Exp , notExp, OrExp, AndExp, contentText of SearchActivity
+* Design and complete the parser of the SearchActivity
+* Assisted Zane complete the Register feature in LoginActivity but delete by using of DAO
+* Make UI more nice
 
 u7283599, William Loughton, code contribution percentage: 12.5%
   * Implemented most JUnit test classes (InteractionTest, ParserTest, UserBinarySearchTreeTest)
@@ -151,13 +155,13 @@ A use case of this application is in the case of two students wanting to practic
 \<search\> ::= \<content\> | (\<exp\>)​
 
 *[How do you design the grammar? What are the advantages of your designs?]*
-
+ This grammar is designed based on the lab task we learnt. In this grammar, it could divide the tokenizer with "and" ,"or" and anlyse it.
 *If there are several grammars, list them all under this section and what they relate to.*
 
 **Tokenizer and Parsers**
 
 *[Where do you use tokenisers and parsers? How are they built? What are the advantages of the designs?]*
-
+The tokenisers and the parsers are used in the SearchActivity. The tokenisers will define the sentences word by word into tokens. Then, the parser will choose the valid content from tokens which are topics and languages. By using parser, it could also define the content should be contained or not.
 **Surprise Feature**
 Code Smells
 Potential:
