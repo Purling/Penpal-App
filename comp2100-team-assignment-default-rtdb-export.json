@@ -1,0 +1,2583 @@
+ {
+  "availableConversations": {
+    "bob": "#CLOSED",
+    "jacob": "#CLOSED",
+    "testUser": "1653030179567_transitory",
+    "zane": "#CLOSED"
+  },
+  "conversation": {
+    "1652360626594_transitory": {
+      "messages": {
+        "25467776": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652360626727"
+        },
+        "216635315": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652360626981"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652360747632_transitory": {
+      "messages": {
+        "17298009": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652360747891"
+        },
+        "247903855": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652360747779"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652362287417_transitory": {
+      "messages": {
+        "17298009": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652362287632"
+        },
+        "227045908": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652362287682"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652362910364_transitory": {
+      "messages": {
+        "17298009": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652362910612"
+        },
+        "227045908": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652362910674"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652364050819_transitory": {
+      "messages": {
+        "227045908": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652364051098"
+        }
+      },
+      "user1": "adam"
+    },
+    "1652364083345_transitory": {
+      "messages": {
+        "25467776": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652364083497"
+        },
+        "122019165": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652364083697"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652364101019_transitory": {
+      "messages": {
+        "108056176": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652364101335"
+        },
+        "245782592": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652364101244"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652364212010_transitory": {
+      "messages": {
+        "977494": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652364212158"
+        },
+        "118434137": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652364212070"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652368702164_transitory": {
+      "messages": {
+        "103566975": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652368702386"
+        },
+        "127902163": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652368702301"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652400036447_transitory": {
+      "messages": {
+        "134452453": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652400037029"
+        },
+        "149220243": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652400036784"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652690546392_transitory": {
+      "messages": {
+        "74775038": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652691664843"
+        }
+      },
+      "user2": "charlie"
+    },
+    "1652691712287_transitory": {
+      "messages": {
+        "42825430": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652691712529"
+        }
+      },
+      "user1": "adam"
+    },
+    "1652792528952_transitory": {
+      "messages": {
+        "94489824": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652792528910"
+        },
+        "147620950": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652792529030"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652792623749_transitory": {
+      "messages": {
+        "45030169": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652792624132"
+        },
+        "175769181": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652792624111"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652793382226_transitory": {
+      "language1": "ITALIAN",
+      "language2": "JAPANESE",
+      "messages": {
+        "21775438": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652793382204"
+        },
+        "219957920": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652793382485"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652888058791_transitory": {
+      "messages": {
+        "62720395": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652888058471"
+        },
+        "244794236": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652888059031"
+        }
+      },
+      "user1": "testUser",
+      "user2": "adam"
+    },
+    "1652888410923_transitory": {
+      "messages": {
+        "60571097": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652888410600"
+        },
+        "173236717": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652888411209"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "testUser"
+    },
+    "1652888715316_transitory": {
+      "messages": {
+        "60535295": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652888715463"
+        },
+        "60571097": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652888714999"
+        }
+      },
+      "user1": "adam",
+      "user2": "testUser"
+    },
+    "1652888815675_transitory": {
+      "messages": {
+        "29651165": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652888815477"
+        },
+        "33631832": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652888816247"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "adam",
+      "user2": "testUser"
+    },
+    "1652889107479_transitory": {
+      "messages": {
+        "38313106": {
+          "author": "adam",
+          "content": "Which conversation",
+          "time": "1652889288487"
+        },
+        "123617338": {
+          "author": "adam",
+          "content": "asdas",
+          "time": "1652889278935"
+        },
+        "212267344": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652889107173"
+        },
+        "261410467": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652889107718"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "testUser"
+    },
+    "1652930827123_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "4263217": {
+          "author": "charlie",
+          "content": "hi",
+          "time": "1652930838104"
+        },
+        "59173986": {
+          "author": "adam",
+          "content": "hello",
+          "time": "1652930834604"
+        },
+        "203144146": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652930826870"
+        },
+        "252178392": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652930827628"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "charlie"
+    },
+    "1652931432630_transitory": {
+      "language1": "GERMAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "41158209": {
+          "author": "adam",
+          "content": "okay",
+          "time": "1652931543487"
+        },
+        "42003652": {
+          "author": "charlie",
+          "content": "test",
+          "time": "1652931539307"
+        },
+        "44200469": {
+          "author": "charlie",
+          "content": "v",
+          "time": "1652931529404"
+        },
+        "64942047": {
+          "author": "charlie",
+          "content": "message",
+          "time": "1652931536952"
+        },
+        "67811798": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652931432327"
+        },
+        "69861809": {
+          "author": "adam",
+          "content": "i've got your message",
+          "time": "1652931552521"
+        },
+        "97646891": {
+          "author": "charlie",
+          "content": "a",
+          "time": "1652931526529"
+        },
+        "141749487": {
+          "author": "charlie",
+          "content": "b",
+          "time": "1652931532130"
+        },
+        "197308089": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652931432777"
+        },
+        "204434532": {
+          "author": "charlie",
+          "content": "v",
+          "time": "1652931530497"
+        },
+        "238583974": {
+          "author": "charlie",
+          "content": "b",
+          "time": "1652931533868"
+        },
+        "242692562": {
+          "author": "charlie",
+          "content": "a",
+          "time": "1652931527664"
+        },
+        "258839872": {
+          "author": "adam",
+          "content": "cool",
+          "time": "1652931545586"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "charlie"
+    },
+    "1652932243126_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "99237127": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652932243280"
+        },
+        "113518997": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652932242799"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "charlie"
+    },
+    "1652932293126_transitory": {
+      "messages": {
+        "45860418": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652932293780"
+        },
+        "167399203": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652932294026"
+        }
+      },
+      "user1": "charlie",
+      "user2": "adam"
+    },
+    "1652932449525_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "42731715": {
+          "author": "charlie",
+          "content": "ads",
+          "time": "1652932498360"
+        },
+        "58548276": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652932450474"
+        },
+        "97378813": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652932450314"
+        },
+        "124484827": {
+          "author": "adam",
+          "content": "wow",
+          "time": "1652932461385"
+        },
+        "171952144": {
+          "author": "charlie",
+          "content": "gef",
+          "time": "1652932455966"
+        },
+        "186219339": {
+          "author": "charlie",
+          "content": "okah",
+          "time": "1652932469759"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "charlie",
+      "user2": "adam"
+    },
+    "1652932587093_transitory": {
+      "messages": {
+        "40289043": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652932588059"
+        },
+        "234200267": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652932587799"
+        }
+      },
+      "user1": "charlie",
+      "user2": "adam"
+    },
+    "1652932676191_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "18069222": {
+          "author": "adam",
+          "content": "hi tere",
+          "time": "1652932687593"
+        },
+        "18874665": {
+          "author": "charlie",
+          "content": "hhello",
+          "time": "1652932680952"
+        },
+        "98710496": {
+          "author": "charlie",
+          "content": "aasd",
+          "time": "1652932692401"
+        },
+        "138202463": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652932677263"
+        },
+        "178629729": {
+          "author": "charlie",
+          "content": "asd",
+          "time": "1652932691009"
+        },
+        "234871706": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652932676928"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "charlie",
+      "user2": "adam"
+    },
+    "1652933097262_transitory": {
+      "messages": {
+        "108219392": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652933098436"
+        },
+        "234200267": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652933098253"
+        }
+      },
+      "user1": "charlie",
+      "user2": "adam"
+    },
+    "1652933386443_transitory": {
+      "messages": {
+        "100855517": {
+          "author": "adam",
+          "content": "jll",
+          "time": "1652933309820"
+        },
+        "236067562": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652933298629"
+        }
+      },
+      "user2": "adam"
+    },
+    "1652933407251_transitory": {
+      "language1": "ENGLISH",
+      "language2": "GERMAN",
+      "messages": {
+        "66094427": {
+          "author": "charlie",
+          "content": "okay",
+          "time": "1652933413278"
+        },
+        "131116545": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652933408199"
+        },
+        "131613907": {
+          "author": "charlie",
+          "content": "does this work?",
+          "time": "1652933419195"
+        },
+        "152741039": {
+          "author": "testUser",
+          "content": "it looks like it does",
+          "time": "1652933426690"
+        },
+        "214688017": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652933407998"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652933656349_transitory": {
+      "messages": {
+        "222693138": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652933656656"
+        }
+      },
+      "user1": "bob"
+    },
+    "1652933676475_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "125606824": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652933676908"
+        },
+        "128819090": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652933677221"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652934321288_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "91592103": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652934320927"
+        },
+        "160954013": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652934321693"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652934812084_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "160954013": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652934812345"
+        },
+        "261659378": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652934811727"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652934828026_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "45215628": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652934828756"
+        },
+        "52723577": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652934828374"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652934868322_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "265264801": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652934867976"
+        },
+        "265488366": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652934868400"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652934895678_transitory": {
+      "language1": "ITALIAN",
+      "language2": "FRENCH",
+      "messages": {
+        "200901214": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652934896406"
+        },
+        "267143115": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652934896079"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652935048249_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "222693138": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652935048987"
+        },
+        "250059589": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652935048631"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652935060092_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "47656264": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652935060457"
+        },
+        "70309475": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652935059712"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652935063624_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "7183759": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652935063717"
+        },
+        "261788763": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652935064387"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652936026915_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "7597942": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652936026551"
+        },
+        "160954013": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652936027246"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652941709395_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "160954013": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652941709764"
+        },
+        "187093255": {
+          "author": "bob",
+          "content": "test",
+          "time": "1652941713398"
+        },
+        "215206484": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941709528"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652943886588_transitory": {
+      "messages": {
+        "205436857": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652943887880"
+        }
+      },
+      "user1": "charlie"
+    },
+    "1652943932678_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "56087360": {
+          "author": "testUser",
+          "content": "very long message that is way too long just so i can see what happens and if everything works",
+          "time": "1652943964550"
+        },
+        "135853478": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652943933006"
+        },
+        "153779874": {
+          "author": "charlie",
+          "content": "hello",
+          "time": "1652943938960"
+        },
+        "173806374": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652943933759"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652944091256_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "40588607": {
+          "author": "charlie",
+          "content": "uhhhhh",
+          "time": "1652944102803"
+        },
+        "87092833": {
+          "author": "testUser",
+          "content": "that's a little weird",
+          "time": "1652944111702"
+        },
+        "91205592": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652944092694"
+        },
+        "244722079": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652944092093"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652944249235_transitory": {
+      "messages": {
+        "40588607": {
+          "author": "charlie",
+          "content": "picasso",
+          "time": "1652944258097"
+        },
+        "68895860": {
+          "author": "charlie",
+          "content": "okay",
+          "time": "1652944255114"
+        },
+        "91205592": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652944250135"
+        }
+      },
+      "user1": "charlie"
+    },
+    "1652944274546_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "18000566": {
+          "author": "charlie",
+          "content": "welp",
+          "time": "1652944281201"
+        },
+        "92233108": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652944275365"
+        },
+        "187220173": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652944275759"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652944340553_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "19749829": {
+          "author": "charlie",
+          "content": "sdklfjsdljhfljsghhsjghlsjdghjsdghkjsdhgjksdhgjksdhgjksdhhgkjsdhghkjsghjksdhghkjsdhgkjsdhgkjsdhgkjsdhgkjsdhgkjsdhgkjsdhgjksdkhgjksdhgkjsdhdsjkh",
+          "time": "1652944373290"
+        },
+        "47423475": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652944341456"
+        },
+        "50852693": {
+          "author": "charlie",
+          "content": "does this work?",
+          "time": "1652944356616"
+        },
+        "60879378": {
+          "author": "charlie",
+          "content": "hhello",
+          "time": "1652944345914"
+        },
+        "139878218": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652944341818"
+        },
+        "168166338": {
+          "author": "charlie",
+          "content": "asdkjsalkfhjsdlglhjsdlhjsljasdhjakjsdhhksdjfhhksjdfhjksdfhkjsdhfjkshfkjsdf",
+          "time": "1652944364721"
+        },
+        "257837233": {
+          "author": "testUser",
+          "content": "uhhhhh",
+          "time": "1652944350031"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652944470138_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "3966452": {
+          "author": "charlie",
+          "content": "naisu",
+          "time": "1652944559718"
+        },
+        "13169753": {
+          "author": "charlie",
+          "content": "uWu",
+          "time": "1652944516531"
+        },
+        "14949510": {
+          "author": "testUser",
+          "content": "nihongojouzudesune",
+          "time": "1652944589931"
+        },
+        "24821997": {
+          "author": "charlie",
+          "content": "helo",
+          "time": "1652944476764"
+        },
+        "45153948": {
+          "author": "charlie",
+          "content": "uwu",
+          "time": "1652944485898"
+        },
+        "104548089": {
+          "author": "testUser",
+          "content": "ewe",
+          "time": "1652944508432"
+        },
+        "107703341": {
+          "author": "testUser",
+          "content": "aaasounandesuka",
+          "time": "1652944578318"
+        },
+        "113983928": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1652944471107"
+        },
+        "120198876": {
+          "author": "testUser",
+          "content": "sugoi",
+          "time": "1652944584381"
+        },
+        "137581278": {
+          "author": "charlie",
+          "content": "mainitirensyuusimasu",
+          "time": "1652944570528"
+        },
+        "150663175": {
+          "author": "charlie",
+          "content": "ovo",
+          "time": "1652944503850"
+        },
+        "152060097": {
+          "author": "testUser",
+          "content": "owo",
+          "time": "1652944482998"
+        },
+        "172716531": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1652944471652"
+        },
+        "174424280": {
+          "author": "testUser",
+          "content": "OwO",
+          "time": "1652944513260"
+        },
+        "226622289": {
+          "author": "charlie",
+          "content": "madamadadesyou",
+          "time": "1652944595753"
+        },
+        "256038562": {
+          "author": "testUser",
+          "content": "yokuhanasemasen",
+          "time": "1652944552066"
+        },
+        "259658554": {
+          "author": "charlie",
+          "content": "nihongo dekimasuka",
+          "time": "1652944538136"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "1652949752453_transitory": {
+      "messages": {
+        "165217608": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652949752875"
+        }
+      },
+      "user1": "bob"
+    },
+    "1652949757882_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "101896644": {
+          "author": "bob",
+          "content": "next conversation",
+          "time": "1652949766299"
+        },
+        "116391925": {
+          "author": "bob",
+          "content": "test",
+          "time": "1652949762412"
+        },
+        "197245321": {
+          "author": "bob",
+          "content": "blah",
+          "time": "1652949775618"
+        },
+        "201315127": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652949758258"
+        },
+        "236602941": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652949757938"
+        },
+        "239742354": {
+          "author": "bob",
+          "content": "other message",
+          "time": "1652949770604"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652952407582_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "154110414": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652952408321"
+        },
+        "161924402": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652952407977"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "adam"
+    },
+    "1652952510854_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "8608184": {
+          "author": "adam",
+          "content": "message 2",
+          "time": "1652952531906"
+        },
+        "48188056": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652952510999"
+        },
+        "99822227": {
+          "author": "bob",
+          "content": "message 4",
+          "time": "1652952560202"
+        },
+        "122746166": {
+          "author": "bob",
+          "content": "message 1",
+          "time": "1652952527085"
+        },
+        "126322277": {
+          "author": "adam",
+          "content": "messa ge3",
+          "time": "1652952555139"
+        },
+        "247645109": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652952511420"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652953072353_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "31112541": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652953072694"
+        },
+        "44504490": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652953072480"
+        },
+        "134196957": {
+          "author": "adam",
+          "content": "other message",
+          "time": "1652953096853"
+        },
+        "165497118": {
+          "author": "bob",
+          "content": "hello",
+          "time": "1652953092546"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652953211146_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "72979963": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652953211445"
+        },
+        "120181583": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652953211494"
+        },
+        "260957904": {
+          "author": "bob",
+          "content": "message in live convo",
+          "time": "1652953218395"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652954011687_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "72345641": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652954012071"
+        },
+        "188830548": {
+          "author": "adam",
+          "content": "hello",
+          "time": "1652954026394"
+        },
+        "207360381": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652954011947"
+        },
+        "250880439": {
+          "author": "bob",
+          "content": "yo",
+          "time": "1652954030085"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "adam"
+    },
+    "1652954552427_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "14426500": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652954552840"
+        },
+        "18842940": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652954552675"
+        },
+        "92484191": {
+          "author": "adam",
+          "content": "next",
+          "time": "1652954718487"
+        },
+        "132434175": {
+          "author": "adam",
+          "content": "hello again",
+          "time": "1652954683828"
+        },
+        "227150097": {
+          "author": "adam",
+          "content": "and amother message\n",
+          "time": "1652954715422"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "adam"
+    },
+    "1652954582396_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "6890803": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652954582675"
+        },
+        "134078414": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652954582483"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955678961_transitory": {
+      "messages": {
+        "39258192": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955679375"
+        },
+        "124695012": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955679241"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955687507_transitory": {
+      "messages": {
+        "191779666": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955687644"
+        },
+        "232742773": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955688005"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955727236_transitory": {
+      "messages": {
+        "9577624": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955727380"
+        },
+        "255811091": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955727694"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955732912_transitory": {
+      "messages": {
+        "91145569": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955733322"
+        },
+        "129813469": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955733198"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955737574_transitory": {
+      "messages": {
+        "39258192": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955737714"
+        },
+        "262339113": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955738050"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955743078_transitory": {
+      "messages": {
+        "38604515": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955743423"
+        },
+        "47356309": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955743348"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955747623_transitory": {
+      "messages": {
+        "14966123": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955748063"
+        },
+        "90360193": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955747750"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955789430_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "218951344": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955789686"
+        },
+        "244325789": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955789781"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955793430_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "2447008": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955793829"
+        },
+        "162503675": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955793566"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955797503_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "3750163": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955797800"
+        },
+        "84897277": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955797807"
+        },
+        "204114894": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955798052"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955800784_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "187713180": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955800932"
+        },
+        "261110957": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955800914"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955803693_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "86278594": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955803827"
+        },
+        "209439049": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955803993"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652955886269_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "46513723": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955886422"
+        },
+        "176272322": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955886769"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652955956812_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "123075478": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652955957281"
+        },
+        "240168573": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652955957057"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652956105623_transitory": {
+      "messages": {
+        "154948160": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652956106004"
+        }
+      },
+      "user1": "adam"
+    },
+    "1652956115014_transitory": {
+      "language1": "FRENCH",
+      "language2": "ITALIAN",
+      "messages": {
+        "49430031": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652956115397"
+        },
+        "130984688": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652956115268"
+        },
+        "222127770": {
+          "author": "bob",
+          "content": "message",
+          "time": "1652956119600"
+        },
+        "265259546": {
+          "author": "adam",
+          "content": "response",
+          "time": "1652956123718"
+        }
+      },
+      "topic": "TRAVEL",
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "1652956482256_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "3508287": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652956482298"
+        },
+        "141447385": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652956482502"
+        }
+      },
+      "topic": "SPORTS",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652956511453_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "1631694": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652956511489"
+        },
+        "145850846": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652956511510"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "bob",
+      "user2": "bob"
+    },
+    "1652965780999_transitory": {
+      "language1": "ITALIAN",
+      "language2": "ENGLISH",
+      "messages": {
+        "153490889": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652965781434"
+        },
+        "188214759": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652965781223"
+        }
+      },
+      "topic": "MUSIC",
+      "user1": "adam",
+      "user2": "bob"
+    },
+    "1652967249822_permanent": {
+      "user1": "adam"
+    },
+    "1652967384258_permanent": {
+      "user1": "testUser"
+    },
+    "1652967547621_permanent": {
+      "messages": {
+        "88492218": {
+          "author": "bob",
+          "content": "asdas",
+          "time": "1652967550576"
+        }
+      },
+      "user1": "bob"
+    },
+    "1652967709275_permanent": {
+      "user1": "adam"
+    },
+    "1652967759256_permanent": {
+      "messages": {
+        "119690346": {
+          "author": "adam",
+          "content": "asds",
+          "time": "1652967760628"
+        }
+      },
+      "user1": "adam"
+    },
+    "1652967870427_permanent": {
+      "user1": "adam"
+    },
+    "1652968342925_permanent": {
+      "messages": {
+        "105594276": {
+          "author": "adam",
+          "content": "AAA",
+          "time": "1652968346311"
+        }
+      },
+      "user1": "adam"
+    },
+    "1652968403167_permanent": {
+      "messages": {
+        "93500948": {
+          "author": "adam",
+          "content": "AS",
+          "time": "1652968406596"
+        },
+        "201398389": {
+          "author": "adam",
+          "content": "asas",
+          "time": "1652968408045"
+        }
+      },
+      "user1": "adam"
+    },
+    "1653030179567_transitory": {
+      "language1": "ENGLISH",
+      "language2": "ITALIAN",
+      "messages": {
+        "3224673": {
+          "author": "testUser",
+          "content": "i really like sushi, how about you?",
+          "time": "1653030276288"
+        },
+        "24999220": {
+          "author": "",
+          "content": "charlie joined.",
+          "time": "1653030180832"
+        },
+        "86275975": {
+          "author": "charlie",
+          "content": "what food do you like?",
+          "time": "1653030263430"
+        },
+        "168012099": {
+          "author": "charlie",
+          "content": "hello!",
+          "time": "1653030240448"
+        },
+        "227416666": {
+          "author": "testUser",
+          "content": "hey",
+          "time": "1653030245414"
+        },
+        "236927614": {
+          "author": "",
+          "content": "testUser joined.",
+          "time": "1653030179772"
+        }
+      },
+      "topic": "FOOD",
+      "user1": "charlie",
+      "user2": "testUser"
+    },
+    "adam": {
+      "messages": {
+        "52741926": {
+          "author": "charlie",
+          "content": "Oh",
+          "time": "1652967929060"
+        },
+        "77194649": {
+          "author": "adam",
+          "content": "asdsds",
+          "time": "1652966491246"
+        },
+        "88492218": {
+          "author": "adam",
+          "content": "sdsds",
+          "time": "1652966489305"
+        },
+        "93652674": {
+          "author": "adam",
+          "content": "sadsad",
+          "time": "1652966492535"
+        },
+        "136632588": {
+          "author": "adam",
+          "content": "sss",
+          "time": "1652967032498"
+        },
+        "188785778": {
+          "author": "adam",
+          "content": "lol",
+          "time": "1652966512532"
+        },
+        "210152480": {
+          "author": "charlie",
+          "content": "sadsadsa",
+          "time": "1652967925844"
+        },
+        "240952598": {
+          "author": "adam",
+          "content": "ASD",
+          "time": "1652968353894"
+        }
+      },
+      "user1": "adam"
+    },
+    "adam_bob_permanent": {
+      "messages": {
+        "4405494": {
+          "author": "adam",
+          "content": "Hello!",
+          "time": "1652944997003"
+        },
+        "13366218": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652945063023"
+        },
+        "16828787": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652938992289"
+        },
+        "19603302": {
+          "author": "adam",
+          "content": "Bobby Fischer - Amateur Musician",
+          "time": "1652938987584"
+        },
+        "19721198": {
+          "author": "adam",
+          "content": "AAA",
+          "time": "1652941350625"
+        },
+        "29341637": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652944987716"
+        },
+        "46791653": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652942731477"
+        },
+        "48564078": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941422742"
+        },
+        "50099576": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941399293"
+        },
+        "53968548": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652942760156"
+        },
+        "58784061": {
+          "author": "adam",
+          "content": "message already sent",
+          "time": "1652941419588"
+        },
+        "62605838": {
+          "author": "adam",
+          "content": "what is this conversation",
+          "time": "1652952621038"
+        },
+        "66761262": {
+          "author": "adam",
+          "content": "and",
+          "time": "1652952781136"
+        },
+        "85326773": {
+          "author": "adam",
+          "content": "Aaaa",
+          "time": "1652941188811"
+        },
+        "94646023": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941475287"
+        },
+        "98662092": {
+          "author": "adam",
+          "content": "following message",
+          "time": "1652952777401"
+        },
+        "105709202": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941348547"
+        },
+        "106448958": {
+          "author": "adam",
+          "content": "so",
+          "time": "1652952782736"
+        },
+        "112922150": {
+          "author": "adam",
+          "content": "message",
+          "time": "1652891089070"
+        },
+        "113097271": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652944968094"
+        },
+        "119792809": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941185394"
+        },
+        "125625896": {
+          "author": "adam",
+          "content": "next message",
+          "time": "1652952772851"
+        },
+        "126173639": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941303451"
+        },
+        "127974303": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652891085210"
+        },
+        "134391771": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941353891"
+        },
+        "137358233": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652945233602"
+        },
+        "138138493": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652945397510"
+        },
+        "140722633": {
+          "author": "adam",
+          "content": "Abeas",
+          "time": "1652945048884"
+        },
+        "145851595": {
+          "author": "adam",
+          "content": "Awwwww",
+          "time": "1652941182549"
+        },
+        "145988000": {
+          "author": "adam",
+          "content": "Nice!",
+          "time": "1652944978915"
+        },
+        "160659717": {
+          "author": "adam",
+          "content": "on",
+          "time": "1652952784429"
+        },
+        "166601196": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652891080444"
+        },
+        "174472198": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941191627"
+        },
+        "194975500": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652942996967"
+        },
+        "199316765": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941345089"
+        },
+        "205370968": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941413160"
+        },
+        "222817597": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652893331419"
+        },
+        "228726726": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652893580443"
+        },
+        "230775422": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941179059"
+        },
+        "245192436": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941305731"
+        },
+        "260670346": {
+          "author": "adam",
+          "content": "next message",
+          "time": "1652941427783"
+        },
+        "265009806": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652941800640"
+        }
+      },
+      "user1": "adam"
+    },
+    "adam_transitory": {
+      "messages": {
+        "43931715": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652358312114"
+        },
+        "83560612": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652358122309"
+        },
+        "144844026": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652358122048"
+        },
+        "192858096": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652359843214"
+        },
+        "214935812": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652359843395"
+        },
+        "216635315": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652360077535"
+        },
+        "240965133": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652358312256"
+        },
+        "245396252": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652360077324"
+        }
+      },
+      "user1": "bob",
+      "user2": "adam"
+    },
+    "bob_transitory": {
+      "messages": {
+        "58054707": {
+          "author": "",
+          "content": "adam joined.",
+          "time": "1652359004641"
+        },
+        "75195002": {
+          "author": "",
+          "content": "bob joined.",
+          "time": "1652359004507"
+        }
+      },
+      "user1": "adam",
+      "user2": "bob"
+    }
+  },
+  "userList": {
+    "adam": {
+      "avatar": "https://static.wikia.nocookie.net/megamitensei/images/1/15/Mtnakajimaprofile.png/revision/latest/scale-to-width-down/96?cb=20130617080148",
+      "conversationTopics": {
+        "FOOD": "INTERESTED",
+        "MUSIC": "INTERESTED",
+        "SPORTS": "UNINTERESTED",
+        "TRAVEL": "INTERESTED"
+      },
+      "displayName": "Adam Lastname",
+      "familiarity": {
+        "ENGLISH": "FLUENT",
+        "FRENCH": "FLUENT",
+        "GERMAN": "BEGINNER",
+        "ITALIAN": "BEGINNER",
+        "JAPANESE": "UNINTERESTED",
+        "KOREAN": "INTERMEDIATE",
+        "MANDARIN": "ADVANCED"
+      },
+      "friends": {
+        "adam": "adam",
+        "bob": "adam",
+        "charlie": "adam",
+        "testUser": "adam"
+      },
+      "inQueue": false,
+      "interactions": {
+        "1652941709445": {
+          "detail": "1652941709395_transitory",
+          "time": 1652941709445,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652941714476": {
+          "detail": "#CLOSED",
+          "time": 1652941714476,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652949757847": {
+          "detail": "1652949757882_transitory",
+          "time": 1652949757847,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652949777114": {
+          "detail": "#CLOSED",
+          "time": 1652949777114,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952407751": {
+          "detail": "1652952407582_transitory",
+          "time": 1652952407752,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952417256": {
+          "detail": "#CLOSED",
+          "time": 1652952417257,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952510895": {
+          "detail": "1652952510854_transitory",
+          "time": 1652952510895,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952537278": {
+          "detail": "#CLOSED",
+          "time": 1652952537278,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953072510": {
+          "detail": "1652953072353_transitory",
+          "time": 1652953072510,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953211309": {
+          "detail": "1652953211146_transitory",
+          "time": 1652953211309,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953222945": {
+          "detail": "#CLOSED",
+          "time": 1652953222945,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954011855": {
+          "detail": "1652954011687_transitory",
+          "time": 1652954011855,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954017873": {
+          "detail": "#CLOSED",
+          "time": 1652954017873,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954552594": {
+          "detail": "1652954552427_transitory",
+          "time": 1652954552594,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954582573": {
+          "detail": "1652954582396_transitory",
+          "time": 1652954582573,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954636040": {
+          "detail": "#CLOSED",
+          "time": 1652954636041,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955687823": {
+          "detail": "1652955687507_transitory",
+          "time": 1652955687823,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955727521": {
+          "detail": "1652955727236_transitory",
+          "time": 1652955727521,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955737861": {
+          "detail": "1652955737574_transitory",
+          "time": 1652955737861,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955747906": {
+          "detail": "1652955747623_transitory",
+          "time": 1652955747906,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955789594": {
+          "detail": "1652955789430_transitory",
+          "time": 1652955789594,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955793688": {
+          "detail": "1652955793430_transitory",
+          "time": 1652955793688,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955800819": {
+          "detail": "1652955800784_transitory",
+          "time": 1652955800819,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955803880": {
+          "detail": "1652955803693_transitory",
+          "time": 1652955803880,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955886614": {
+          "detail": "1652955886269_transitory",
+          "time": 1652955886614,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955956978": {
+          "detail": "1652955956812_transitory",
+          "time": 1652955956978,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956105869": {
+          "detail": "1652956105623_transitory",
+          "time": 1652956105869,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956115186": {
+          "detail": "1652956115014_transitory",
+          "time": 1652956115186,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956132004": {
+          "detail": "#CLOSED",
+          "time": 1652956132004,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956482375": {
+          "detail": "1652956482256_transitory",
+          "time": 1652956482375,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956493118": {
+          "detail": "#CLOSED",
+          "time": 1652956493118,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956511465": {
+          "detail": "1652956511453_transitory",
+          "time": 1652956511466,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956528710": {
+          "detail": "#CLOSED",
+          "time": 1652956528710,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652965781204": {
+          "detail": "1652965780999_transitory",
+          "time": 1652965781204,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652965786965": {
+          "detail": "#CLOSED",
+          "time": 1652965786965,
+          "type": "TRANSITORY_CONVERSATION"
+        }
+      },
+      "password": "adamPass",
+      "username": "adam"
+    },
+    "bob": {
+      "avatar": "https://static.wikia.nocookie.net/megamitensei/images/f/fc/Mtyumikoprofile.png/revision/latest/scale-to-width-down/96?cb=20130617080646",
+      "conversationTopics": {
+        "FOOD": "INTERESTED",
+        "MUSIC": "INTERESTED",
+        "SPORTS": "INTERESTED",
+        "TRAVEL": "INTERESTED"
+      },
+      "displayName": "Bob",
+      "familiarity": {
+        "ENGLISH": "BEGINNER",
+        "FRENCH": "BEGINNER",
+        "GERMAN": "UNINTERESTED",
+        "ITALIAN": "ADVANCED",
+        "JAPANESE": "FLUENT"
+      },
+      "friends": {
+        "adam": "adam"
+      },
+      "inQueue": false,
+      "interactions": {
+        "1652941709597": {
+          "detail": "1652941709395_transitory",
+          "time": 1652941709597,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652949752683": {
+          "detail": "1652949752453_transitory",
+          "time": 1652949752683,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652949758065": {
+          "detail": "1652949757882_transitory",
+          "time": 1652949758065,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652949777159": {
+          "detail": "#CLOSED",
+          "time": 1652949777159,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952407999": {
+          "detail": "1652952407582_transitory",
+          "time": 1652952407999,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952417102": {
+          "detail": "#CLOSED",
+          "time": 1652952417102,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952511225": {
+          "detail": "1652952510854_transitory",
+          "time": 1652952511225,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652952537248": {
+          "detail": "#CLOSED",
+          "time": 1652952537248,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953072392": {
+          "detail": "1652953072353_transitory",
+          "time": 1652953072392,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953211333": {
+          "detail": "1652953211146_transitory",
+          "time": 1652953211333,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652953222997": {
+          "detail": "#CLOSED",
+          "time": 1652953222997,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954011888": {
+          "detail": "1652954011687_transitory",
+          "time": 1652954011888,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954017729": {
+          "detail": "#CLOSED",
+          "time": 1652954017729,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954552645": {
+          "detail": "1652954552427_transitory",
+          "time": 1652954552645,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954557527": {
+          "detail": "#CLOSED",
+          "time": 1652954557527,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954582406": {
+          "detail": "1652954582396_transitory",
+          "time": 1652954582406,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652954636047": {
+          "detail": "#CLOSED",
+          "time": 1652954636047,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955679151": {
+          "detail": "1652955678961_transitory",
+          "time": 1652955679151,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955687549": {
+          "detail": "1652955687507_transitory",
+          "time": 1652955687549,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955733136": {
+          "detail": "1652955732912_transitory",
+          "time": 1652955733136,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955743272": {
+          "detail": "1652955743078_transitory",
+          "time": 1652955743272,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955747671": {
+          "detail": "1652955747623_transitory",
+          "time": 1652955747671,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955789581": {
+          "detail": "1652955789430_transitory",
+          "time": 1652955789581,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955793472": {
+          "detail": "1652955793430_transitory",
+          "time": 1652955793472,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955797675": {
+          "detail": "1652955797503_transitory",
+          "time": 1652955797675,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955803723": {
+          "detail": "1652955803693_transitory",
+          "time": 1652955803723,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955886313": {
+          "detail": "1652955886269_transitory",
+          "time": 1652955886313,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652955957105": {
+          "detail": "1652955956812_transitory",
+          "time": 1652955957105,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956115215": {
+          "detail": "1652956115014_transitory",
+          "time": 1652956115215,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956132025": {
+          "detail": "#CLOSED",
+          "time": 1652956132025,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956482238": {
+          "detail": "1652956482256_transitory",
+          "time": 1652956482238,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956511448": {
+          "detail": "1652956511453_transitory",
+          "time": 1652956511448,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652956528705": {
+          "detail": "#CLOSED",
+          "time": 1652956528705,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652965781090": {
+          "detail": "1652965780999_transitory",
+          "time": 1652965781090,
+          "type": "TRANSITORY_CONVERSATION"
+        },
+        "1652965787024": {
+          "detail": "#CLOSED",
+          "time": 1652965787024,
+          "type": "TRANSITORY_CONVERSATION"
+        }
+      },
+      "password": "bobPass",
+      "username": "bob"
+    },
+    "charlie": {
+      "conversationTopics": {
+        "FOOD": "INTERESTED",
+        "MUSIC": "INTERESTED",
+        "SPORTS": "INTERESTED",
+        "TRAVEL": "INTERESTED"
+      },
+      "displayName": "charlie",
+      "familiarity": {
+        "ENGLISH": "BEGINNER",
+        "FRENCH": "UNINTERESTED",
+        "GERMAN": "FLUENT",
+        "ITALIAN": "ADVANCED",
+        "JAPANESE": "UNINTERESTED"
+      },
+      "friends": {
+        "adam": "adam"
+      },
+      "inQueue": false,
+      "interactions": {
+        "1653030180298": {
+          "detail": "1653030179567_transitory",
+          "time": 1653030180298,
+          "type": "TRANSITORY_CONVERSATION"
+        }
+      },
+      "password": "charliepass",
+      "username": "charlie"
+    },
+    "delta": {
+      "displayName": "delta",
+      "inQueue": false,
+      "password": "deltaPass",
+      "username": "delta"
+    },
+    "testUser": {
+      "conversationTopics": {
+        "FOOD": "INTERESTED",
+        "MUSIC": "INTERESTED",
+        "SPORTS": "INTERESTED",
+        "TRAVEL": "INTERESTED"
+      },
+      "displayName": "testUser",
+      "familiarity": {
+        "ENGLISH": "FLUENT",
+        "FRENCH": "ADVANCED",
+        "GERMAN": "FLUENT",
+        "ITALIAN": "BEGINNER",
+        "JAPANESE": "FLUENT",
+        "KOREAN": "UNINTERESTED",
+        "MANDARIN": "UNINTERESTED"
+      },
+      "friends": {
+        "adam": "adam"
+      },
+      "inQueue": false,
+      "interactions": {
+        "1653030179527": {
+          "detail": "1653030179567_transitory",
+          "time": 1653030179527,
+          "type": "TRANSITORY_CONVERSATION"
+        }
+      },
+      "password": "testUserPass",
+      "username": "testUser"
+    }
+  }
+}
